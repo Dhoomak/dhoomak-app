@@ -21,6 +21,9 @@ module.exports = {
         'grey': '#F0F1F6',
         'red': '#F70C0C',
       },
+      flex: {
+        '2': '2 2 0%',
+      }
     },
   },
   plugins: [],

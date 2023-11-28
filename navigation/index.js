@@ -4,6 +4,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // Screens
 import SplashScreen from '../module/login/screens/splash';
+import { USER } from '../utils/strings/screen-name';
+import AddItems from '../module/category/screens/add-items';
 
 // Stacks
 const Stack = createNativeStackNavigator();
@@ -17,9 +19,19 @@ function Navigation() {
                     screenOptions={{}}
                 >
                     <Stack.Screen
-                        name="Splash"
+                        name={USER.SPLASH}
                         component={SplashScreen}
-                        options={{ animation: 'fade', headerShown: false }}
+                        options={{
+                            animation: 'fade',
+                            headerShown: false
+                        }}
+                    />
+                    <Stack.Screen
+                        name={USER.ADDITEMS}
+                        component={AddItems}
+                        options={{
+                            title: 'Create Your Inventory',
+                        }}
                     />
                 </Stack.Navigator>
             </NavigationContainer>
