@@ -6,6 +6,8 @@ import COLORS from '../../../utils/color';
 import { categories } from '../../../data/data';
 import CategoryCard from '../components/category-card';
 import { USER } from '../../../utils/strings/screen-name';
+import { toast } from '../../../utils/toast';
+import STRINGS from '../../../utils/strings';
 
 const quantityType = ["kg", "g", "l", "ml"]
 
@@ -15,9 +17,14 @@ function AddItems({ navigation }) {
   const [quanityTypeVal, onChangeQuanityTypeVal] = useState('');
 
   const onSubmit = () => {
-    ToastAndroid.show(`You Entered: ${itemName} of Quantity: ${quanity} ${quanityTypeVal}`, ToastAndroid.SHORT, ToastAndroid.BOTTOM);
-    console.log(`You Entered: ${itemName} of Quantity: ${quanity} ${quanityTypeVal}`);
-    navigation.navigate(USER.CATEGORY);
+    if (itemName == '') {
+      toast('Please Enter Item Name');
+    } else if (quanity == '') {
+      toast('Please Enter Valid Quantity');
+    } else {
+      toast(`You Entered: ${itemName} of Quantity: ${quanity} ${quanityTypeVal}`);
+      navigation.navigate(USER.CATEGORY);
+    }
   }
 
   return (
@@ -33,7 +40,7 @@ function AddItems({ navigation }) {
           <TextInput
             onChangeText={onChangeItemName}
             value={itemName}
-            placeholder="Item name"
+            placeholder={STRINGS.itemName}
             className='shadow-md rounded-md p-1 px-2 w-full bg-white'
             style={styles.shadow}
           />
@@ -44,7 +51,7 @@ function AddItems({ navigation }) {
             value={quanity}
             onChangeText={onChangeQuanity}
             keyboardType='numeric'
-            placeholder="Quantity"
+            placeholder={STRINGS.quanity}
             className='shadow-md rounded-md p-1 px-2 flex-2 bg-white'
             style={styles.shadow}
           />
@@ -54,7 +61,7 @@ function AddItems({ navigation }) {
           >
             <SelectDropdown
               data={quantityType}
-              onSelect={(selectedItem, index) => { console.log(selectedItem, index); onChangeQuanityTypeVal(selectedItem); }}
+              onSelect={(selectedItem) => { onChangeQuanityTypeVal(selectedItem); }}
               defaultValue={quantityType[0]}
               buttonTextAfterSelection={(selectedItem) => selectedItem}
               rowTextForSelection={(item) => item}
@@ -72,7 +79,7 @@ function AddItems({ navigation }) {
             activeOpacity={0.9}
             className='shadow-md rounded-md p-2 w-full bg-primary'
             style={styles.shadow}>
-            <Text className='text-base font-bold text-center text-black'>Add Items</Text>
+            <Text className='text-base font-bold text-center text-black'>{STRINGS.addItems}</Text>
           </TouchableOpacity>
         </View>
       </ImageBackground>
@@ -81,7 +88,7 @@ function AddItems({ navigation }) {
         className='w-full h-full p-4 bg-white flex-1'
       >
         {/* Title */}
-        <Text className='text-black text-base font-semibold mb-4'>Choose by Categories</Text>
+        <Text className='text-black text-base font-semibold mb-4'>{STRINGS.chooseByCategories}</Text>
         {/* List of Categories */}
         <ScrollView
           contentContainerStyle={styles.contentContainerStyle} showsVerticalScrollIndicator={false}
