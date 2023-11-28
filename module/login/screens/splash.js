@@ -12,7 +12,7 @@ export default function SplashScreen({ navigation }) {
   }, []);
 
   return (
-    <SafeAreaView className="flex-1 justify-center items-center bg-grey">
+    <SafeAreaView className="flex-1 justify-center items-center bg-white">
       <Image className='w-48 h-32 mb-6' style={{ resizeMode: 'contain' }} source={IMAGES.logo} />
     </SafeAreaView>
   );

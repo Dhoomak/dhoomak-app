@@ -23,6 +23,12 @@ module.exports = {
       },
       flex: {
         '2': '2 2 0%',
+      },
+      width: {
+        1.5: '5px',
+      },
+      fontSize: {
+        10: '10px'
       }
     },
   },

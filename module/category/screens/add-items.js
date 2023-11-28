@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { View, Text, ScrollView, KeyboardAvoidingView, ImageBackground, Image, TextInput, StyleSheet, TouchableOpacity, FlatList, ToastAndroid } from 'react-native';
+import { View, Text, ScrollView, KeyboardAvoidingView, ImageBackground, Image, TextInput, StyleSheet, TouchableOpacity, ToastAndroid } from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown'
 import IMAGES from '../../../assets/images';
 import COLORS from '../../../utils/color';
 import { categories } from '../../../data/data';
 import CategoryCard from '../components/category-card';
+import { USER } from '../../../utils/strings/screen-name';
 
 const quantityType = ["kg", "g", "l", "ml"]
 
-function AddItems() {
+function AddItems({ navigation }) {
   const [itemName, onChangeItemName] = useState('');
   const [quanity, onChangeQuanity] = useState('');
   const [quanityTypeVal, onChangeQuanityTypeVal] = useState('');
@@ -16,6 +17,7 @@ function AddItems() {
   const onSubmit = () => {
     ToastAndroid.show(`You Entered: ${itemName} of Quantity: ${quanity} ${quanityTypeVal}`, ToastAndroid.SHORT, ToastAndroid.BOTTOM);
     console.log(`You Entered: ${itemName} of Quantity: ${quanity} ${quanityTypeVal}`);
+    navigation.navigate(USER.CATEGORY);
   }
 
   return (
@@ -43,7 +45,7 @@ function AddItems() {
             onChangeText={onChangeQuanity}
             keyboardType='numeric'
             placeholder="Quantity"
-            className='shadow-md rounded-md p-1 px-2 flex-grow bg-white'
+            className='shadow-md rounded-md p-1 px-2 flex-2 bg-white'
             style={styles.shadow}
           />
           <View
@@ -58,6 +60,8 @@ function AddItems() {
               rowTextForSelection={(item) => item}
               buttonStyle={styles.dropdown}
               buttonTextStyle={styles.dropdownText}
+              dropdownIconPosition='right'
+              renderDropdownIcon={() => (<Image source={IMAGES.dropdownIcon} className='w-5 h-4' />)}
             />
           </View>
         </View>
@@ -79,7 +83,10 @@ function AddItems() {
         {/* Title */}
         <Text className='text-black text-base font-semibold mb-4'>Choose by Categories</Text>
         {/* List of Categories */}
-        <ScrollView contentContainerStyle={styles.contentContainerStyle} showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
+        <ScrollView
+          contentContainerStyle={styles.contentContainerStyle} showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
+        >
           {
             categories.map((item, ind) => (<View key={ind} style={{ width: '30%', flexDirection: "row" }}>
               <CategoryCard item={item} />
