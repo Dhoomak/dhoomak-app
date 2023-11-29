@@ -1,7 +1,11 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../../store/reducers/cart-slice';
 
 export default function ProductCard(props) {
+    const dispatch = useDispatch();
+
     const {
         item = {},
     } = props;
@@ -15,6 +19,11 @@ export default function ProductCard(props) {
         price = '',
         img = '',
     } = item;
+
+
+    function handleAddToCart() {
+        dispatch(addToCart(item));
+    }
 
     return (
         <View className='w-full h-full p-2 py-3'>
@@ -30,7 +39,7 @@ export default function ProductCard(props) {
             </View>
             <View className='flex flex-row '>
                 <Text className='text-xs text-black font-semibold flex-1'>₹{price}/{quantityType}</Text>
-                <TouchableOpacity className='bg-white rounded-sm px-3 shadow-md' style={styles.shadow}>
+                <TouchableOpacity className='bg-white rounded-sm px-3 shadow-md' style={styles.shadow} onPress={handleAddToCart}>
                     <Text className='text-10 text-secondary font-semibold'>Add</Text>
                 </TouchableOpacity>
             </View>

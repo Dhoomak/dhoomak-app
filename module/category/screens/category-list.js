@@ -5,12 +5,13 @@ import { categories, products } from '../../../data/data';
 import CategoryListCard from '../components/category-list-card';
 import COLORS from '../../../utils/color';
 import ProductCard from '../components/product-card';
+import ProductCartTab from '../../../common/tabs/product-cart-tab';
 
 export default function CategoryList({ route }) {
   const {
     selectedCategoryId = '1',
   } = route.params;
-  
+
   const [activeCategoryId, setActiveCategoryId] = useState(selectedCategoryId);
 
   const onCategoryPress = useCallback((id) => {
@@ -22,7 +23,7 @@ export default function CategoryList({ route }) {
       <View className='flex-row flex-1'>
         <View className='w-24 bg-white h-full border-r border-r-grey'>
           <ScrollView
-            showsHorizontalScrollIndicator={false} 
+            showsHorizontalScrollIndicator={false}
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{ gap: 4 }}
           >
@@ -41,7 +42,7 @@ export default function CategoryList({ route }) {
             }}
           >
             {
-              products.filter((item)=>item.categoryId == activeCategoryId).map((item, ind) => (
+              products.filter((item) => item.categoryId == activeCategoryId).map((item, ind) => (
                 <View key={ind} style={{
                   width: '50%', flexDirection: "row", borderWidth: 1,
                   borderColor: COLORS.grey
@@ -53,6 +54,8 @@ export default function CategoryList({ route }) {
           </ScrollView>
         </View>
       </View>
+      {/* Product Cart Tab */}
+      <ProductCartTab />
     </SafeAreaView>
   );
 }

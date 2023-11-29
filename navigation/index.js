@@ -4,12 +4,14 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // Screens
 import SplashScreen from '../module/login/screens/splash';
-import { USER } from '../utils/strings/screen-name';
 import AddItems from '../module/category/screens/add-items';
 import CategoryList from '../module/category/screens/category-list';
 import Home from '../module/home/screens/home';
-import COLORS from '../utils/color';
 import UserIcon from '../module/home/components/user-icon';
+
+// Utilities
+import { USER } from '../utils/strings/screen-name';
+import COLORS from '../utils/color';
 
 // Stacks
 const Stack = createNativeStackNavigator();

@@ -8,23 +8,41 @@ import CategoryCard from '../components/category-card';
 import { USER } from '../../../utils/strings/screen-name';
 import { toast } from '../../../utils/toast';
 import STRINGS from '../../../utils/strings';
+import ProductCartTab from '../../../common/tabs/product-cart-tab';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../../store/reducers/cart-slice';
+import { generateRandomId } from '../../../utils/generate-random-id';
 
-const quantityType = ["kg", "g", "l", "ml"]
+const quantityType = ["kg", "gm", "l", "ml"]
 
-function AddItems({ navigation }) {
+function AddItems() {
+  const dispatch = useDispatch();
+
   const [itemName, onChangeItemName] = useState('');
   const [quanity, onChangeQuanity] = useState('');
   const [quanityTypeVal, onChangeQuanityTypeVal] = useState('');
 
-  const onSubmit = () => {
+  function handleAddItem() {
     if (itemName == '') {
       toast('Please Enter Item Name');
     } else if (quanity == '') {
       toast('Please Enter Valid Quantity');
     } else {
-      toast(`You Entered: ${itemName} of Quantity: ${quanity} ${quanityTypeVal}`);
-      navigation.navigate(USER.CATEGORY);
+      toast(`You Added: ${itemName} | ${quanity}${quanityTypeVal}`);
+      handleAddToCart();
     }
+  }
+
+  function handleAddToCart() {
+    const item = {
+      id: generateRandomId().toString(),
+      name: itemName,
+      brand: itemName,
+      quantity: quanity,
+      quantityType: quanityTypeVal,
+    }
+
+    dispatch(addToCart(item));
   }
 
   return (
@@ -75,7 +93,7 @@ function AddItems({ navigation }) {
         {/* Submit Button */}
         <View className='w-full'>
           <TouchableOpacity
-            onPress={onSubmit}
+            onPress={handleAddItem}
             activeOpacity={0.9}
             className='shadow-md rounded-md p-2 w-full bg-primary'
             style={styles.shadow}>
@@ -83,6 +101,7 @@ function AddItems({ navigation }) {
           </TouchableOpacity>
         </View>
       </ImageBackground>
+
       {/* Choose category list */}
       <View
         className='w-full h-full p-4 bg-white flex-1'
@@ -104,6 +123,9 @@ function AddItems({ navigation }) {
           }
         </ScrollView>
       </View>
+      
+      {/* Product Cart Tab */}
+      <ProductCartTab />
     </KeyboardAvoidingView>
   );
 }
