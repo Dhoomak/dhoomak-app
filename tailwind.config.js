@@ -6,6 +6,7 @@ module.exports = {
     "./components/**/*.{js,jsx,ts,tsx}",
     "./helpers/**/*.{js,jsx,ts,tsx}",
     "./module/**/*.{js,jsx,ts,tsx}",
+    "./common/**/*.{js,jsx,ts,tsx}",
     "./<custom-folder>/**/*.{js,jsx,ts,tsx}"
   ],
   theme: {
@@ -26,6 +27,7 @@ module.exports = {
       },
       width: {
         1.5: '5px',
+        0.5: '2px',
       },
       fontSize: {
         10: '10px'

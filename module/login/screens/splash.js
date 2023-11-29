@@ -7,8 +7,8 @@ export default function SplashScreen({ navigation }) {
 
   useEffect(() => {
     setTimeout(() => {
-      navigation.replace(USER.ADDITEMS);
-    }, 3000);
+      navigation.replace(USER.HOME);
+    }, 2000);
   }, []);
 
   return (

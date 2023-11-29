@@ -29,7 +29,7 @@ export default function ProductCard(props) {
                 <Text className='text-10 text-black'>{quantity}{quantityType} quantity in Pack</Text>
             </View>
             <View className='flex flex-row '>
-                <Text className='text-xs text-black font-semibold flex-1'>₹{quantity}/{quantityType}</Text>
+                <Text className='text-xs text-black font-semibold flex-1'>₹{price}/{quantityType}</Text>
                 <TouchableOpacity className='bg-white rounded-sm px-3 shadow-md' style={styles.shadow}>
                     <Text className='text-10 text-secondary font-semibold'>Add</Text>
                 </TouchableOpacity>

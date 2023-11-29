@@ -6,9 +6,12 @@ import CategoryListCard from '../components/category-list-card';
 import COLORS from '../../../utils/color';
 import ProductCard from '../components/product-card';
 
-export default function CategoryList() {
-  const [activeCategoryId, setActiveCategoryId] = useState(categories[0].id);
-
+export default function CategoryList({ route }) {
+  const {
+    selectedCategoryId = '1',
+  } = route.params;
+  
+  const [activeCategoryId, setActiveCategoryId] = useState(selectedCategoryId);
 
   const onCategoryPress = useCallback((id) => {
     setActiveCategoryId(id);
@@ -19,11 +22,12 @@ export default function CategoryList() {
       <View className='flex-row flex-1'>
         <View className='w-24 bg-white h-full border-r border-r-grey'>
           <ScrollView
-            showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false} 
+            showsVerticalScrollIndicator={false}
             contentContainerStyle={{ gap: 4 }}
           >
             {
-              categories.map((item, ind) => <CategoryListCard key={item.id} item={item} isActive={activeCategoryId == item.id} onCategoryPress={onCategoryPress} />)
+              categories.map((item) => <CategoryListCard key={item.id} item={item} isActive={activeCategoryId == item.id} onCategoryPress={onCategoryPress} />)
             }
           </ScrollView>
         </View>
@@ -37,7 +41,7 @@ export default function CategoryList() {
             }}
           >
             {
-              products.map((item, ind) => (
+              products.filter((item)=>item.categoryId == activeCategoryId).map((item, ind) => (
                 <View key={ind} style={{
                   width: '50%', flexDirection: "row", borderWidth: 1,
                   borderColor: COLORS.grey
@@ -52,3 +56,4 @@ export default function CategoryList() {
     </SafeAreaView>
   );
 }
+

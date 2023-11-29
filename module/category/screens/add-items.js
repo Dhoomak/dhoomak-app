@@ -91,13 +91,15 @@ function AddItems({ navigation }) {
         <Text className='text-black text-base font-semibold mb-4'>{STRINGS.chooseByCategories}</Text>
         {/* List of Categories */}
         <ScrollView
-          contentContainerStyle={styles.contentContainerStyle} showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.contentContainerStyle}
+          showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}
         >
           {
-            categories.map((item, ind) => (<View key={ind} style={{ width: '30%', flexDirection: "row" }}>
-              <CategoryCard item={item} />
-            </View>)
+            categories.map((item, ind) => (
+              <View key={ind} style={{ width: '30%', flexDirection: "row" }}>
+                <CategoryCard item={item} />
+              </View>)
             )
           }
         </ScrollView>
