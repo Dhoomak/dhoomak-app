@@ -27,7 +27,7 @@ export default function Home() {
           </View>
           <View className='w-0.5 h-full bg-secondary mx-1' />
           <View className='flex-1 p-2'>
-            <Image source={IMAGES.groceryBasketImg} className='w-full h-32' resizeMode={'contain'} />
+            <Image source={IMAGES.groceryBasketImg} className='w-full h-28' resizeMode={'contain'} />
           </View>
         </View>
 
