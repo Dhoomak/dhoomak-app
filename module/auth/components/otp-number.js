@@ -5,11 +5,12 @@ import OTPTextView from 'react-native-otp-textinput';
 import commonStyles from '../../../common/styles';
 import STRINGS from '../../../utils/strings';
 import FilledButton from '../../../common/button';
-import useAppNavigation from '../../../common/hooks/useAppNavigation';
+import useAppNavigation from '../../../common/hooks/use-app-navigation';
 import { toast } from '../../../utils/toast';
 import COLORS from '../../../utils/color';
 import { useDispatch } from 'react-redux';
 import { loginSucess } from '../reducers/auth-slice';
+import { setAsyncStorageItem } from '../../../utils/async-storage';
 
 const OTP_LENGTH = 4;
 
@@ -24,7 +25,8 @@ export default function OtpNumber({ mobileNumber = '' }) {
             return;
         }
         await login();
-        await navigate();
+        await setAsyncStorageItem('isLoggedIn', 'true');
+        // await navigate();
     }
 
     const login = async () => {
@@ -54,7 +56,7 @@ export default function OtpNumber({ mobileNumber = '' }) {
                         borderWidth: 1,
                         borderBottomWidth: 1,
                         borderRadius: 10,
-                        fontSize: 18,
+                        fontSize: 16,
                         fontWeight: "400",
                     }}
                 />

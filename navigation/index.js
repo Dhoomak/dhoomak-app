@@ -1,15 +1,18 @@
 // Navigations
 import { NavigationContainer } from '@react-navigation/native';
 
-import useCheckLogin from '../module/auth/hooks/use-check-login';
-
 // Stacks
 import AuthScreens from './auth';
 import UserScreens from './user';
 
+// Hooks
+import useCheckLogin from '../module/auth/hooks/use-check-login';
 
 function Navigation() {
-    const isLoggedIn = useCheckLogin();
+    const loggedInStatus = useCheckLogin();
+
+    const { isLoggedIn = false } = loggedInStatus || {};
+
     return (
         <>
             <NavigationContainer>
