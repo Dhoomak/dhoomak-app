@@ -4,7 +4,7 @@ import IMAGES from '../../../assets/images';
 import LinearGradient from 'react-native-linear-gradient';
 import COLORS from '../../../utils/color';
 import Slider from '../../../common/slider';
-import { navigation } from '../../../data/data';
+import { navigations } from '../../../data/data';
 import NavigationCard from '../components/navigation-card';
 
 
@@ -45,7 +45,7 @@ export default function Home() {
             showsHorizontalScrollIndicator={false}
           >
             {
-              navigation.map((item) => (
+              navigations.map((item) => (
                 <View key={item.id} style={{ width: '47%' }}>
                   <NavigationCard item={item} />
                 </View>

@@ -2,7 +2,7 @@ import IMAGES from "../assets/images"
 import { USER } from "../utils/strings/screen-name";
 import { toast } from "../utils/toast";
 
-export const navigation = [
+export const navigations = [
     {
         id: 'inventory',
         title: 'Inventory',
