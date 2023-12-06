@@ -7,7 +7,7 @@ import useAppNavigation from '../../../common/hooks/useAppNavigation';
 import { toast } from '../../../utils/toast';
 
 export default function MobileNumber() {
-    const [mobNumber, setMobNumber] = useState('');
+    const [mobNumber, setMobNumber] = useState('9999999999');
     const [navigation, SCREEN] = useAppNavigation();
 
     const handleLoginClick = () => {
@@ -29,6 +29,7 @@ export default function MobileNumber() {
                 value={mobNumber}
                 onChangeText={(text) => setMobNumber(text)}
                 maxLength={10}
+                // defaultValue='9999999999'
             />
             <FilledButton text={STRINGS.enterOtp} onPress={handleLoginClick} />
         </View>

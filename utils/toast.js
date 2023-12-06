@@ -5,5 +5,4 @@ function toast(msg, time = ToastAndroid.SHORT, position = ToastAndroid.BOTTOM) {
     return ToastAndroid.show(msg, time, position);
 }
 
-
 export { toast };
