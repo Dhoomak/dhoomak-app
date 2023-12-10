@@ -11,7 +11,8 @@ import { sendOtpAction } from '../thunks/auth-thunk';
 export default function MobileNumber() {
     const dispatch = useDispatch();
     
-    const [mobNumber, setMobNumber] = useState('9999999999');
+    const [mobNumber, setMobNumber] = useState('');
+
     const [navigation, SCREEN] = useAppNavigation();
 
     const handleLoginClick = () => {

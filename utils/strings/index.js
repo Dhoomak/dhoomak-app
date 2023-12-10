@@ -6,7 +6,7 @@ const STRINGS = {
     addItems: "Add Items",
     enterNumberAndLogin: "Enter Mobile Number and Login",
     enterOtp: "Enter OTP",
-    loginTextPlaceholder: "+91 9900554433",
+    loginTextPlaceholder: "9900554433",
     enterOtpAndVerify: "Please enter the OTP sent to your number",
     verifyOtp: "Verify OTP",
 };
