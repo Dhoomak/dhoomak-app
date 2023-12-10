@@ -22,7 +22,7 @@ function Navigation() {
         } = {}
     } = loggedInStatus || {};
 
-    function getStack() {
+    function GetStack() {
         if (isLoggedIn) {
             switch (role) {
                 case ROLE.RESTAURANT: {
@@ -34,21 +34,21 @@ function Navigation() {
                 case ROLE.DELIVERY: {
                     return <DeliveryScreens />;
                 }
+                default: {
+                    return <ExecutiveScreens />;
+                }
             }
         } else {
             return <AuthScreens />
         }
     }
 
-
     console.log("Navigation Role: ", role);
 
     return (
         <>
             <NavigationContainer>
-                {
-                    getStack()
-                }
+                <GetStack />
             </NavigationContainer>
         </>
     );
