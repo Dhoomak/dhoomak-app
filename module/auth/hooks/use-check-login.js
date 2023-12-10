@@ -5,7 +5,7 @@ import { getAsyncStorageItem } from '../../../utils/async-storage';
 
 const initialState = {
     isLoggedIn: '',
-    // userData: {}
+    userData: {}
 }
 
 function useCheckLogin() {

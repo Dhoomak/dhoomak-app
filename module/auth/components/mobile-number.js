@@ -5,8 +5,12 @@ import STRINGS from '../../../utils/strings';
 import FilledButton from '../../../common/button';
 import useAppNavigation from '../../../common/hooks/use-app-navigation';
 import { toast } from '../../../utils/toast';
+import { useDispatch } from 'react-redux';
+import { sendOtpAction } from '../thunks/auth-thunk';
 
 export default function MobileNumber() {
+    const dispatch = useDispatch();
+    
     const [mobNumber, setMobNumber] = useState('9999999999');
     const [navigation, SCREEN] = useAppNavigation();
 
@@ -15,9 +19,7 @@ export default function MobileNumber() {
             toast("Enter Valid Number");
             return;
         }
-        navigation.navigate(SCREEN.AUTH.ENTER_OTP, {
-            mobileNumber: mobNumber,
-        });
+        dispatch(sendOtpAction({mobileNumber: mobNumber, navigation, SCREEN}));
     }
     return (
         <View className='w-full p-5 bg-white rounded-xl shadow-lg' style={commonStyles.shadow}>
