@@ -1,9 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // Screens
-import Home from '../../module/home/screens/home';
-import AddItems from '../../module/category/screens/add-items';
-import CategoryList from '../../module/category/screens/category-list';
+import { AddItems, Home, CategoryList } from '../../module/home/screens';
 
 // Components
 import UserIcon from '../../module/home/components/user-icon';

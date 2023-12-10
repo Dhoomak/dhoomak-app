@@ -23,13 +23,8 @@ export default function OtpNumber({ mobileNumber = '' }) {
             toast("Please Enter Full OTP");
             return;
         }
-        login();
-        // await setAsyncStorageItem('isLoggedIn', 'true');
-    }
-
-    const login = async () => {
-        console.log('fired verifyOtpAction')
         dispatch(verifyOtpAction({ mobileNumber, otp: otpValue }))
+        
     }
 
     useEffect(() => {

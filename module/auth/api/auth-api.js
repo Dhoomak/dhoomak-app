@@ -48,7 +48,7 @@ export function verifyOtpApi(mobileNumber, otp) {
                 resolve({
                     data: {
                         name: 'Deepak',
-                        role: ROLE.USER,
+                        role: ROLE.EXECUTIVE,
                         accessToken: 'qhj23j4kh112hkjljsazoj',
                         message: `OTP verified successfully!`
                     }
@@ -59,7 +59,7 @@ export function verifyOtpApi(mobileNumber, otp) {
                 resolve({
                     data: {
                         name: 'Deepak',
-                        role: ROLE.USER,
+                        role: ROLE.EXECUTIVE,
                         accessToken: 'qhj23j4kh112hkjljsazoj',
                         message: `OTP verified successfully!`
                     }

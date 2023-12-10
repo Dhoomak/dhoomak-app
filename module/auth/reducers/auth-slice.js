@@ -14,17 +14,13 @@ const authSlice = createSlice({
         },
     },
     extraReducers: (builder) => {
-        builder.addCase(sendOtpAction.fulfilled, (state, action) => {
-            console.log("sendOtpAction fulfilled : ", action.payload);
-        }),
-            builder.addCase(verifyOtpAction.fulfilled, (state, action) => {
-                console.log("verifyOtpAction fulfilled : ", action.payload);
+        builder.
+            addCase(sendOtpAction.fulfilled, (state, action) => { })
+            .addCase(verifyOtpAction.fulfilled, (state, action) => {
                 state.isLoggedIn = true;
                 state.userData = action.payload.data;
-            }),
-            builder.addCase(verifyOtpAction.rejected, (state, action) => {
-                console.log("verifyOtpAction rejected : ", action.payload);
             })
+            .addCase(verifyOtpAction.rejected, (state, action) => { })
     },
 })
 

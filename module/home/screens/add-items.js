@@ -5,7 +5,6 @@ import IMAGES from '../../../assets/images';
 import COLORS from '../../../utils/color';
 import { categories } from '../../../data/data';
 import CategoryCard from '../components/category-card';
-import { USER } from '../../../utils/strings/screen-name';
 import { toast } from '../../../utils/toast';
 import STRINGS from '../../../utils/strings';
 import ProductCartTab from '../../../common/tabs/product-cart-tab';
