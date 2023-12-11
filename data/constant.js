@@ -9,6 +9,6 @@ export const ROLE = {
 
 export const ASYNC_STORAGE_KEY = {
     IS_LOGGED_IN: 'isLoggedIn',
-    USER_DATA: 'UserData',
+    USER_DATA: 'userData',
 }
 

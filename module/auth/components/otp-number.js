@@ -5,12 +5,10 @@ import OTPTextView from 'react-native-otp-textinput';
 import commonStyles from '../../../common/styles';
 import STRINGS from '../../../utils/strings';
 import FilledButton from '../../../common/button';
-// import useAppNavigation from '../../../common/hooks/use-app-navigation';
 import { toast } from '../../../utils/toast';
 import COLORS from '../../../utils/color';
 import { useDispatch } from 'react-redux';
 import { verifyOtpAction } from '../thunks/auth-thunk';
-// import { setAsyncStorageItem } from '../../../utils/async-storage';
 
 const OTP_LENGTH = 4;
 
