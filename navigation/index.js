@@ -1,5 +1,5 @@
 // Navigations
-import { NavigationContainer } from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 
 // Stacks
 import AuthScreens from './auth';
@@ -9,50 +9,45 @@ import DeliveryScreens from './delivery';
 
 // Hooks
 import useCheckLogin from '../module/auth/hooks/use-check-login';
-import { ROLE } from '../data/constant';
-
+import {ROLE} from '../data/constant';
 
 function Navigation() {
-    const loggedInStatus = useCheckLogin();
+  const loggedInStatus = useCheckLogin();
 
-    const {
-        isLoggedIn = false,
-        userData: {
-            role = '',
-        } = {}
-    } = loggedInStatus || {};
+  const {isLoggedIn = false, userData: {role = ''} = {}} = loggedInStatus || {};
 
-    function GetStack() {
-        if (isLoggedIn) {
-            switch (role) {
-                case ROLE.RESTAURANT: {
-                    return <UserScreens />;
-                }
-                case ROLE.EXECUTIVE: {
-                    return <ExecutiveScreens />;
-                }
-                case ROLE.DELIVERY: {
-                    return <DeliveryScreens />;
-                }
-                default: {
-                    return <ExecutiveScreens />;
-                }
-            }
-        } else {
-            return <AuthScreens />
+  function GetStack() {
+    console.log(role);
+    if (isLoggedIn) {
+      switch (role) {
+        case ROLE.RESTAURANT: {
+          return <UserScreens />;
         }
+        case ROLE.EXECUTIVE: {
+          9999;
+          return <ExecutiveScreens />;
+        }
+        case ROLE.DELIVERY: {
+          return <DeliveryScreens />;
+        }
+        default: {
+          return <ExecutiveScreens />;
+        }
+      }
+    } else {
+      return <AuthScreens />;
     }
+  }
 
-    console.log("Navigation Role: ", role);
+  // console.log("Navigation Role: ", role);
 
-    return (
-        <>
-            <NavigationContainer>
-                <GetStack />
-            </NavigationContainer>
-        </>
-    );
+  return (
+    <>
+      <NavigationContainer>
+        <GetStack />
+      </NavigationContainer>
+    </>
+  );
 }
-
 
 export default Navigation;
