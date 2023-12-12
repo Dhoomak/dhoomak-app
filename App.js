@@ -1,8 +1,8 @@
 import React from 'react';
 
 // Screens
-import Navigation from './navigation';
-import MainWrapper from './common/wrappers/wrapper';
+import Navigation from './src/navigation';
+import MainWrapper from './src/common/wrappers/wrapper';
 
 function App() {
   return (

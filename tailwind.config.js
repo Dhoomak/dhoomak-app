@@ -7,6 +7,7 @@ module.exports = {
     "./helpers/**/*.{js,jsx,ts,tsx}",
     "./module/**/*.{js,jsx,ts,tsx}",
     "./common/**/*.{js,jsx,ts,tsx}",
+    "./src/**/*.{js,jsx,ts,tsx}",
     "./<custom-folder>/**/*.{js,jsx,ts,tsx}"
   ],
   theme: {
