@@ -21,8 +21,7 @@ export default function OtpNumber({ mobileNumber = '' }) {
             toast("Please Enter Full OTP");
             return;
         }
-        dispatch(verifyOtpAction({ mobileNumber, otp: otpValue }))
-        
+        dispatch(verifyOtpAction({ mobileNumber, otp: otpValue }));
     }
 
     useEffect(() => {

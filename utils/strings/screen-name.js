@@ -7,6 +7,7 @@ export const USER = {
 
 export const EXECUTIVE = {
     DASHBOARD: 'ExecutiveDashboard',
+    ENQUIRY_FORM: 'EnquiryForm',
 }
 
 export const DELIVERY = {

@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // Screens
-import { Dashboard } from '../../module/executive/screens'
+import { Dashboard, EnquiryForm } from '../../module/executive/screens'
 
 // Components
 import UserIcon from '../../module/home/components/user-icon';
@@ -15,7 +15,9 @@ const ExecutiveStack = createNativeStackNavigator();
 
 const ExecutiveScreens = () => {
     return (
-        <ExecutiveStack.Navigator>
+        <ExecutiveStack.Navigator
+            initialRouteName={EXECUTIVE.ENQUIRY_FORM}
+        >
             <ExecutiveStack.Screen
                 name={EXECUTIVE.DASHBOARD}
                 component={Dashboard}
@@ -25,6 +27,16 @@ const ExecutiveScreens = () => {
                         backgroundColor: COLORS.primary
                     },
                     headerRight: () => <UserIcon />
+                }}
+            />
+            <ExecutiveStack.Screen
+                name={EXECUTIVE.ENQUIRY_FORM}
+                component={EnquiryForm}
+                options={{
+                    title: 'Enquiry Form',
+                    headerStyle: {
+                        backgroundColor: COLORS.primary
+                    },
                 }}
             />
         </ExecutiveStack.Navigator>

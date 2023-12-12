@@ -4,6 +4,7 @@ const IMAGES = {
     kitchenBg: require('./kitchen-bg.jpg'),
     dropdownIcon: require('./dropdown.png'),
     userIcon: require('./user.png'),
+    calenderIcon: require('./calender.png'),
     marketingIcon: require('./marketing.jpg'),
     inventoryIcon: require('./inventory.jpg'),
     discoveryIcon: require('./discovery.jpg'),
