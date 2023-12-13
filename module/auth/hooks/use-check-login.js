@@ -23,7 +23,7 @@ function useCheckLogin() {
             userData: userDataAsync,
         }));
     }
-
+    
     useEffect(() => {
         getAsyncDetails();
     }, [authState])

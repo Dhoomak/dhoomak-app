@@ -19,19 +19,10 @@ export default function OtpNumber({mobileNumber = ''}) {
   const dispatch = useDispatch();
   const [otpValue, setOtpValue] = useState('');
   const route = useRoute();
-
-  // Extract the mobileNumber from route params
   const {phoneNumber} = route.params;
 
   console.log(typeof phoneNumber);
-  // Now, you can use the mobileNumber in your component
-  console.log('Mobile Number..............:', phoneNumber);
-
   const handleVerifyOtp = async () => {
-    console.log('Handling OTP verification...');
-    console.log('OTP Value:', otpValue);
-    console.log('OTP Length:', otpValue.length);
-
     if (otpValue.length !== OTP_LENGTH) {
       console.log('Invalid OTP Length');
       toast('Please Enter Full OTP');

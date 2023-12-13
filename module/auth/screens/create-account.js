@@ -1,12 +1,11 @@
-import {View, Text} from 'react-native';
-import React from 'react';
+import AuthUiWrapper from '../components/auth-ui-wrapper';
+import CreateAccountScreen from '../components/create-account';
 
-const CreateAccount = () => {
+
+export default function CreateAccount() {
   return (
-    <View>
-      <Text>create-account</Text>
-    </View>
+    <AuthUiWrapper>
+          <CreateAccountScreen/>
+    </AuthUiWrapper>
   );
-};
-
-export default CreateAccount;
+}
