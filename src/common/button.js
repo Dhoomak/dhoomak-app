@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text,Pressable,StyleSheet } from 'react-native'
+import { View, Text, Pressable, StyleSheet, TouchableOpacity } from 'react-native'
 import { scale } from '../utils/scale';
+import COLORS from '../utils/color';
 
 export default function FilledButton({
     text = '',
@@ -10,22 +11,24 @@ export default function FilledButton({
 }) {
 
     const {
-        className: btnClassName = ''
+        className: btnClassName = '',
+        ...restBtnProps
     } = btnProps;
 
     const {
-        className: textClassName = ''
+        className: textClassName = '',
+        ...restTextProps
     } = textProps;
 
     return (
         <TouchableOpacity
             className={`bg-red p-2 rounded-md ${btnClassName}`}
-            {...btnProps}
+            {...restBtnProps}
             {...rest}
         >
             <Text
                 className={`text-white text-center font-bold text-base ${textClassName}`}
-                {...textProps}
+                {...restTextProps}
             >
                 {text}
             </Text>
@@ -33,34 +36,35 @@ export default function FilledButton({
     );
 }
 
-export const PrimaryButton = ({title,onClick}) => {
-  return (
-      <Pressable style={styles.button} onPress={onClick}>
+export const PrimaryButton = ({ title, onClick }) => {
+    return (
+        <Pressable style={styles.button} onPress={onClick}>
             <Text style={styles.buttonText}>{title}</Text>
-      </Pressable> 
-  )
+        </Pressable>
+    )
 }
 
 
-export const SecondaryButton = ({title,onClick}) => {
-  return (
-      <Pressable style={styles.button} onPress={onClick}>
+export const SecondaryButton = ({ title, onClick }) => {
+    return (
+        <Pressable style={styles.button} onPress={onClick}>
             <Text style={styles.buttonText}>{title}</Text>
-      </Pressable> 
-  )
+        </Pressable>
+    )
 }
 
 const styles = StyleSheet.create({
-  button: {
-    backgroundColor: '#FFC107',
-    padding: 12,
-    borderRadius: 5,
-    color:"black"
-  },
-  buttonText: {
-    color:"black",
-    textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize:scale(20)
-  },
+    button: {
+        backgroundColor: COLORS.primary,
+        padding: 10,
+        paddingVertical: 10,
+        borderRadius: 5,
+        color: "black"
+    },
+    buttonText: {
+        color: "black",
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: scale(15)
+    },
 });

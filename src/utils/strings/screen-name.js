@@ -5,6 +5,7 @@ export const USER = {
     HOME: 'Home',
     PROFILE: 'UserProfile',
     TAB: 'UserTab',
+    DRAWER: 'UserDrawer',
     SUBSCRIPTION: 'Subscription',
     PAYMENT: 'Payment',
 }

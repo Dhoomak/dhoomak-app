@@ -1,12 +1,18 @@
-import { View, Text, ScrollView, Image,FlatList, Pressable } from 'react-native'
+import { View, Text, ScrollView, Image, FlatList, Pressable, TouchableOpacity } from 'react-native'
 import CheckBox from '@react-native-community/checkbox';
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import STRINGS from '../../../utils/strings'
 import { InputDate, InputTime } from '../../../common/form/input-fields'
-import { PrimaryButton } from '../../../common/button';
+import FilledButton from '../../../common/button';
 import { USER } from '../../../utils/strings/screen-name';
+import commonStyles from './../../../common/styles';
+import IMAGES from '../../../assets/images';
+import COLORS from '../../../utils/color';
 
-const Subscription = ({navigation}) => {
+const Subscription = ({ navigation }) => {
+  const [termsChecked, setTermsChecked] = useState(true);
+  const [sampleChecked, setSampleChecked] = useState(true);
+
   const data = [
     {
       itemName: "Notebooks",
@@ -35,139 +41,159 @@ const Subscription = ({navigation}) => {
     },
   ]
 
-    const inputDateAttributes = {
+  const inputDateAttributes = {
     name: 'dateInput',
-    // label: 'Select a Date', // Specify the label
-
   };
 
-  const handleFormData=()=>{
+  const handleFormData = () => {
     console.log(date)
   }
 
   const renderItem = ({ item }) => (
-    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-      <View style={{ flexDirection: 'row' }}>
-        <Image source={require("./../../../assets/images/basket.png")} style={{ width: 50, height: 50 }} />
-        <View style={{ marginLeft: 5, flexDirection: 'column' }}>
-          <Text style={{ fontWeight: 'bold', color: 'black' }}>
-            {item.itemName}
-          </Text>
-          <Text>
-            {item.description}
-          </Text>
-        </View>
+    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: 4 }}>
+
+      <Image source={IMAGES.banner.banner1} style={{ width: 50, height: 50, borderRadius: 8, }} />
+      <View style={{ marginLeft: 5, flexDirection: 'column', flex: 1, }}>
+        <Text style={{ fontWeight: 'bold', color: COLORS.black }}>{item.itemName}</Text>
+        <Text style={{ fontSize: 12 }}>{item.description}</Text>
       </View>
-      <Text>
+      <Text style={{ fontSize: 14, color: COLORS.black }}>
         {item.quantity}
       </Text>
     </View>
   );
 
-const [termsChecked, setTermsChecked] = useState(true);
-  const [sampleChecked, setSampleChecked] = useState(true);
+  const submitForm = () => {
+    console.log("Form Submitted....");
+    handleNavigation();
+  }
 
-    const submitForm=()=>{
-        console.log("hello")
-    }
+  function handleNavigation() {
+    navigation.navigate(USER.PAYMENT)
+  }
 
-    function handleNavigation() {
-        navigation.navigate(USER.PAYMENT)
-    }
+  const handleShare = () => {
+    console.log('Share Item')
+  }
+
+  const handleDelete = () => {
+    console.log('Delete Items')
+  }
+
 
   return (
-    <ScrollView >
-      <Text className="text-red flex justify-center align-middle text-center font-bold text-xl mt-5">{STRINGS.inventoryCompleted}</Text>
-      <View className="px-5 mx-5 mt-5 rounded-md bg-white rounded-xl shadow-lg ">
-        <Text className="text-xl text-black font-bold mt-5">
-          Total Items
-        </Text>
-        <View className="flex flex-row justify-between">
-        <Text className="text-sm text-black ">
-          15/15 ITEMS SELECTED(475 KG)
-        </Text>
-        <View className="flex flex-row">
-            <Image className="mx-2"source={require("./../../../assets/images/share.png")}/>
-            <Image source={require("./../../../assets/images/delete.png")}/>
+    <ScrollView className="bg-white">
+      <Text className="text-red flex justify-center align-middle text-center font-bold text-lg my-3">{STRINGS.inventoryCompleted}</Text>
+      {/* Total Item Details Container */}
+      <View className="px-5 py-4 mx-4 mb-6 bg-white rounded-xl shadow-lg " style={commonStyles.shadow}>
+        {/* Total Item Details Header */}
+        <View className="flex flex-row items-center mb-4">
+          <View className="flex-1 flex flex-col justify-between ">
+            <Text className="text-lg text-black font-bold">Total Items</Text>
+            <Text className="text-xs text-black ">15/15 ITEMS SELECTED(475 KG)</Text>
+          </View>
+          <View className="flex flex-row items-center gap-2">
+            <TouchableOpacity onPress={handleShare}>
+              <Image source={IMAGES.shareIcon} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={handleDelete}>
+              <Image source={IMAGES.deleteIcon} />
+            </TouchableOpacity>
+          </View>
         </View>
-        </View>
-        <View style={{height:200}}>
-        <FlatList
+
+        <View style={{ height: 200 }}>
+          <FlatList
             nestedScrollEnabled
             data={data}
             renderItem={renderItem}
             keyExtractor={(item, index) => index.toString()}
-            style={{ marginVertical: 10 }}
-            ItemSeparatorComponent={() => <View style={{ borderBottomWidth: 1, borderColor: 'gray', marginVertical: 5 }} />}
-        />
+            ItemSeparatorComponent={() => <View style={{ borderBottomWidth: 1, marginVertical: 5 }} className="border-grey" />}
+          />
         </View>
       </View>
-      <View className="px-5 mx-5 my-5 rounded-md bg-white rounded-xl shadow-lg ">
-        <Text className="text-xl text-black font-bold mt-5">
-          Choose Your Plan
-        </Text>
 
-        <View style={{}} className="flex flex-row">
-            <View className="flex flex-row gap-3 my-2">
+      {/* Choose Plan */}
+      <View className="px-5 py-4 mx-4 mb-6 bg-white rounded-xl shadow-lg" style={commonStyles.shadow}>
+        <Text className="text-lg text-black font-bold ">Choose Your Plan</Text>
+
+        <View className="flex flex-row">
+          <View className="flex flex-row gap-3 my-1">
             <Pressable className="flex item-center text-center">
-                 <Text className="bg-primary py-1 px-3 text-xs text-black font-semibold rounded">Monthly </Text>
+              <Text className="bg-primary py-1 px-3 text-xs text-black font-semibold rounded">Monthly </Text>
             </Pressable>
             <Pressable className="flex item-center text-center">
-                 <Text className="bg-primary py-1 px-3 text-xs text-black font-semibold rounded">Fortnight </Text>
+              <Text className="bg-primary py-1 px-3 text-xs text-black font-semibold rounded">Fortnight </Text>
             </Pressable>
             <Pressable className="flex item-center text-center">
-                 <Text className="bg-primary py-1 px-3 text-xs text-black font-semibold rounded">Weekly </Text>
+              <Text className="bg-primary py-1 px-3 text-xs text-black font-semibold rounded">Weekly </Text>
             </Pressable>
-            </View>
+          </View>
         </View>
         <Text className="text-xl text-black font-bold my-2">
           ₹999
         </Text>
-        <View className="flex flex-row gap-10 mb-5">
-        <View>
-            <Text className="text-black font-medium text-sm">Free Delivery</Text>
-            <Text className="text-black font-medium text-sm">Free Delivery</Text>
-        </View>
-        <View>
-            <Text className="text-black font-medium text-sm">Free Delivery</Text>
-            <Text className="text-black font-medium text-sm">Free Delivery</Text>
-        </View>
+        <View className="flex flex-row gap-2 ">
+          <View>
+            <Text className="text-black font-normal text-xs">Free Delivery</Text>
+            <Text className="text-black font-normal text-xs">Free Delivery</Text>
+            <Text className="text-black font-normal text-xs">Free Delivery</Text>
+            <Text className="text-black font-normal text-xs">Free Delivery</Text>
+          </View>
+          {/* <View>
+          </View> */}
         </View>
 
       </View>
-         <View className="px-5 mx-5 mt-5 rounded-md bg-white rounded-xl shadow-lg ">
-        <Text className="text-xl text-black font-bold mt-5">
-          Start Date
-        </Text>
-        <View style={{height:200}}>
-        <InputDate
-        attributes={inputDateAttributes}
-        handleFormData={handleFormData}
-      />
-      <InputTime         
-        attributes={inputDateAttributes}
-        handleFormData={handleFormData}/>
+
+      {/* Start Date */}
+      <View className="px-5 py-4 mx-4 mb-6 bg-white rounded-xl shadow-lg " style={commonStyles.shadow}>
+        <Text className="text-lg text-black font-bold">Start Date</Text>
+        <View >
+          <InputDate
+            attributes={inputDateAttributes}
+            handleFormData={handleFormData}
+          />
+          <InputTime
+            attributes={inputDateAttributes}
+            handleFormData={handleFormData} />
         </View>
       </View>
-    <View className="mx-5">
-        <View className="flex flex-row items-center mt-4">
+      {/* Accept Agreement */}
+      <View className="mx-4 mb-2">
+        <View className="flex flex-row items-center ">
           <CheckBox
+            tintColors={{
+              true: COLORS.secondary,
+              false: COLORS.lightGrey,
+            }}
             value={termsChecked}
             onValueChange={(isChecked) => setTermsChecked(isChecked)}
           />
           <Text className="ml-2 text-sm">I agree to the Terms and Conditions</Text>
         </View>
-        <View className="flex flex-row items-center mt-2">
+        <View className="flex flex-row items-center ">
           <CheckBox
+            tintColors={{
+              true: COLORS.secondary,
+              false: COLORS.lightGrey,
+            }}
             value={sampleChecked}
             onValueChange={(isChecked) => setSampleChecked(isChecked)}
           />
           <Text className="ml-2 text-sm">Request for Sample</Text>
         </View>
       </View>
-        <View className="mx-4 my-5">
-        <PrimaryButton title="Submit" onClick={handleNavigation}/>
-        </View>
+
+      {/* Button */}
+      <View className="mx-4 mb-4">
+        <FilledButton
+          text="Submit"
+          onPress={submitForm}
+          textProps={{ className: 'text-black' }}
+          btnProps={{ className: 'bg-primary' }}
+        />
+      </View>
     </ScrollView>
   )
 }

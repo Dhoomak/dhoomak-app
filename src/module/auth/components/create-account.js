@@ -1,55 +1,57 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet,Pressable, Image } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Pressable, Image } from 'react-native';
+import IMAGES from '../../../assets/images';
 // import { PrimaryButton } from './buttons';
 // import { scale } from '../../../utils/scale';
 
 
 
-const CreateAccountScreen = ({navigation}) => {
+const CreateAccountScreen = ({ navigation }) => {
   const [username, setUsername] = useState('');
-  const handleResetPassword= () => {
+
+  const handleResetPassword = () => {
     console.log('Logging in with:', username);
     navigation.navigate('VerifyPassword', {
-        username: username,
-        otherParam: 'anything you want here',
+      username: username,
+      otherParam: 'anything you want here',
     });
   };
 
-  const backHandler=()=>{
+  const backHandler = () => {
     navigation.goBack();
   }
 
   return (
     <View style={styles.container}>
-        <Pressable onPress={backHandler}>
-            <Image
-                source={require("./../../..//assets/images/Group37.png")}
-                style={styles.image}
-            />
-        </Pressable>
+      <Pressable onPress={backHandler}>
+        <Image
+          source={IMAGES.backButton}
+          style={styles.image}
+        />
+      </Pressable>
 
       <View style={styles.loginTextContainer}>
-          <Text style={styles.title}>Forgot Password!</Text>
-          <Text style={styles.loginText}>
+        <Text style={styles.title}>Forgot Password!</Text>
+        <Text style={styles.loginText}>
           Reset your password
-          </Text>
+        </Text>
       </View>
       <View style={styles.inputContainer}>
-          <View>
-              <Text style={styles.inputTitle}>Enter your Email or Phone</Text>
-              <TextInput
-                style={styles.input}
-                // placeholder="Username"
-                onChangeText={(text) => setUsername(text)}
-                value={username}
-              />
-          </View>
-          <Pressable>
-                  <Text style={styles.forgotPassWord}>
-                      {/* Forgot Password? */}
-                  </Text>
-          </Pressable>
-          {/* <PrimaryButton onClick={handleResetPassword} title="Submit"/> */}
+        <View>
+          <Text style={styles.inputTitle}>Enter your Email or Phone</Text>
+          <TextInput
+            style={styles.input}
+            // placeholder="Username"
+            onChangeText={(text) => setUsername(text)}
+            value={username}
+          />
+        </View>
+        <Pressable>
+          <Text style={styles.forgotPassWord}>
+            {/* Forgot Password? */}
+          </Text>
+        </Pressable>
+        {/* <PrimaryButton onClick={handleResetPassword} title="Submit"/> */}
       </View>
 
     </View>

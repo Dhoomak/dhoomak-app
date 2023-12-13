@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // Screens
-import { Home, Profile,Subscription } from '../../module/home/screens';
+import { Home, Profile, Subscription } from '../../module/home/screens';
 
 // Components
 import UserIcon from '../../module/home/components/user-icon';
@@ -15,6 +15,7 @@ const UserTab = createBottomTabNavigator();
 function UserTabs() {
     return (
         <UserTab.Navigator
+            // initialRouteName={USER.SUBSCRIPTION}
             screenOptions={{
                 headerStyle: {
                     backgroundColor: COLORS.primary
@@ -39,7 +40,7 @@ function UserTabs() {
                 }}
             />
 
-              <UserTab.Screen
+            <UserTab.Screen
                 name={USER.SUBSCRIPTION}
                 component={Subscription}
                 options={{

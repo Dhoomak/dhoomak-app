@@ -3,11 +3,14 @@ import { AddItems, CategoryList, Payment } from '../../module/home/screens';
 import UserTabs from './user-tab';
 import COLORS from '../../utils/color';
 import { USER } from '../../utils/strings/screen-name';
+import UserDrawers from './user-drawer';
 const UserStack = createNativeStackNavigator();
 
 const UserScreens = () => {
     return (
-        <UserStack.Navigator>
+        <UserStack.Navigator
+            initialRouteName={USER.TAB}
+        >
             <UserStack.Screen
                 name={USER.TAB}
                 component={UserTabs}
@@ -33,7 +36,7 @@ const UserScreens = () => {
                 component={Payment}
                 options={{
                     title: 'Payment',
-                    headerShown:false
+                    headerShown: false
                 }}
             />
         </UserStack.Navigator>
