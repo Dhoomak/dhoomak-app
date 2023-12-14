@@ -4,8 +4,7 @@ import CreateAccountScreen from '../components/create-account';
 
 export default function CreateAccount() {
   return (
-    <AuthUiWrapper>
+
           <CreateAccountScreen/>
-    </AuthUiWrapper>
   );
 }

@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useState } from 'react';
-import { View, Text, TextInput } from 'react-native';
+import { View, Text, TextInput, KeyboardAvoidingView,ScrollView } from 'react-native';
 import commonStyles from '../../../common/styles';
 import STRINGS from '../../../utils/strings';
 import FilledButton from '../../../common/button';
@@ -7,6 +7,7 @@ import useAppNavigation from '../../../common/hooks/use-app-navigation';
 import { toast } from '../../../utils/toast';
 import { useDispatch } from 'react-redux';
 import { sendOtpAction } from '../thunks/auth-thunk';
+// import { ScrollView } from 'react-native-gesture-handler';
 
 function MobileNumber() {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ function MobileNumber() {
   };
 
   return (
+    <KeyboardAvoidingView>
     <View
       className="w-full p-5 bg-white rounded-xl shadow-lg"
       style={commonStyles.shadow}>
@@ -38,6 +40,7 @@ function MobileNumber() {
       />
       <FilledButton text={STRINGS.enterOtp} onPress={handleLoginClick} />
     </View>
+    </KeyboardAvoidingView>
   );
 }
 

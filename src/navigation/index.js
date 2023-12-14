@@ -25,16 +25,16 @@ function Navigation() {
     console.log("Navigation Role: ", userType);
     if (isLoggedIn) {
       switch (userType) {
-        case ROLE.RESTAURANT: {
-          return <UserScreens />;
-        }
-        case ROLE.EXECUTIVE: {
-          9999;
-          return <ExecutiveScreens />;
-        }
-        case ROLE.DELIVERY: {
-          return <DeliveryScreens />;
-        }
+        // case ROLE.RESTAURANT: {
+        //   return <UserScreens />;
+        // }
+        // case ROLE.EXECUTIVE: {
+        //   9999;
+        //   return <ExecutiveScreens />;
+        // }
+        // case ROLE.DELIVERY: {
+        //   return <DeliveryScreens />;
+        // }
         default: {
           return <ExecutiveScreens />;
         }

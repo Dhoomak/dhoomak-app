@@ -13,6 +13,8 @@ export const USER = {
 export const EXECUTIVE = {
     DASHBOARD: 'ExecutiveDashboard',
     ENQUIRY_FORM: 'EnquiryForm',
+    CREATE_ACCOUNT: 'CreateAccount',
+    VERIFICATION_OTP: 'VerificationOTP',
 }
 
 export const DELIVERY = {
