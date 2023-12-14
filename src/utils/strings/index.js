@@ -9,7 +9,9 @@ const STRINGS = {
     loginTextPlaceholder: "9988221100",
     enterOtpAndVerify: "Please enter the OTP sent to your number",
     verifyOtp: "Verify OTP",
-    inventoryCompleted: "Your Inventory is completed"
+    inventoryCompleted: "Your Inventory is completed",
+    comingSoon: 'Coming Soon!!',
+    launchingSoon: 'Launching Soon!!',
 };
 
 export default STRINGS;

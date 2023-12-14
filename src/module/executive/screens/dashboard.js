@@ -1,114 +1,150 @@
 import React from 'react';
-import { View, StyleSheet, Text, Pressable,TouchableOpacity,Image } from 'react-native';
+import { View, StyleSheet, Text, Pressable, TouchableOpacity, ScrollView, Image, SafeAreaView } from 'react-native';
 import commonStyles from '../../../common/styles';
 import IMAGES from '../../../assets/images';
 import { EXECUTIVE } from '../../../utils/strings/screen-name';
+import COLORS from '../../../utils/color';
+import { toast } from '../../../utils/toast';
+import STRINGS from '../../../utils/strings';
 
-export default function ExecutiveDashboard({navigation}) {
-//   const handlePress = (screenName) => {
-//     // Handle press logic for each button
-//     console.log(`${screenName} pressed`);
-//     navigation.navigation(screenName)
-//   };
-  const handlePress = () => {
+export default function ExecutiveDashboard({ navigation }) {
 
-    navigation.navigate(EXECUTIVE.CREATE_ACCOUNT)
-  };
+  const list = [
+    {
+      title: 'Inventory',
+      image: IMAGES.inventoryExec,
+      containerProps: {
+        onPress: () => { navigation.navigate(EXECUTIVE.CREATE_ACCOUNT) },
+      }
+    },
+    {
+      title: 'Digi Menu',
+      image: IMAGES.comingSoon,
+      containerProps: {
+        onPress: () => { toast(STRINGS.comingSoon); },
 
+      }
+    },
+    {
+      title: 'Marketing',
+      image: IMAGES.comingSoon,
+      containerProps: {
+        onPress: () => { toast(STRINGS.comingSoon) },
+      }
+    },
+  ]
 
-
+  const iconNavigation = [
+    {
+      title: 'Inquiry',
+      image: IMAGES.inquiry,
+      disabled: false,
+      iconProps: {
+        onPress: () => { navigation.navigate(EXECUTIVE.ENQUIRY_FORM) }
+      }
+    },
+    {
+      title: 'Day Target',
+      image: IMAGES.inquiry,
+      disabled: true,
+      iconProps: {
+        onPress: () => { toast(STRINGS.launchingSoon); }
+      }
+    },
+    {
+      title: 'Achievement',
+      image: IMAGES.achievement,
+      disabled: true,
+      iconProps: {
+        onPress: () => { toast(STRINGS.launchingSoon); }
+      }
+    },
+    {
+      title: 'Demo',
+      image: IMAGES.demo,
+      disabled: true,
+      iconProps: {
+        onPress: () => { toast(STRINGS.launchingSoon); }
+      }
+    },
+    {
+      title: 'Salary',
+      image: IMAGES.salary,
+      disabled: true,
+      iconProps: {
+        onPress: () => { toast(STRINGS.launchingSoon); }
+      }
+    },
+  ]
 
   return (
-    <View style={styles.container}>
-      {/* Round Pressable Buttons */}
-      <View style={styles.buttonContainer} className="mx-3">
-        <View style={{display:"flex",justifyContent:"center",alignContent:"center",alignItems:"center"}}>
-          <Pressable style={styles.roundButton} className="bg-white  shadow-lg " onPress={() => handlePress('Inquiry')}>
-          <Image source={IMAGES.inquiry} style={styles.image}/>
-          </Pressable>
-        <Text>Inquiry</Text>
-        </View>
+    <SafeAreaView style={styles.container}>
+      {/* Rounded Icons */}
+      <View >
+        <ScrollView
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
+          horizontal={true}
+          className="p-2 py-2"
+        >
+          {
+            iconNavigation.map(({ title, image, disabled, iconProps }) => (
+              <View className='m-2 mr-1 flex items-center'>
+                <TouchableOpacity
+                  style={[styles.roundButton, commonStyles.shadow]}
+                  className={`bg-primary border-2 border-white shadow-lg mb-1 ${disabled ? 'bg-grey' : 'bg-primary'}`}
+                  {...iconProps}
+                >
+                  <Image source={image} style={styles.image} />
+                </TouchableOpacity>
+                <Text className="text-11 text-black">{title}</Text>
+              </View>
+            ))
+          }
+        </ScrollView>
+      </View>
 
-         <View style={{display:"flex",justifyContent:"center",alignContent:"center",alignItems:"center"}}>
-        <Pressable style={styles.roundButton} className="bg-white  shadow-lg" onPress={() => handlePress('Day Target')}>
-          <Image source={IMAGES.inquiry} style={styles.image}/>
-        </Pressable>
-          <Text>Day Target</Text>
-        </View>
-         <View style={{display:"flex",justifyContent:"center",alignContent:"center",alignItems:"center"}}>
-        <Pressable style={styles.roundButton} className="bg-white  shadow-lg" onPress={() => handlePress('Day Target')}>
-          <Image source={IMAGES.achievement} style={styles.image}/>
-        </Pressable>
-          <Text>Achievement</Text>
-        </View>
-        <View style={{display:"flex",justifyContent:"center",alignContent:"center",alignItems:"center"}}>
-        <Pressable style={styles.roundButton} className="bg-white  shadow-lg" onPress={() => handlePress('Day Target')}>
-          <Image source={IMAGES.demo} style={styles.image}/>
-        </Pressable>
-          <Text>Demo</Text>
-        </View>
-                 <View style={{display:"flex",justifyContent:"center",alignContent:"center",alignItems:"center"}}>
-        <Pressable style={styles.roundButton} className="bg-white  shadow-lg" onPress={() => handlePress('Day Target')}>
-          <Image source={IMAGES.salary} style={styles.image}/>
-        </Pressable>
-          <Text>Salary</Text>
-        </View>
-      </View>
-      <View className="mt-10">
-        <Pressable className="px-5 py-8 mx-4 mb-6 bg-white rounded-xl shadow-lg flex flex-row justify-between" style={commonStyles.shadow} onPress={handlePress}>
-          <Text className="text-black text-lg font-medium">Inventory</Text>
-          <Image source={IMAGES.inventoryExec} style={styles.image}/>
-      </Pressable>   
-        <View className="px-5 py-8 mx-4 mb-6 bg-white rounded-xl shadow-lg flex flex-row justify-between" style={commonStyles.shadow}>
-          <Text className="text-black text-lg font-medium">Digi Menu</Text>
-          <Image source={IMAGES.comingSoon} style={styles.image}/>
-      </View>   
-        <View className="px-5 py-8 mx-4 mb-6 bg-white rounded-xl shadow-lg flex flex-row justify-between"style={commonStyles.shadow}>
-          <Text className="text-black text-lg font-medium">Marketing</Text>
-          <Image source={IMAGES.comingSoon} style={styles.image}/>
-      </View>   
-      </View>
-    </View>
+      {/* Navigation List */}
+      <ScrollView className='flex-1'>
+        {
+          list.map(({ title, image, containerProps }) => (
+            <TouchableOpacity
+              activeOpacity={0.9}
+              className="p-4 mx-4 my-3 bg-white rounded-lg shadow-lg flex flex-row justify-between items-center"
+              style={commonStyles.shadow}
+              {...containerProps}
+            >
+              <Text className="text-black text-lg font-medium">{title}</Text>
+              <Image source={image} style={styles.image} />
+            </TouchableOpacity>
+
+          ))
+        }
+      </ScrollView>
+
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
+    width: '100%',
+    height: '100%',
+    backgroundColor: COLORS.white,
   },
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginTop: 20,
-  },
+  buttonContainer: {},
   roundButton: {
     width: 60,
     height: 60,
     borderRadius: 40,
-    // backgroundColor: 'lightblue',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  bottomContainer: {
-    marginTop: 20,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    width: '100%',
-  },
-  bottomItem: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'lightgray',
-    padding: 20,
-    margin: 5,
-  },
-  image:{
-    height:40,
-    width:40,
-    resizeMode:"contain"
+  image: {
+    height: 40,
+    width: 40,
+    resizeMode: "contain"
   }
 
 });

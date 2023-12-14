@@ -11,10 +11,13 @@ export const USER = {
 }
 
 export const EXECUTIVE = {
+    TAB: 'ExecutiveTab',
     DASHBOARD: 'ExecutiveDashboard',
     ENQUIRY_FORM: 'EnquiryForm',
     CREATE_ACCOUNT: 'CreateAccount',
     VERIFICATION_OTP: 'VerificationOTP',
+    NOTIFICATION: 'Notification',
+    PROFILE: 'ExecutiveProfile',
 }
 
 export const DELIVERY = {
@@ -28,4 +31,4 @@ export const AUTH = {
     CREATE_ACCOUNT: 'CreateAccount'
 }
 
-export default { USER, AUTH }
+export default { USER, AUTH, EXECUTIVE, DELIVERY }

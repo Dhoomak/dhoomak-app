@@ -34,7 +34,6 @@ const typesOfServiceSelected = [
     { title: 'Digi Menu', key: 'selectedDigiMenu' },
     { title: 'Marketing', key: 'selectedMarketing' },
 ];
-
 const businessTypeOptions = [
     { title: 'Service', value: 'Service' },
     { title: 'Outlet', value: 'Outlet' },
@@ -115,8 +114,8 @@ function EnquiryForm() {
             },
             style: {
                 fontWeight: 'bold',
-                fontSize: 16,
-                color: COLORS.red,
+                fontSize: 15,
+                // color: COLORS.red,
             }
         },
         {
@@ -223,8 +222,13 @@ function EnquiryForm() {
     ];
 
     return (
-        <SafeAreaView style={styles.container} >
-            <ScrollView style={styles.scrollContainer} >
+        <SafeAreaView
+            style={styles.container}
+        >
+            <ScrollView
+                showsHorizontalScrollIndicator={false}
+                showsVerticalScrollIndicator={false}
+            >
                 <Form form={form} setForm={setForm} formFormat={formFormat} />
             </ScrollView>
         </SafeAreaView>

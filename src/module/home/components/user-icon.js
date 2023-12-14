@@ -5,8 +5,11 @@ import { removeAsyncStorageItem } from '../../../utils/async-storage';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../auth/reducers/auth-slice';
 import { ASYNC_STORAGE_KEY } from '../../../data/constant';
+import Icon from 'react-native-vector-icons/Ionicons';
+import COLORS from '../../../utils/color';
 
-export default function UserIcon() {
+
+export default function UserIcon({ className = '' }) {
     const dispatch = useDispatch();
 
     async function handleIcon() {
@@ -17,8 +20,9 @@ export default function UserIcon() {
     }
 
     return (
-        <TouchableOpacity className='bg-white rounded-full mr-4' onPress={handleIcon}>
-            <Image source={IMAGES.userIcon} className='w-8 h-8' style={{ resizeMode: 'contain' }} />
+        <TouchableOpacity className={`bg-white rounded-full mr-4 p-1 ${className}`} onPress={handleIcon}>
+            {/* <Image source={IMAGES.userIcon} className='w-8 h-8' style={{ resizeMode: 'contain' }} /> */}
+            <Icon name={'log-out'} size={28} color={COLORS.black} />
         </TouchableOpacity>
     );
 }

@@ -220,50 +220,50 @@ const InputDate = ({ attributes, form, handleFormData }) => {
 };
 
 const InputTime = ({ attributes, form, handleFormData }) => {
-  const {
-    name = '',
-    label = '',
-    icon = IMAGES.TimeIcon, // Assuming you have an icon named TimeIcon
-    extraProps = {},
-    containerStyle = {},
-  } = attributes;
+    const {
+        name = '',
+        label = '',
+        icon = IMAGES.TimeIcon, // Assuming you have an icon named TimeIcon
+        extraProps = {},
+        containerStyle = {},
+    } = attributes;
 
-  const [showTimePicker, setShowTimePicker] = useState(false);
-  const [selectedTime, setSelectedTime] = useState("");
+    const [showTimePicker, setShowTimePicker] = useState(false);
+    const [selectedTime, setSelectedTime] = useState("");
 
-  const handleTimeChange = (event, time) => {
-    setShowTimePicker(false);
-    if (time) {
-      const selectedNewTime = new Date(time);
-      setSelectedTime(selectedNewTime);
-      handleFormData(selectedNewTime, name);
-    }
-  };
+    const handleTimeChange = (event, time) => {
+        setShowTimePicker(false);
+        if (time) {
+            const selectedNewTime = new Date(time);
+            setSelectedTime(selectedNewTime);
+            handleFormData(selectedNewTime, name);
+        }
+    };
 
-  return (
-    <>
-      <View style={[styles.pickerContainer, containerStyle]}>
-        <Text style={styles.formInputTitle}>{label}</Text>
-        <TouchableOpacity onPress={() => setShowTimePicker(true)}>
-          <View style={styles.picker}>
-            <Text style={styles.pickerText}>
-              {selectedTime ? selectedTime.toLocaleTimeString() : 'Select Time'}
-            </Text>
-            <Image source={icon} style={styles.pickerIcon} />
-          </View>
-        </TouchableOpacity>
-      </View>
-      {showTimePicker && Platform.OS === 'android' && (
-        <DateTimePicker
-          value={selectedTime || new Date()}
-          mode="time"
-          display="default"
-          onChange={handleTimeChange}
-          {...extraProps}
-        />
-      )}
-    </>
-  );
+    return (
+        <>
+            <View style={[styles.pickerContainer, containerStyle]}>
+                <Text style={styles.formInputTitle}>{label}</Text>
+                <TouchableOpacity onPress={() => setShowTimePicker(true)}>
+                    <View style={styles.picker}>
+                        <Text style={styles.pickerText}>
+                            {selectedTime ? selectedTime.toLocaleTimeString() : 'Select Time'}
+                        </Text>
+                        <Image source={icon} style={styles.pickerIcon} />
+                    </View>
+                </TouchableOpacity>
+            </View>
+            {showTimePicker && Platform.OS === 'android' && (
+                <DateTimePicker
+                    value={selectedTime || new Date()}
+                    mode="time"
+                    display="default"
+                    onChange={handleTimeChange}
+                    {...extraProps}
+                />
+            )}
+        </>
+    );
 };
 
 const TextHeading = ({ attributes }) => {
@@ -339,7 +339,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     formInputTitle: {
-        color: Colors.lightGrey,
+        color: Colors.black,
         marginLeft: 5,
     },
     formInputText: {

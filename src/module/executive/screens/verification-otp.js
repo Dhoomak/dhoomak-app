@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const VerificationOPT = () => {
+const VerificationOTP = () => {
   return (
     <View>
       <Text>verification-otp</Text>
@@ -9,4 +9,4 @@ const VerificationOPT = () => {
   )
 }
 
-export default VerificationOPT
+export default VerificationOTP

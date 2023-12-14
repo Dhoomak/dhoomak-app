@@ -1,15 +1,13 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // Screens
-import { Dashboard, EnquiryForm, VerificationOPT } from '../../module/executive/screens'
-
-// Components
-import UserIcon from '../../module/home/components/user-icon';
+import { EnquiryForm, VerificationOTP } from '../../module/executive/screens'
 
 // Utilities
 import COLORS from '../../utils/color';
 import { EXECUTIVE } from '../../utils/strings/screen-name';
-import CreateAccount from '../../module/auth/screens/create-account';
+import CreateAccount from '../../module/executive/screens/create-account';
+import ExecutiveTabs from './executive-tab';
 
 // Stack
 const ExecutiveStack = createNativeStackNavigator();
@@ -20,14 +18,10 @@ const ExecutiveScreens = () => {
             initialRouteName={EXECUTIVE.DASHBOARD}
         >
             <ExecutiveStack.Screen
-                name={EXECUTIVE.DASHBOARD}
-                component={Dashboard}
+                name={EXECUTIVE.TAB}
+                component={ExecutiveTabs}
                 options={{
-                    title: 'Executive Dashboard',
-                    headerStyle: {
-                        backgroundColor: COLORS.primary
-                    },
-                    headerRight: () => <UserIcon />
+                    headerShown: false,
                 }}
             />
             <ExecutiveStack.Screen
@@ -52,7 +46,7 @@ const ExecutiveScreens = () => {
             />
             <ExecutiveStack.Screen
                 name={EXECUTIVE.VERIFICATION_OTP}
-                component={VerificationOPT}
+                component={VerificationOTP}
                 options={{
                     title: 'Verification Code',
                     headerStyle: {
