@@ -8,21 +8,38 @@ import UserIcon from '../../module/home/components/user-icon';
 // Utilities
 import COLORS from '../../utils/color';
 import { USER } from '../../utils/strings/screen-name';
-
+import Icon from 'react-native-vector-icons/Ionicons';
 // Tab
 const UserTab = createBottomTabNavigator();
 
 function UserTabs() {
     return (
         <UserTab.Navigator
-            // initialRouteName={USER.SUBSCRIPTION}
-            screenOptions={{
-                headerStyle: {
-                    backgroundColor: COLORS.primary
-                },
-                tabBarActiveTintColor: COLORS.secondary,
-                tabBarInactiveTintColor: COLORS.lightGrey,
-            }}
+      screenOptions={({ route }) => ({
+        headerShown:false,
+        // tabBarStyle: {
+        //   height:screenSize().screenHeight*0.085,
+        //   borderTopRightRadius:25,
+        //   borderTopLeftRadius:25,
+        //   paddingBottom:screenSize().screenScale*5,
+        //   paddingTop:screenSize().screenScale*5,
+        // },
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+          
+
+          if (route.name === USER.HOME) {
+            iconName = focused ? 'home' : 'home-outline';
+          } else if (route.name === USER.PROFILE) {
+            iconName = focused ? 'wallet' : 'wallet-outline';
+          } else if (route.name === USER.SUBSCRIPTION) {
+            iconName = focused ? 'book' : 'book-outline';
+          }
+
+          return <Icon name={iconName} size={28} color={color} />;
+        },
+      })}
+      tabBarStyle={{ height: 100 }} // Adjust the height as needed
         >
             <UserTab.Screen
                 name={USER.HOME}

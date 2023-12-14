@@ -6,7 +6,7 @@ const Payment = () => {
     return (
         <View className="bg-white flex-1">
             <View className="px-2 mx-5 mt-5 bg-white flex-1">
-                <Image source={IMAGES.backButton} />
+                {/* <Image source={IMAGES.backButton} /> */}
                 <Text className="text-xl text-black font-bold mt-5">
                     Payment Gateway
                 </Text>
@@ -45,6 +45,14 @@ const Payment = () => {
                     </View>
                 </View>
             </View>
+            <View className="mt-10 bg-dark-pink rounded-xl shadow-lg ">
+                    <View className="px-5 my-5">
+                        {/* <View style={{ height: 2, backgroundColor: "#979595" }} className="mx-5 my-4" /> */}
+                        <View className="flex flex-row justify-between align-middle text-center my-1 mx-5">
+                            <Text className="text-black font-lg font-sm">We have served  1 lac+ happy customers across India</Text>
+                        </View>
+                    </View>
+                </View>
         </View>
     )
 }

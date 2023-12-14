@@ -36,7 +36,7 @@ const UserScreens = () => {
                 component={Payment}
                 options={{
                     title: 'Payment',
-                    headerShown: false
+                    // headerShown: false
                 }}
             />
         </UserStack.Navigator>
