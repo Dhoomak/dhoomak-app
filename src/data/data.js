@@ -8,7 +8,7 @@ export const navigations = [
         title: 'Inventory',
         img: IMAGES.inventoryIcon,
         onPress: (navigation) => {
-            navigation.navigate(USER.ADDITEMS);
+            navigation.navigate(USER.ADD_ITEMS);
         }
     },
     {

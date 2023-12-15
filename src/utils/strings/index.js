@@ -2,6 +2,7 @@ const STRINGS = {
     appName: 'Dhoomak',
     chooseByCategories: 'Choose by Categories',
     itemName: "Item name",
+    category: "Category",
     quanity: "Quantity",
     addItems: "Add Items",
     enterNumberAndLogin: "Enter Mobile Number and Login",

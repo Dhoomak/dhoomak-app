@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // Screen
-import { AddItems, CategoryList, Payment } from '../../module/home/screens';
+import { AddItems, CategoryList, ItemDetail, Payment } from '../../module/home/screens';
 
 // Drawer
 import UserDrawers from './user-drawer';
@@ -23,7 +23,7 @@ const UserScreens = () => {
                 options={{ headerShown: false }}
             />
             <UserStack.Screen
-                name={USER.ADDITEMS}
+                name={USER.ADD_ITEMS}
                 component={AddItems}
                 options={{
                     title: 'Create Your Inventory',
@@ -42,6 +42,13 @@ const UserScreens = () => {
                 component={Payment}
                 options={{
                     title: 'Payment',
+                }}
+            />
+            <UserStack.Screen
+                name={USER.ITEM_DETAIL}
+                component={ItemDetail}
+                options={{
+                    title: '{ItemName} Details ',
                 }}
             />
         </UserStack.Navigator>

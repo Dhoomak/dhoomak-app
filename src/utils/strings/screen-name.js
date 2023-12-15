@@ -4,9 +4,11 @@ export const USER = {
     DRAWER: 'UserDrawer',
     SPLASH: 'Splash',
     CATEGORY: 'Category',
-    ADDITEMS: 'AddItems',
+    ADD_ITEMS: 'AddItems',
     HOME: 'Home',
     PROFILE: 'UserProfile',
+    ITEM_DETAIL: 'ItemDetail',
+    CART_LIST: 'CartList',
     SUBSCRIPTION: 'Subscription',
     PAYMENT: 'Payment',
 }
