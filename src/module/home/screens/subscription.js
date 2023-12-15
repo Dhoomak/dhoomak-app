@@ -116,7 +116,6 @@ const Subscription = ({ navigation }) => {
       {/* Choose Plan */}
       <View className="px-5 py-4 mx-4 mb-6 bg-white rounded-xl shadow-lg" style={commonStyles.shadow}>
         <Text className="text-lg text-black font-bold ">Choose Your Plan</Text>
-
         <View className="flex flex-row">
           <View className="flex flex-row gap-3 my-1">
             <Pressable className="flex item-center text-center">
@@ -137,16 +136,14 @@ const Subscription = ({ navigation }) => {
           <View>
             <Text className="text-black font-normal text-xs">Free Delivery</Text>
             <Text className="text-black font-normal text-xs">Free Delivery</Text>
+          </View>
+          <View>
             <Text className="text-black font-normal text-xs">Free Delivery</Text>
             <Text className="text-black font-normal text-xs">Free Delivery</Text>
           </View>
-          {/* <View>
-          </View> */}
         </View>
-
       </View>
 
-      {/* Start Date */}
       <View className="px-5 py-4 mx-4 mb-6 bg-white rounded-xl shadow-lg " style={commonStyles.shadow}>
         <Text className="text-lg text-black font-bold">Start Date</Text>
         <View >

@@ -8,7 +8,6 @@ import {
 import Form from '../../../common/form';
 import COLORS from '../../../utils/color';
 import { getMinimumDate } from '../../../utils/date-formatter';
-// import { SafeAreaView } from 'react-native-safe-area-context';
 
 const initialState = {
     meetingWith: '',
