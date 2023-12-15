@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // Screens
-import { EnquiryForm, VerificationOTP } from '../../module/executive/screens'
+import { EnquiryDetails, EnquiryForm, EnquiryHistory, VerificationOTP } from '../../module/executive/screens'
 
 // Utilities
 import COLORS from '../../utils/color';
@@ -11,7 +11,6 @@ import ExecutiveTabs from './executive-tab';
 
 // Stack
 const ExecutiveStack = createNativeStackNavigator();
-
 const ExecutiveScreens = () => {
     return (
         <ExecutiveStack.Navigator
@@ -49,6 +48,26 @@ const ExecutiveScreens = () => {
                 component={VerificationOTP}
                 options={{
                     title: 'Verification Code',
+                    headerStyle: {
+                        backgroundColor: COLORS.primary
+                    },
+                }}
+            />
+            <ExecutiveStack.Screen
+                name={EXECUTIVE.ENQUIRY_HISTORY}
+                component={EnquiryHistory}
+                options={{
+                    title: 'Enquiry History',
+                    headerStyle: {
+                        backgroundColor: COLORS.primary
+                    },
+                }}
+            />
+            <ExecutiveStack.Screen
+                name={EXECUTIVE.ENQUIRY_DETAILS}
+                component={EnquiryDetails}
+                options={{
+                    title: 'Enquiry Details',
                     headerStyle: {
                         backgroundColor: COLORS.primary
                     },

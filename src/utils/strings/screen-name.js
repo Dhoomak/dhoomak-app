@@ -18,6 +18,8 @@ export const EXECUTIVE = {
     VERIFICATION_OTP: 'VerificationOTP',
     NOTIFICATION: 'Notification',
     PROFILE: 'ExecutiveProfile',
+    ENQUIRY_HISTORY: 'ExecutiveEnquiryHistory',
+    ENQUIRY_DETAILS:"EnquiryDetails",
 }
 
 export const DELIVERY = {

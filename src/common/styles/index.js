@@ -7,6 +7,20 @@ const commonStyles = StyleSheet.create({
         shadowRadius: 7,
         shadowOpacity: 1,
     },
+    flexRow:{
+        display: 'flex',
+        flexDirection: 'row',
+    },
+    flexColumn:{
+        display: 'flex',
+        flexDirection: 'column',
+    },
+    flexRowSB:{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent:'space-between',
+    }
+
 })
 
 export default commonStyles

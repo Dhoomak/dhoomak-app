@@ -14,6 +14,7 @@ const COLORS = {
     'transparent-yellow': '#F6EDC3',
     borderColor: "#403B3B",
     lightWhite: "rgba(255, 255, 255, 0.04)",
+    purple:"#F8F3FF"
 };
 
 COLORS.bottomTabActive = COLORS.primary;
