@@ -21,11 +21,12 @@ function Form(props) {
         setForm(prevFormData => ({ ...prevFormData, [key]: value }));
     }, []);
 
-    const handleForm = field => {
+    const handleForm = (field, ind) => {
         switch (field.fieldType) {
             case 'Input':
                 return (
                     <InputText
+                        key={ind}
                         attributes={field}
                         form={form}
                         handleFormData={handleFormData}
@@ -34,6 +35,7 @@ function Form(props) {
             case 'Radio':
                 return (
                     <InputRadio
+                        key={ind}
                         attributes={field}
                         form={form}
                         handleFormData={handleFormData}
@@ -42,6 +44,7 @@ function Form(props) {
             case 'Checkbox':
                 return (
                     <InputCheckbox
+                        key={ind}
                         attributes={field}
                         form={form}
                         handleFormData={handleFormData}
@@ -50,6 +53,7 @@ function Form(props) {
             case 'Dropdown':
                 return (
                     <InputDropdown
+                        key={ind}
                         attributes={field}
                         form={form}
                         handleFormData={handleFormData}
@@ -58,22 +62,43 @@ function Form(props) {
             case 'Date':
                 return (
                     <InputDate
+                        key={ind}
                         attributes={field}
                         form={form}
                         handleFormData={handleFormData}
                     />
                 );
             case 'Divider':
-                return <Divider />;
+                return (
+                    <Divider
+                        key={ind}
+                    />
+                );
             case 'Spacer':
-                return <Spacer attributes={field} />;
+                return (
+                    <Spacer
+                        key={ind}
+                        attributes={field}
+                    />
+                );
             case 'Paragraph':
-                return <TextParagraph attributes={field} />;
+                return (
+                    <TextParagraph
+                        key={ind}
+                        attributes={field}
+                    />
+                );
             case 'Heading':
-                return <TextHeading attributes={field} />;
+                return (
+                    <TextHeading
+                        key={ind}
+                        attributes={field}
+                    />
+                );
             case 'MultiSelect':
                 return (
                     <InputMultiSelect
+                        key={ind}
                         attributes={field}
                         form={form}
                         handleFormData={handleFormData}
@@ -82,6 +107,7 @@ function Form(props) {
             case 'Button':
                 return (
                     <InputButton
+                        key={ind}
                         attributes={field}
                         form={form}
                         handleFormData={handleFormData}
@@ -89,16 +115,25 @@ function Form(props) {
                 );
             case 'FormRowContainer':
                 return (
-                    <FormRowContainer attributes={field} form={form} setForm={setForm} />
+                    <FormRowContainer
+                        key={ind}
+                        attributes={field}
+                        form={form}
+                        setForm={setForm}
+                    />
                 );
             case 'Custom': {
                 const { Component } = field;
-                return <Component />;
+                return (
+                    <Component
+                        key={ind}
+                    />
+                );
             }
         }
     };
 
-    return formFormat.map((formData, ind) => (handleForm(formData)))
+    return formFormat.map((formData, ind) => (handleForm(formData, ind)))
 }
 
 export default memo(Form);
