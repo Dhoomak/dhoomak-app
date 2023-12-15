@@ -1,19 +1,25 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+// Screen
 import { AddItems, CategoryList, Payment } from '../../module/home/screens';
-import UserTabs from './user-tab';
-import COLORS from '../../utils/color';
-import { USER } from '../../utils/strings/screen-name';
+
+// Drawer
 import UserDrawers from './user-drawer';
+
+// Utilities
+import { USER } from '../../utils/strings/screen-name';
+
+// Stack
 const UserStack = createNativeStackNavigator();
 
 const UserScreens = () => {
     return (
         <UserStack.Navigator
-            initialRouteName={USER.TAB}
+            initialRouteName={USER.DRAWER}
         >
             <UserStack.Screen
-                name={USER.TAB}
-                component={UserTabs}
+                name={USER.DRAWER}
+                component={UserDrawers}
                 options={{ headerShown: false }}
             />
             <UserStack.Screen
@@ -36,7 +42,6 @@ const UserScreens = () => {
                 component={Payment}
                 options={{
                     title: 'Payment',
-                    // headerShown: false
                 }}
             />
         </UserStack.Navigator>

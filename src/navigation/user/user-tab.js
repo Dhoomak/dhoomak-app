@@ -1,4 +1,6 @@
+import Icon from 'react-native-vector-icons/Ionicons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
 // Screens
 import { Home, Profile, Subscription } from '../../module/home/screens';
 
@@ -8,7 +10,7 @@ import UserIcon from '../../module/home/components/user-icon';
 // Utilities
 import COLORS from '../../utils/color';
 import { USER } from '../../utils/strings/screen-name';
-import Icon from 'react-native-vector-icons/Ionicons';
+
 // Tab
 const UserTab = createBottomTabNavigator();
 
@@ -16,6 +18,7 @@ function UserTabs() {
   return (
     <UserTab.Navigator
       screenOptions={({ route }) => ({
+        headerShown: false,
         headerStyle: {
           backgroundColor: COLORS.primary
         },
@@ -26,7 +29,7 @@ function UserTabs() {
           if (route.name === USER.HOME) {
             iconName = focused ? 'home' : 'home-outline';
           } else if (route.name === USER.PROFILE) {
-            iconName = focused ? 'wallet' : 'wallet-outline';
+            iconName = focused ? 'person-circle' : 'person-circle-outline';
           } else if (route.name === USER.SUBSCRIPTION) {
             iconName = focused ? 'book' : 'book-outline';
           }

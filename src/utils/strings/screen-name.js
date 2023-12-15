@@ -1,11 +1,12 @@
 export const USER = {
+    STACK: 'UserStack',
+    TAB: 'UserTab',
+    DRAWER: 'UserDrawer',
     SPLASH: 'Splash',
     CATEGORY: 'Category',
     ADDITEMS: 'AddItems',
     HOME: 'Home',
     PROFILE: 'UserProfile',
-    TAB: 'UserTab',
-    DRAWER: 'UserDrawer',
     SUBSCRIPTION: 'Subscription',
     PAYMENT: 'Payment',
 }
@@ -25,6 +26,9 @@ export const EXECUTIVE = {
 }
 
 export const DELIVERY = {
+    STACK: 'DeliveryStack',
+    TAB: 'DeliveryTab',
+    DRAWER: 'DeliveryDrawer',
     DASHBOARD: 'DeliveryDashboard',
 }
 

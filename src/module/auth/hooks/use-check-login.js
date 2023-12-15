@@ -26,7 +26,6 @@ function useCheckLogin() {
 
     useEffect(() => {
         getAsyncDetails();
-        console.log('Auth State: ', authState)
     }, [authState])
 
     return loggedInStatus;

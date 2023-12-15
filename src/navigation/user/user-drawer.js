@@ -1,8 +1,16 @@
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import UserTabs from './user-tab';
-import { Home, Profile } from '../../module/home/screens';
-import { USER } from './../../utils/strings/screen-name';
 
+// Screens
+import UserTabs from './user-tab';
+
+// Components
+import UserIcon from '../../module/home/components/user-icon';
+
+// Utilities 
+import { USER } from './../../utils/strings/screen-name';
+import COLORS from '../../utils/color';
+
+// Drawer
 const UserDrawer = createDrawerNavigator();
 
 function UserDrawers() {
@@ -10,14 +18,17 @@ function UserDrawers() {
         <UserDrawer.Navigator
             screenOptions={{
                 unmountOnBlur: true,
+                headerStyle: {
+                    backgroundColor: COLORS.primary
+                },
             }}
         >
             <UserDrawer.Screen
-                name={USER.HOME}
-                component={Home}
+                name={USER.TAB}
+                component={UserTabs}
                 options={{
                     title: 'Home',
-                    // headerRight: () => <UserIcon />
+                    headerRight: () => <UserIcon />
                 }}
             />
             {/* <UserDrawer.Screen
