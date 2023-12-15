@@ -32,14 +32,13 @@ export const verifyOtpAction = createAsyncThunk(
   async ({ phoneNumber, otp }, { rejectWithValue }) => {
     try {
       const response = await verifyOtpApi(phoneNumber, otp);
-
       if (response?.status) {
         const { data = {}, message } = response?.data?.data;
-        const { authToken = '', existingUser = {} } = data;
+        const { authToken = '', user = {} } = data;
 
         await setAsyncStorageItem(ASYNC_STORAGE_KEY.IS_LOGGED_IN, 'true');
         await setAsyncStorageItem(ASYNC_STORAGE_KEY.AUTH_TOKEN, authToken);
-        await setAsyncStorageObjectItem(ASYNC_STORAGE_KEY.USER_DATA, existingUser);
+        await setAsyncStorageObjectItem(ASYNC_STORAGE_KEY.USER_DATA, user);
 
         toast(message);
 

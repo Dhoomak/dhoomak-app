@@ -1,6 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
 // Screens
-import { Dashboard, Profile, Notification, EnquiryHistory } from '../../module/executive/screens';
+import { Dashboard, Profile, Notification } from '../../module/executive/screens';
 
 // Components
 import UserIcon from '../../module/home/components/user-icon';
@@ -17,6 +18,7 @@ function ExecutiveTabs() {
     return (
         <ExecutiveTab.Navigator
             screenOptions={({ route }) => ({
+                headerShown: false,
                 headerStyle: {
                     backgroundColor: COLORS.primary
                 },
@@ -62,17 +64,15 @@ function ExecutiveTabs() {
                     title: 'Profile',
                 }}
             />
-
-
-            <ExecutiveTab.Screen
+            {/* <ExecutiveTab.Screen
                 name={EXECUTIVE.ENQUIRY_HISTORY}
                 component={EnquiryHistory}
                 options={{
                     title: 'Enquiry History',
                 }}
-            />
+            /> */}
         </ExecutiveTab.Navigator>
-        
+
     );
 }
 

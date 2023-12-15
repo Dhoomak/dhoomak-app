@@ -1,11 +1,12 @@
 import React from 'react';
-import { View, StyleSheet, Text, Pressable, TouchableOpacity, ScrollView, Image, SafeAreaView } from 'react-native';
+import { View, StyleSheet, Text, FlatList, TouchableOpacity, ScrollView, Image, SafeAreaView } from 'react-native';
 import commonStyles from '../../../common/styles';
 import IMAGES from '../../../assets/images';
 import { EXECUTIVE } from '../../../utils/strings/screen-name';
 import COLORS from '../../../utils/color';
 import { toast } from '../../../utils/toast';
 import STRINGS from '../../../utils/strings';
+import CircleNavigationIcon from '../components/circle-navigation-icon';
 
 export default function ExecutiveDashboard({ navigation }) {
 
@@ -80,8 +81,30 @@ export default function ExecutiveDashboard({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       {/* Rounded Icons */}
-      <View >
-        <ScrollView
+      <View className="px-2 py-2">
+        <FlatList
+          data={iconNavigation}
+          keyExtractor={(item) => item.title}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+
+          ItemSeparatorComponent={() => <View className='w-5'></View>}
+          // renderItem={({ item: { title, image, disabled, iconProps } }) => (
+          renderItem={({ item }) => (
+            <CircleNavigationIcon {...item} />
+            // <View className='m-1 flex items-center'>
+            //   <TouchableOpacity
+            //     style={[styles.roundButton, commonStyles.shadow]}
+            //     className={`bg-primary border-2 border-white shadow-lg mb-1 ${disabled ? 'bg-grey' : 'bg-primary'}`}
+            //     {...iconProps}
+            //   >
+            //     <Image source={image} style={styles.image} />
+            //   </TouchableOpacity>
+            //   <Text className="text-11 text-black">{title}</Text>
+            // </View>
+          )}
+        />
+        {/* <ScrollView
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
           horizontal={true}
@@ -101,7 +124,7 @@ export default function ExecutiveDashboard({ navigation }) {
               </View>
             ))
           }
-        </ScrollView>
+        </ScrollView> */}
       </View>
 
       {/* Navigation List */}
@@ -131,9 +154,8 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     height: '100%',
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.magnolia,
   },
-  buttonContainer: {},
   roundButton: {
     width: 60,
     height: 60,

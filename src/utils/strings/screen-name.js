@@ -11,7 +11,9 @@ export const USER = {
 }
 
 export const EXECUTIVE = {
+    STACK: 'ExecutiveStack',
     TAB: 'ExecutiveTab',
+    DRAWER: 'ExecutiveDrawer',
     DASHBOARD: 'ExecutiveDashboard',
     ENQUIRY_FORM: 'EnquiryForm',
     CREATE_ACCOUNT: 'CreateAccount',
@@ -19,7 +21,7 @@ export const EXECUTIVE = {
     NOTIFICATION: 'Notification',
     PROFILE: 'ExecutiveProfile',
     ENQUIRY_HISTORY: 'ExecutiveEnquiryHistory',
-    ENQUIRY_DETAILS:"EnquiryDetails",
+    ENQUIRY_DETAILS: "EnquiryDetails",
 }
 
 export const DELIVERY = {

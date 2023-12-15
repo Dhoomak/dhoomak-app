@@ -13,8 +13,6 @@ function useCheckLogin() {
     const authState = useSelector(getAuthState);
     const [loggedInStatus, setLoggedInStatus] = useState(initialState);
 
-
-
     async function getAsyncDetails() {
         const userLoggedIn = await getAsyncStorageItem(ASYNC_STORAGE_KEY.IS_LOGGED_IN);
         const userDataAsync = await getAsyncStorageObjectItem(ASYNC_STORAGE_KEY.USER_DATA);
@@ -25,7 +23,7 @@ function useCheckLogin() {
             userData: userDataAsync,
         }));
     }
-    
+
     useEffect(() => {
         getAsyncDetails();
         console.log('Auth State: ', authState)

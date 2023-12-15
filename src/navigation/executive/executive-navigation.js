@@ -7,20 +7,23 @@ import { EnquiryDetails, EnquiryForm, EnquiryHistory, VerificationOTP } from '..
 import COLORS from '../../utils/color';
 import { EXECUTIVE } from '../../utils/strings/screen-name';
 import CreateAccount from '../../module/executive/screens/create-account';
-import ExecutiveTabs from './executive-tab';
+import UserIcon from '../../module/home/components/user-icon';
+import ExecutiveDrawers from './executive-drawer';
 
 // Stack
 const ExecutiveStack = createNativeStackNavigator();
+
 const ExecutiveScreens = () => {
     return (
         <ExecutiveStack.Navigator
-            initialRouteName={EXECUTIVE.DASHBOARD}
+            initialRouteName={EXECUTIVE.DRAWER}
         >
             <ExecutiveStack.Screen
-                name={EXECUTIVE.TAB}
-                component={ExecutiveTabs}
+                name={EXECUTIVE.DRAWER}
+                component={ExecutiveDrawers}
                 options={{
                     headerShown: false,
+                    headerRight: () => <UserIcon className='mr-0' />
                 }}
             />
             <ExecutiveStack.Screen
