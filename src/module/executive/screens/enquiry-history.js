@@ -84,7 +84,7 @@ return(
       data={data2}
       keyExtractor={(item, index) => index.toString()}
       renderItem={({ item }) => <TableRow data={item} tableConfig={tableHeaderConfig} getDotStyleGenerator={getDotStyle} navigate={navigateToDetails}/>}
-      showsVerticalScrollIndicator ={false}
+      
     />
   </View>
 );

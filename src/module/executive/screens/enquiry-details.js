@@ -23,17 +23,6 @@ const EnquiryDetails = () => {
   { id: '2', date: '12/13', levelStatus: 'Level 2', description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc' },
   { id: '2', date: '12/13', levelStatus: 'Level 2', description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc' },
   { id: '2', date: '12/13', levelStatus: 'Level 2', description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc' },
-  { id: '2', date: '12/13', levelStatus: 'Level 2', description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc' },
-  { id: '2', date: '12/13', levelStatus: 'Level 2', description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc' },
-  { id: '2', date: '12/13', levelStatus: 'Level 2', description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc' },
-  { id: '2', date: '12/13', levelStatus: 'Level 2', description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc' },
-  { id: '2', date: '12/13', levelStatus: 'Level 2', description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc' },
-  { id: '2', date: '12/13', levelStatus: 'Level 2', description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc' },
-  { id: '2', date: '12/13', levelStatus: 'Level 2', description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc' },
-  { id: '2', date: '12/13', levelStatus: 'Level 2', description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc' },
-  { id: '2', date: '12/13', levelStatus: 'Level 2', description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc' },
-  { id: '2', date: '12/13', levelStatus: 'Level 2', description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc' },
-  { id: '2', date: '12/1ß3', levelStatus: 'Level 2', description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc' },
   // Add more data items as needed
 ];
 
