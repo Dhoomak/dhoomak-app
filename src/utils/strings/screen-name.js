@@ -19,7 +19,14 @@ export const EXECUTIVE = {
     NOTIFICATION: 'Notification',
     PROFILE: 'ExecutiveProfile',
     ENQUIRY_HISTORY: 'ExecutiveEnquiryHistory',
+<<<<<<< Updated upstream
     ENQUIRY_DETAILS:"EnquiryDetails",
+=======
+    ONBOARDING_HISTORY_: 'OnboardingHistory',
+    ENQUIRY_DETAILS: "EnquiryDetails",
+    ONBOARDING_HISTORY_DETAILS: "OnboardingHistoryDetails",
+    EXECUTIVE_ADD_NEW: "AddNewUpdate"
+>>>>>>> Stashed changes
 }
 
 export const DELIVERY = {

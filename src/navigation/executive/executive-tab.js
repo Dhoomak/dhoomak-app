@@ -62,6 +62,7 @@ function ExecutiveTabs() {
                     title: 'Profile',
                 }}
             />
+<<<<<<< Updated upstream
 
 
             <ExecutiveTab.Screen
@@ -71,6 +72,8 @@ function ExecutiveTabs() {
                     title: 'Enquiry History',
                 }}
             />
+=======
+>>>>>>> Stashed changes
         </ExecutiveTab.Navigator>
         
     );
