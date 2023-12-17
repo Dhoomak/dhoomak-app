@@ -1,7 +1,9 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // Screen
-import { AddItems, CategoryList, ItemDetail, Payment } from '../../module/home/screens';
+import { Payment, Subscription } from '../../module/home/screens';
+import { AddItems, CategoryList, ItemDetail, } from '../../module/category/screens'
+import { InventoryList, } from '../../module/inventory/screens'
 
 // Drawer
 import UserDrawers from './user-drawer';
@@ -50,6 +52,22 @@ const UserScreens = () => {
                 options={({ route }) => ({
                     title: route?.params?.item?.name ? `${route?.params?.item?.name} Details` : 'Product Details',
                 })}
+            />
+
+            <UserStack.Screen
+                name={USER.INVENTORY_LIST}
+                component={InventoryList}
+                options={{
+                    title: 'Inventory List',
+                }}
+            />
+
+            <UserStack.Screen
+                name={USER.SUBSCRIPTION}
+                component={Subscription}
+                options={{
+                    title: 'Subscription',
+                }}
             />
         </UserStack.Navigator>
     );

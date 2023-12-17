@@ -1,15 +1,22 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { View, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { categories, products } from '../../../data/data';
+// import { products } from '../../../data/data';
 import CategoryListCard from '../components/category-list-card';
 import COLORS from '../../../utils/color';
 import ProductCard from '../components/product-card';
 import ProductCartTab from '../components/product-cart-tab';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCategoryState } from '../reducers/category-reducer';
+import { getProductsListAction } from '../thunks/category-thunk';
+import DhoomakScrollView from '../../../common/components/dhoomak-scrollview';
 
 export default function CategoryList({ route }) {
+  const dispatch = useDispatch();
+  const { categories, products } = useSelector(getCategoryState);
+
   const {
-    selectedCategoryId = '1',
+    selectedCategoryId = categories?.[0]?._id,
   } = route.params;
 
   const [activeCategoryId, setActiveCategoryId] = useState(selectedCategoryId);
@@ -18,24 +25,28 @@ export default function CategoryList({ route }) {
     setActiveCategoryId(id);
   }, [activeCategoryId])
 
+  useEffect(() => {
+    dispatch(getProductsListAction({ categoryId: activeCategoryId }));
+  }, [activeCategoryId])
+
+
   return (
     <SafeAreaView className='flex-1 bg-grey'>
       <View className='flex-row flex-1'>
+        {/* Category List */}
         <View className='w-24 bg-white h-full border-r border-r-grey'>
-          <ScrollView
-            showsHorizontalScrollIndicator={false}
-            showsVerticalScrollIndicator={false}
+          <DhoomakScrollView
             contentContainerStyle={{ gap: 4 }}
           >
             {
-              categories.map((item) => <CategoryListCard key={item.id} item={item} isActive={activeCategoryId == item.id} onCategoryPress={onCategoryPress} />)
+              categories.map((item) => <CategoryListCard key={item._id} item={item} isActive={activeCategoryId == item._id} onCategoryPress={onCategoryPress} />)
             }
-          </ScrollView>
+          </DhoomakScrollView>
         </View>
+
+        {/* Product List */}
         <View className='flex-1 bg-white h-full'>
-          <ScrollView
-            showsHorizontalScrollIndicator={false}
-            showsVerticalScrollIndicator={false}
+          <DhoomakScrollView
             contentContainerStyle={{
               flexDirection: 'row',
               flexWrap: 'wrap',
@@ -47,11 +58,11 @@ export default function CategoryList({ route }) {
                   width: '50%', flexDirection: "row", borderWidth: 1,
                   borderColor: COLORS.grey
                 }}>
-                  <ProductCard key={item.id} item={item} />
+                  <ProductCard key={item._id} item={item} />
                 </View>
               ))
             }
-          </ScrollView>
+          </DhoomakScrollView>
         </View>
       </View>
       {/* Product Cart Tab */}

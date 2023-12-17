@@ -442,3 +442,7 @@ export const products = [
         img: 'https://w7.pngwing.com/pngs/543/73/png-transparent-four-orange-carrots-carrot-vegetable-computer-file-carrot-natural-foods-leaf-vegetable-food.png',
     },
 ]
+
+export const unitQuantityType = ["kg", "gm", "ltr", "ml"];
+
+export const homeBanners = [IMAGES.banner.banner1, IMAGES.banner.banner2, IMAGES.banner.banner3];

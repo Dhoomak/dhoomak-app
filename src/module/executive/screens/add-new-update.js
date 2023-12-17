@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native'
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import Form from '../../../common/form';
 
 const initialState = {
@@ -10,18 +10,18 @@ const initialState = {
 };
 
 const AddNewUpdate = () => {
-const [form, setForm] = useState(initialState);
-const meetingWith = ['Restaurant Owner', 'Manager'];
-const interestOptions = [
-    { title: 'Low', value: 'LOW' },
-    { title: 'Medium', value: 'MEDIUM' },
-    { title: 'High', value: 'HIGH' },
-];
-const handleSubmit = () => {
+    const [form, setForm] = useState(initialState);
+    const meetingWith = ['Restaurant Owner', 'Manager'];
+    const interestOptions = [
+        { title: 'Low', value: 'LOW' },
+        { title: 'Medium', value: 'MEDIUM' },
+        { title: 'High', value: 'HIGH' },
+    ];
+    const handleSubmit = () => {
         console.log(form);
     }
-        const formFormat = [
-                    {
+    const formFormat = [
+        {
             fieldType: 'Input',
             name: 'employeeId',
             label: 'Employee Id',
@@ -69,11 +69,11 @@ const handleSubmit = () => {
         },
     ];
 
-  return (
-    <View>
-                    <Form form={form} setForm={setForm} formFormat={formFormat} />
-    </View>
-  )
+    return (
+        <View>
+            <Form form={form} setForm={setForm} formFormat={formFormat} />
+        </View>
+    )
 }
 
 export default AddNewUpdate

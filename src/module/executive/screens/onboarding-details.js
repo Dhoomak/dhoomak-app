@@ -3,7 +3,6 @@ import React from 'react';
 import commonStyles from '../../../common/styles';
 import { scale } from '../../../utils/scale';
 import COLORS from '../../../utils/color';
-import { PrimaryButton } from '../../../common/button';
 import IMAGES from '../../../assets/images';
 import {RestaurantDetails} from '../components/restaurant-details';
 import Comments, { SubscriptionType } from '../components/comments';

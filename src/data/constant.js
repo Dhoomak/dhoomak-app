@@ -1,8 +1,7 @@
 export const APP_NAME = 'Dhoomak';
-
 export const OTP_LENGTH = 4;
 export const BASE_API_URL = 'http://ec2-13-232-182-101.ap-south-1.compute.amazonaws.com/';
-export const VERSION = '/v1';
+export const API_VERSION = '/v1';
 
 export const ROLE = {
   RESTAURANT: 'RESTAURANT',
@@ -16,3 +15,7 @@ export const ASYNC_STORAGE_KEY = {
   USER_DATA: 'userData',
   AUTH_TOKEN: 'authToken',
 };
+
+export const CATEGORY_DEFAULT_IMAGE = 'https://dhoomak.com/a/img/logo.png';
+export const PRODUCTS_DEFAULT_IMAGE = 'https://dhoomak.com/a/img/logo.png';
+

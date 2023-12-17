@@ -1,17 +1,31 @@
 import axios from 'axios';
-import { BASE_API_URL } from '../data/constant';
+import { ASYNC_STORAGE_KEY, BASE_API_URL } from '../data/constant';
+import { getAsyncStorageItem } from '../utils/async-storage';
+
+
+let headers = {
+  Accept: 'application/json',
+  'Content-Type': 'application/json',
+};
 
 const axiosInstance = axios.create({
   baseURL: BASE_API_URL,
+  headers,
 });
+
 // Add a request interceptor
 axiosInstance.interceptors.request.use(
-  function (config) {
-    // Do something before request is sent
+  async function (config) {
+    const authToken = await getAsyncStorageItem(ASYNC_STORAGE_KEY.AUTH_TOKEN);
+
+    if (authToken) {
+      config.headers[`x-access-token`] = `${authToken}`
+    }
+
+    // console.log("API CONFIG", JSON.stringify(config))
     return config;
   },
   function (error) {
-    // Do something with request error
     return Promise.reject(error);
   },
 );
@@ -19,14 +33,10 @@ axiosInstance.interceptors.request.use(
 // Add a response interceptor
 axiosInstance.interceptors.response.use(
   function (response) {
-    // Any status code that lie within the range of 2xx cause this function to trigger
-    // Do something with response data
     return response;
   },
   function (error) {
-    // Any status codes that falls outside the range of 2xx cause this function to trigger
-    // Do something with response error
-    console.log("Error: ", error)
+    console.error("Error: ", JSON.stringify(error))
     return Promise.reject(error);
   },
 );

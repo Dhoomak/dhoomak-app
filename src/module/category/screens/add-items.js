@@ -10,10 +10,17 @@ import COLORS from '../../../utils/color';
 import STRINGS from '../../../utils/strings';
 
 // data
-import { categories } from '../../../data/data';
 import AddCustomItemForm from '../components/add-custom-item-form';
+import { useSelector } from 'react-redux';
+import { getCategoryState } from '../reducers/category-reducer';
 
 function AddItems() {
+  const {
+    categories = [],
+    categoriesLoading = false,
+    categoriesError = '',
+  } = useSelector(getCategoryState)
+
 
   return (
     <KeyboardAvoidingView
@@ -31,9 +38,9 @@ function AddItems() {
         <Text className='text-black text-base font-semibold mb-4'>{STRINGS.chooseByCategories}</Text>
         {/* List of Categories */}
         <ScrollView
-          contentContainerStyle={styles.contentContainerStyle}
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.contentContainerStyle}
         >
           {
             categories.map((item, ind) => (

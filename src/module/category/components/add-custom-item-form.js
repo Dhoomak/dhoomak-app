@@ -1,24 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { ImageBackground, View, Text, Image, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import SelectDropdown from 'react-native-select-dropdown'
 
-import { addToCart } from '../../../store/reducers/cart-slice';
+// reducers
+import { addToInventory } from '../../inventory/reducers/inventory-reducer';
+import { getCategoryState } from '../reducers/category-reducer';
 
+// utils
 import IMAGES from '../../../assets/images';
 import STRINGS from '../../../utils/strings';
 import COLORS from '../../../utils/color';
 import { toast } from '../../../utils/toast';
+
+// data
+import { unitQuantityType } from '../../../data/data';
 import { generateRandomId } from '../../../utils/generate-random-id';
-const quantityType = ["kg", "gm", "l", "ml"];
+import { PRODUCTS_DEFAULT_IMAGE } from '../../../data/constant';
+
+const unitQuantityDefaultValue = unitQuantityType[0];
 
 export default function AddCustomItemForm() {
+    const categoryFieldRef = useRef({});
+    const { categories } = useSelector(getCategoryState);
     const dispatch = useDispatch();
 
     const [itemName, onChangeItemName] = useState('');
     const [category, onChangeCategory] = useState('');
     const [quanity, onChangeQuanity] = useState('');
-    const [quanityTypeVal, onChangeQuanityTypeVal] = useState('');
+    const [quanityTypeVal, onChangeQuanityTypeVal] = useState(unitQuantityDefaultValue);
 
     function handleAddItem() {
         if (itemName == '') {
@@ -28,21 +38,31 @@ export default function AddCustomItemForm() {
         } else if (category == '') {
             toast('Please Enter Category');
         } else {
-            toast(`You Added: ${itemName} | ${quanity}${quanityTypeVal}`);
+            toast(`You Added: ${itemName} of ${category} | Quanity: ${quanity}${quanityTypeVal}`);
             handleAddToCart();
         }
     }
 
     function handleAddToCart() {
         const item = {
-            id: generateRandomId().toString(),
+            _id: generateRandomId().toString(),
             name: itemName,
-            brand: itemName,
-            quantity: quanity,
-            category: category,
-            quantityType: quanityTypeVal,
+            brandName: itemName,
+            unitQuantity: quanity,
+            unitType: quanityTypeVal,
+            categoryId: category,
+            unitAdded: 1,
+            unitPrice: 0,
+            images: [PRODUCTS_DEFAULT_IMAGE],
+
         }
-        dispatch(addToCart(item));
+        // console.log(item);
+
+        dispatch(addToInventory(item));
+        onChangeItemName('')
+        categoryFieldRef.current.reset();
+        onChangeQuanity('')
+        onChangeQuanityTypeVal(unitQuantityDefaultValue);
     }
 
     return (
@@ -59,14 +79,30 @@ export default function AddCustomItemForm() {
                 />
             </View>
             {/* Category */}
-            <View className='mb-4 w-full'>
-                <TextInput
-                    onChangeText={onChangeCategory}
-                    value={category}
-                    placeholder={STRINGS.category}
-                    className='shadow-md rounded-md p-1 px-2 w-full bg-white'
+            <View className='mb-4 w-full '>
+                <View
+                    className='flex flex-row shadow-md rounded-md bg-white'
                     style={styles.shadow}
-                />
+                >
+                    <SelectDropdown
+
+                        ref={categoryFieldRef}
+                        data={categories}
+                        onSelect={(selectedItem) => { onChangeCategory(selectedItem._id) }}
+                        defaultButtonText='Select Category'
+                        defaultValue={categories[0]?.name}
+                        buttonTextAfterSelection={(selectedItem) => selectedItem.name}
+                        rowTextForSelection={(item) => item.name}
+                        buttonStyle={styles.dropdown}
+                        buttonTextStyle={styles.dropdownText}
+                        dropdownIconPosition='right'
+                        renderDropdownIcon={() => (<Image source={IMAGES.dropdownIcon} className='w-5 h-4' />)}
+                        selectedRowTextStyle={{ color: COLORS.black }}
+                        selectedRowStyle={{ backgroundColor: COLORS.lightGrey }}
+                    // dropdownStyle={{ height: 36 }}
+
+                    />
+                </View>
             </View>
             {/* Quantity Input */}
             <View className='mb-4 flex flex-row gap-4'>
@@ -83,14 +119,16 @@ export default function AddCustomItemForm() {
                     style={styles.shadow}
                 >
                     <SelectDropdown
-                        data={quantityType}
-                        onSelect={(selectedItem) => { onChangeQuanityTypeVal(selectedItem); }}
-                        defaultValue={quantityType[0]}
+                        data={unitQuantityType}
+                        onSelect={(selectedItem) => { onChangeQuanityTypeVal(selectedItem) }}
+                        defaultValue={unitQuantityDefaultValue}
                         buttonTextAfterSelection={(selectedItem) => selectedItem}
                         rowTextForSelection={(item) => item}
                         buttonStyle={styles.dropdown}
                         buttonTextStyle={styles.dropdownText}
                         dropdownIconPosition='right'
+                        selectedRowTextStyle={{ color: COLORS.black }}
+                        selectedRowStyle={{ backgroundColor: COLORS.lightGrey }}
                         renderDropdownIcon={() => (<Image source={IMAGES.dropdownIcon} className='w-5 h-4' />)}
                     />
                 </View>
@@ -119,14 +157,18 @@ const styles = StyleSheet.create({
     dropdown: {
         overflow: 'hidden',
         shadowColor: 'black',
-        flex: 1,
+        height: 36,
+        // flex: 1,
         backgroundColor: COLORS.white,
         width: '100%',
-        padding: 4,
-        paddingHorizontal: 5,
+        // padding: 4,
+        // paddingHorizontal: 5,
     },
     dropdownText: {
+        marginHorizontal: 0,
         fontSize: 14,
+        textAlign: 'left',
+
     },
     contentContainerStyle: {
         flexDirection: 'row',

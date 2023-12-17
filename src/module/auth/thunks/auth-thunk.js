@@ -10,7 +10,6 @@ export const sendOtpAction = createAsyncThunk(
     try {
       const phoneNumberWithPrefix = '+91' + phoneNumber;
       const response = await sendOtpApi(phoneNumberWithPrefix);
-
       if (response?.status) {
         toast(response?.data?.data?.message);
         navigation.navigate(SCREEN.AUTH.ENTER_OTP, {
@@ -18,11 +17,11 @@ export const sendOtpAction = createAsyncThunk(
         });
       }
     } catch (error) {
+      const errorMessage = error?.data?.data?.error || 'An error occurred.'
       // Handle error and show toast
-      toast(error.response?.data?.message || 'An error occurred.');
-
+      toast(errorMessage);
       // Return error using rejectWithValue
-      return rejectWithValue(error);
+      return rejectWithValue(errorMessage);
     }
   },
 );
@@ -33,11 +32,12 @@ export const verifyOtpAction = createAsyncThunk(
     try {
       const response = await verifyOtpApi(phoneNumber, otp);
       if (response?.status) {
+
         const { data = {}, message } = response?.data?.data;
-        const { authToken = '', user = {} } = data;
+        const { accessToken = '', user = {} } = data;
 
         await setAsyncStorageItem(ASYNC_STORAGE_KEY.IS_LOGGED_IN, 'true');
-        await setAsyncStorageItem(ASYNC_STORAGE_KEY.AUTH_TOKEN, authToken);
+        await setAsyncStorageItem(ASYNC_STORAGE_KEY.AUTH_TOKEN, accessToken);
         await setAsyncStorageObjectItem(ASYNC_STORAGE_KEY.USER_DATA, user);
 
         toast(message);
@@ -45,10 +45,11 @@ export const verifyOtpAction = createAsyncThunk(
         return data;
       }
     } catch (error) {
-      // showing toast
-      toast(error?.data?.message);
-      // return error
-      return rejectWithValue(error);
+      const errorMessage = error?.data?.data?.error || 'An error occurred.'
+      // Handle error and show toast
+      toast(errorMessage);
+      // Return error using rejectWithValue
+      return rejectWithValue(errorMessage);
     }
   },
 );

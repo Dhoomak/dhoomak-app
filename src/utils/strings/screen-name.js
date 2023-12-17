@@ -8,7 +8,7 @@ export const USER = {
     HOME: 'Home',
     PROFILE: 'UserProfile',
     ITEM_DETAIL: 'ItemDetail',
-    CART_LIST: 'CartList',
+    INVENTORY_LIST: 'InventoryList',
     SUBSCRIPTION: 'Subscription',
     PAYMENT: 'Payment',
 }

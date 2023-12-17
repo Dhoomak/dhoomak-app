@@ -2,7 +2,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // Screens
-import { Home, Profile, Subscription } from '../../module/home/screens';
+import { Home, Profile } from '../../module/home/screens';
 
 // Components
 import UserIcon from '../../module/home/components/user-icon';
@@ -44,14 +44,6 @@ function UserTabs() {
         options={{
           title: 'Home',
           headerRight: () => <UserIcon />
-        }}
-      />
-
-      <UserTab.Screen
-        name={USER.SUBSCRIPTION}
-        component={Subscription}
-        options={{
-          title: 'Subscription',
         }}
       />
 

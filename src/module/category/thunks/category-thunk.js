@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getCategoryListApi } from '../api/category-api';
+import { getCategoryListApi, getProductListApi } from '../api/category-api';
 import { toast } from '../../../utils/toast';
 
 export const getCategoryListAction = createAsyncThunk(
@@ -7,14 +7,38 @@ export const getCategoryListAction = createAsyncThunk(
     async ({ }, { rejectWithValue }) => {
         try {
             const response = await getCategoryListApi();
-            console.log("GET CATEGORY DETAILS:", response);
 
+            return response.data.data;
         } catch (error) {
-            // Handle error and show toast
-            toast(error.response?.data?.data?.message || 'An error occurred.');
+            const stringfiedError = JSON.stringify(error);
+            const errorMessage = error?.data?.data?.error || 'An error occurred.'
 
+            console.log("Error Get Categories: ", stringfiedError);
+            // Handle error and show toast
+            toast(errorMessage);
             // Return error using rejectWithValue
-            return rejectWithValue(error);
+            return rejectWithValue(errorMessage);
+        }
+    },
+);
+
+export const getProductsListAction = createAsyncThunk(
+    'category/getProductListAction',
+    async ({ categoryId }, { rejectWithValue }) => {
+        try {
+            const response = await getProductListApi(categoryId);
+            console.log("GET PRODUCT DETAILS:", response.data.data);
+
+            return response.data.data;
+        } catch (error) {
+            const stringfiedError = JSON.stringify(error);
+            const errorMessage = error?.data?.data?.error || 'An error occurred.'
+
+            console.log("Error Get products: ", stringfiedError);
+            // Handle error and show toast
+            toast(errorMessage);
+            // Return error using rejectWithValue
+            return rejectWithValue(errorMessage);
         }
     },
 );

@@ -22,7 +22,7 @@ function Navigation() {
   } = loggedInStatus || {};
 
   function GetStack() {
-    console.log("Navigation Role: ", userType);
+    // console.log("Navigation Role: ", userType);
     if (isLoggedIn) {
       switch (userType) {
         case ROLE.RESTAURANT: {

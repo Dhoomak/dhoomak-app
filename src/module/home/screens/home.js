@@ -1,14 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
-import IMAGES from '../../../assets/images';
 import LinearGradient from 'react-native-linear-gradient';
-import COLORS from '../../../utils/color';
+import { useDispatch, } from 'react-redux';
+
+// components
 import Slider from '../../../common/slider';
-import { navigations } from '../../../data/data';
 import NavigationCard from '../components/navigation-card';
 
+// reducer(s) / thunk(s)
+import { getCategoryListAction } from '../../category/thunks/category-thunk';
+
+// utils
+import IMAGES from '../../../assets/images';
+import COLORS from '../../../utils/color';
+
+// data
+import { homeBanners, navigations } from '../../../data/data';
+
+
 export default function Home() {
-  const bannerImgList = [IMAGES.banner.banner1, IMAGES.banner.banner2, IMAGES.banner.banner3];
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCategoryListAction({}));
+  }, [])
+
   return (
     <>
       <ScrollView className='flex-1'>
@@ -32,7 +48,7 @@ export default function Home() {
         {/* Slider Section */}
         <LinearGradient colors={[COLORS.red, COLORS.primary]} angle={135} className='p-4'>
           <View className='h-24 rounded-lg overflow-hidden'>
-            <Slider images={bannerImgList} />
+            <Slider images={homeBanners} />
           </View>
         </LinearGradient>
 

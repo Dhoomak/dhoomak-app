@@ -33,7 +33,7 @@ function OtpNumber({ phoneNumber = '' }) {
       <View className="pb-4 px-4">
         <OTPTextView
           inputCount={OTP_LENGTH}
-          tintColor={COLORS.red}
+          tintColor={COLORS.primary}
           offTintColor={COLORS.grey}
           handleTextChange={setOtpValue}
           textInputStyle={{

@@ -17,6 +17,10 @@ const STRINGS = {
     importantInformation: 'Important Information',
     information: 'Information',
     rupeeSign: '₹',
+    add: 'Add',
+    remove: 'Remove',
+    readMore: 'Read More',
+    readLess: 'Read Less',
 };
 
 export default STRINGS;

@@ -1,21 +1,26 @@
 import React from 'react';
 import { Text, Image, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import COLORS from '../../../utils/color';
 import { useNavigation } from '@react-navigation/native';
+
+// Utils
+import COLORS from '../../../utils/color';
 import { USER } from '../../../utils/strings/screen-name';
+
+// Data
+import { PRODUCTS_DEFAULT_IMAGE } from '../../../data/constant';
 
 export default function CategoryCard({ item }) {
     const navigation = useNavigation();
     const {
         name = '',
-        img = '',
-        id = '',
+        images: [img = PRODUCTS_DEFAULT_IMAGE] = [],
+        _id = '',
     } = item;
 
     function handleNavigation() {
         navigation.navigate(USER.CATEGORY, {
-            selectedCategoryId: id,
+            selectedCategoryId: _id,
         });
     }
 

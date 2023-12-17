@@ -23,11 +23,12 @@ export default function FilledButton({
     return (
         <TouchableOpacity
             className={`bg-primary p-2 rounded-md ${btnClassName}`}
+            activeOpacity={0.7}
             {...restBtnProps}
             {...rest}
         >
             <Text
-                className={`text-white text-center font-bold text-base ${textClassName}`}
+                className={`text-black text-center font-bold text-base ${textClassName}`}
                 {...restTextProps}
             >
                 {text}

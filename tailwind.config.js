@@ -19,6 +19,7 @@ module.exports = {
         'transparent-green': '#DAFFD4',
         'transparent-yellow': '#F6EDC3',
         'black': '#060400',
+        'magnolia': '#F8F3FF',
         'white': '#ffffff',
         'grey': '#F0F1F6',
         'red': '#F70C0C',
