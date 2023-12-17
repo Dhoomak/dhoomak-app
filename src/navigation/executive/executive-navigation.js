@@ -1,12 +1,11 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // Screens
-import { EnquiryDetails, EnquiryForm, EnquiryHistory, VerificationOTP } from '../../module/executive/screens'
+import { EnquiryDetails, EnquiryForm, EnquiryHistory, VerificationOTP, OnboardingDetails, AddNewUpdate, CreateAccount } from '../../module/executive/screens'
 
 // Utilities
 import COLORS from '../../utils/color';
 import { EXECUTIVE } from '../../utils/strings/screen-name';
-import CreateAccount from '../../module/executive/screens/create-account';
 import UserIcon from '../../module/home/components/user-icon';
 import ExecutiveDrawers from './executive-drawer';
 
@@ -71,6 +70,26 @@ const ExecutiveScreens = () => {
                 component={EnquiryDetails}
                 options={{
                     title: 'Enquiry Details',
+                    headerStyle: {
+                        backgroundColor: COLORS.primary
+                    },
+                }}
+            />
+            <ExecutiveStack.Screen
+                name={EXECUTIVE.ONBOARDING_HISTORY_DETAILS}
+                component={OnboardingDetails}
+                options={{
+                    title: 'Onboarding Details',
+                    headerStyle: {
+                        backgroundColor: COLORS.primary
+                    },
+                }}
+            />
+            <ExecutiveStack.Screen
+                name={EXECUTIVE.EXECUTIVE_ADD_NEW}
+                component={AddNewUpdate}
+                options={{
+                    title: 'Onboarding Details',
                     headerStyle: {
                         backgroundColor: COLORS.primary
                     },

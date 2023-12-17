@@ -47,12 +47,19 @@ const UserScreens = () => {
             <UserStack.Screen
                 name={USER.ITEM_DETAIL}
                 component={ItemDetail}
-                options={{
-                    title: '{ItemName} Details ',
-                }}
+                options={({ route }) => ({
+                    title: route?.params?.item?.name ? `${route?.params?.item?.name} Details` : 'Product Details',
+                })}
             />
         </UserStack.Navigator>
     );
 };
 
 export default UserScreens
+/*
+/
+          options={({ route }) => ({
+            title: 'Booking Details',
+            headerShown: false,
+          })}
+*/ 

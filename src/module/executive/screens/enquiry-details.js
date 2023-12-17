@@ -1,11 +1,13 @@
-import { View, Text, Image, StyleSheet,FlatList } from 'react-native';
+import { View, Text, Image, StyleSheet,FlatList, ScrollView } from 'react-native';
 import React from 'react';
 import commonStyles from '../../../common/styles';
 import { scale } from '../../../utils/scale';
 import COLORS from '../../../utils/color';
 import { PrimaryButton } from '../../../common/button';
 import IMAGES from '../../../assets/images';
-const EnquiryDetails = () => {
+import RestaurantDetails from '../components/restaurant-details';
+import Comments from '../components/comments';
+const EnquiryDetails = ({navigation}) => {
   const fakeData = {
     image: 'https://example.com/restaurant-image.jpg',
     restaurantName: 'Fake Restaurant',
@@ -23,17 +25,6 @@ const EnquiryDetails = () => {
   { id: '2', date: '12/13', levelStatus: 'Level 2', description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc' },
   { id: '2', date: '12/13', levelStatus: 'Level 2', description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc' },
   { id: '2', date: '12/13', levelStatus: 'Level 2', description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc' },
-  { id: '2', date: '12/13', levelStatus: 'Level 2', description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc' },
-  { id: '2', date: '12/13', levelStatus: 'Level 2', description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc' },
-  { id: '2', date: '12/13', levelStatus: 'Level 2', description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc' },
-  { id: '2', date: '12/13', levelStatus: 'Level 2', description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc' },
-  { id: '2', date: '12/13', levelStatus: 'Level 2', description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc' },
-  { id: '2', date: '12/13', levelStatus: 'Level 2', description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc' },
-  { id: '2', date: '12/13', levelStatus: 'Level 2', description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc' },
-  { id: '2', date: '12/13', levelStatus: 'Level 2', description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc' },
-  { id: '2', date: '12/13', levelStatus: 'Level 2', description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc' },
-  { id: '2', date: '12/13', levelStatus: 'Level 2', description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc' },
-  { id: '2', date: '12/1ß3', levelStatus: 'Level 2', description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc' },
   // Add more data items as needed
 ];
 
@@ -53,38 +44,13 @@ const renderItem = ({ item,index}) => (
 
   return (
     <View style={styles.container}>
-      <View style={{backgroundColor:"white"}} className="px-5 py-4 mx-4 mb-6 bg-white rounded-xl shadow-lg my-5 ">
-        <View  style={styles.restaurantDetails}>
-        <Image source={IMAGES.comingSoon} style={styles.image} />
-        <View style={commonStyles.shadow}>
-              <Text style={styles.restaurantName} className="text-secondary font-bold">{fakeData.restaurantName}</Text>
-              <Text className="font-sm">{`Owner: ${fakeData.ownerDetails}`}</Text>
-              <Text className="font-bold">{`Enquiry ID: ${fakeData.id}`}</Text>
-        </View>
-        </View>
-        <View>
-          <Text>
-            {`Enquiry ID: ${fakeData.contactNumber}`}
-          </Text>
-          <Text>
-            {`email: ${fakeData.email}`}
-          </Text>
-        </View>
-        <Text>
-            {`Address: ${fakeData.address}`}
-        </Text>
-      </View>
-      <View style={[commonStyles.flexRowSB]} className="px-5 mb-3">
-        <Text className="font-bold">Comment</Text>
-        <Text className="font-bold">Visited: 2 Times</Text>
-      </View>
-            <FlatList
-            data={data}
-            keyExtractor={(item) => item.id}
-            renderItem={renderItem}
-            showsVerticalScrollIndicator ={false}
-          />
-          <PrimaryButton title="Add new update"/>
+      <RestaurantDetails data={fakeData}/>
+      <ScrollView>  
+        <Comments data={data}/>
+      </ScrollView>
+    <PrimaryButton title="Add new update" onClick={()=>{
+      navigation.navigate("AddNewUpdate")
+    }}/>
     </View>
   );
 };

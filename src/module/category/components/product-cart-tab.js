@@ -1,15 +1,22 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { useSelector } from 'react-redux';
-import { getCartState } from '../../store/reducers/cart-slice';
-import IMAGES from '../../assets/images';
-import commonStyles from '../styles';
+import { getCartState } from '../../../store/reducers/cart-slice';
+import IMAGES from '../../../assets/images';
+import commonStyles from '../../../common/styles';
+import { useNavigation } from '@react-navigation/native';
+import { USER } from '../../../utils/strings/screen-name';
 
 export default function ProductCartTab() {
   const { showProductCartTab, totalCartItems } = useSelector(getCartState);
+  const navigation = useNavigation();
 
   if (!showProductCartTab) {
     return <></>;
+  }
+
+  const handleNavigation = () => {
+    navigation.navigate(USER.CART_LIST)
   }
 
   return (
@@ -19,7 +26,7 @@ export default function ProductCartTab() {
           <Text className='text-black text-10'>Total Items in Cart </Text>
           <Text className='text-black text-base font-bold'>{totalCartItems}</Text>
         </View>
-        <TouchableOpacity className='flex flex-row gap-1 items-center'>
+        <TouchableOpacity className='flex flex-row gap-1 items-center' onPress={handleNavigation}>
           <Text className='text-black font-semibold'>View Inventory</Text>
           <Image source={IMAGES.dropdownIcon} className='w-4 h-4' />
         </TouchableOpacity>

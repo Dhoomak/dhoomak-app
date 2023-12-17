@@ -5,7 +5,7 @@ import { categories, products } from '../../../data/data';
 import CategoryListCard from '../components/category-list-card';
 import COLORS from '../../../utils/color';
 import ProductCard from '../components/product-card';
-import ProductCartTab from '../../../common/tabs/product-cart-tab';
+import ProductCartTab from '../components/product-cart-tab';
 
 export default function CategoryList({ route }) {
   const {

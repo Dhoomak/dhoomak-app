@@ -1,7 +1,9 @@
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
 // Screens
-import { EnquiryHistory } from '../../module/executive/screens';
+import { EnquiryHistory, Profile, OnBoardingHistoryTable } from '../../module/executive/screens';
+
+// Tab
 import ExecutiveTabs from './executive-tab';
 
 // Components
@@ -39,6 +41,21 @@ function ExecutiveDrawers() {
                 component={EnquiryHistory}
                 options={{
                     title: 'Enquiry History',
+                }}
+            />
+
+            <ExecutiveDrawer.Screen
+                name={EXECUTIVE.ONBOARDING_HISTORY_}
+                component={OnBoardingHistoryTable}
+                options={{
+                    title: 'Onboarding History',
+                }}
+            />
+            <ExecutiveDrawer.Screen
+                name={EXECUTIVE.PROFILE}
+                component={Profile}
+                options={{
+                    title: 'Profile',
                 }}
             />
         </ExecutiveDrawer.Navigator>

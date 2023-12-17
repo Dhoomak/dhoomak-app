@@ -64,13 +64,6 @@ function ExecutiveTabs() {
                     title: 'Profile',
                 }}
             />
-            {/* <ExecutiveTab.Screen
-                name={EXECUTIVE.ENQUIRY_HISTORY}
-                component={EnquiryHistory}
-                options={{
-                    title: 'Enquiry History',
-                }}
-            /> */}
         </ExecutiveTab.Navigator>
 
     );

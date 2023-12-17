@@ -25,6 +25,10 @@ export const EXECUTIVE = {
     PROFILE: 'ExecutiveProfile',
     ENQUIRY_HISTORY: 'ExecutiveEnquiryHistory',
     ENQUIRY_DETAILS: "EnquiryDetails",
+    ONBOARDING_HISTORY_: 'OnboardingHistory',
+    ENQUIRY_DETAILS: "EnquiryDetails",
+    ONBOARDING_HISTORY_DETAILS: "OnboardingHistoryDetails",
+    EXECUTIVE_ADD_NEW: "AddNewUpdate"
 }
 
 export const DELIVERY = {

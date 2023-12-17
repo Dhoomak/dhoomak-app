@@ -13,6 +13,10 @@ const STRINGS = {
     inventoryCompleted: "Your Inventory is completed",
     comingSoon: 'Coming Soon!!',
     launchingSoon: 'Launching Soon!!',
+    productDescription: 'Product Description',
+    importantInformation: 'Important Information',
+    information: 'Information',
+    rupeeSign: '₹',
 };
 
 export default STRINGS;

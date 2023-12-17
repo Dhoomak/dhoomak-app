@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { BASE_API_URL } from '../data/constant';
 
 const axiosInstance = axios.create({
-  baseURL: 'http://ec2-13-232-182-101.ap-south-1.compute.amazonaws.com/',
+  baseURL: BASE_API_URL,
 });
 // Add a request interceptor
 axiosInstance.interceptors.request.use(

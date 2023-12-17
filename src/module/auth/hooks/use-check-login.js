@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { getAuthState } from '../reducers/auth-slice'
+import { getAuthState } from '../reducers/auth-reducer'
 import { useEffect, useState } from 'react';
 import { getAsyncStorageItem, getAsyncStorageObjectItem } from '../../../utils/async-storage';
 import { ASYNC_STORAGE_KEY } from '../../../data/constant';

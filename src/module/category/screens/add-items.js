@@ -3,7 +3,7 @@ import { View, Text, ScrollView, KeyboardAvoidingView, StyleSheet } from 'react-
 
 // components
 import CategoryCard from '../components/category-card';
-import ProductCartTab from '../../../common/tabs/product-cart-tab';
+import ProductCartTab from '../components/product-cart-tab';
 
 // utils
 import COLORS from '../../../utils/color';

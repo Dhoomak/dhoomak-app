@@ -3,7 +3,7 @@ import { Image, TouchableOpacity } from 'react-native';
 import IMAGES from '../../../assets/images';
 import { removeAsyncStorageItem } from '../../../utils/async-storage';
 import { useDispatch } from 'react-redux';
-import { logout } from '../../auth/reducers/auth-slice';
+import { logout } from '../../auth/reducers/auth-reducer';
 import { ASYNC_STORAGE_KEY } from '../../../data/constant';
 import Icon from 'react-native-vector-icons/Ionicons';
 import COLORS from '../../../utils/color';

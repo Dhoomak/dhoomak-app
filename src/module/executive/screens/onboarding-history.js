@@ -6,8 +6,8 @@ import { scale } from '../../../utils/scale';
 
 const tableHeaderConfig = [
   { key: 'restaurant', label: 'Restaurant',  },
-  { key: 'meetingScheduled', label: 'Meeting ',  },
-  { key: 'interest', label: 'Interest', },
+  { key: 'restaurantID', label: 'Restaurant ',  },
+  { key: 'obDate', label: 'Onboarding Date', },
 ];
 
 const filterByName2 = () => {
@@ -20,29 +20,17 @@ const filterByName = (name) => {
 };
 
 const filterFunctionalities = [
-  { key: 'enquiry', label: 'Enquiry History', onPress: filterByName2 },
+  { key: 'history', label: 'Onboarding History', onPress: filterByName2 },
   { key: 'filter', label: 'Filter', onPress: filterByName },
 ];
 
-const getRandomInterest = () => {
-  const interests = ['High', 'Medium', 'Low'];
-  const randomIndex = Math.floor(Math.random() * interests.length);
-  return interests[randomIndex];
-};
 
-const generateRandomData = () => {
-  const data = [];
-  for (let i = 1; i <= 50; i++) {
-    data.push({
-      restaurant: `Restaurant ${i}`,
-      meetingScheduled: '2023-02-01',
-      interest: getRandomInterest(),
-    });
-  }
-  return data;
-};
 
-const data2 = generateRandomData();
+const data2 = [{
+  restaurant: 'Restaurant 1',
+  restaurantID: '123456789',
+  obDate: '2023-02-01',
+}]
 
 const getDotStyle = (interest) => {
   switch (interest) {
@@ -72,9 +60,9 @@ const FilterFunctionality = () => (
 
 
 
-const EnquiryHistoryTable = ({ navigation }) => {
+const OnBoardingHistoryTable = ({ navigation }) => {
 const navigateToDetails=()=>{
-    navigation.navigate(EXECUTIVE.ENQUIRY_DETAILS)
+    navigation.navigate(EXECUTIVE.ONBOARDING_HISTORY_DETAILS)
 }
 return(
   <View style={styles.container}>
@@ -83,8 +71,8 @@ return(
     <FlatList
       data={data2}
       keyExtractor={(item, index) => index.toString()}
-      renderItem={({ item }) => <TableRow data={item} tableConfig={tableHeaderConfig} getDotStyleGenerator={getDotStyle} navigate={navigateToDetails}/>}
-      
+      renderItem={({ item }) => <TableRow data={item} tableConfig={tableHeaderConfig} navigate={navigateToDetails}/>}
+      showsVerticalScrollIndicator ={false}
     />
   </View>
 );
@@ -145,4 +133,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default EnquiryHistoryTable;
+export default OnBoardingHistoryTable;
