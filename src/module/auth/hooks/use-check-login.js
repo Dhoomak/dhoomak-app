@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { getAuthState, setAuthToken, setCreds, setUserData } from '../reducers/auth-reducer'
+import { getAuthState, setAuthToken, setUserData } from '../reducers/auth-reducer'
 import { getAsyncStorageItem, getAsyncStorageObjectItem } from '../../../utils/async-storage';
 import { ASYNC_STORAGE_KEY } from '../../../data/constant';
 
@@ -12,7 +12,7 @@ const initialState = {
 
 function useCheckLogin() {
     const authState = useSelector(getAuthState);
-    // const { isLoggedIn } = useSelector(getAuthState);
+    // const { isLoggedIn, userData, authToken } = useSelector(getAuthState);
     // const dispatch = useDispatch();
     const [loggedInStatus, setLoggedInStatus] = useState(initialState);
 
@@ -27,8 +27,11 @@ function useCheckLogin() {
             userData: userDataAsync,
             authToken: authTokenAsync,
         }));
-        // dispatch(setUserData(loggedInStatus.userData));
-        // dispatch(setAuthToken(loggedInStatus.authToken));
+
+        // if (authToken === '' && Object.keys(userData).length === 0) {
+        //     dispatch(setUserData(userDataAsync));
+        //     dispatch(setAuthToken(authTokenAsync || ''));
+        // }
     }
 
     useEffect(() => {

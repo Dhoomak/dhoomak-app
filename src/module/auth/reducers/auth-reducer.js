@@ -15,7 +15,7 @@ const authSlice = createSlice({
             state.authToken = '';
         },
         setUserData(state, action) {
-            console.log("INSIDE SET USER CREDS:", action.payload);
+            console.log("INSIDE SET USER DATA:", action.payload);
             state.userData = action.payload;
         },
         setAuthToken(state, action) {

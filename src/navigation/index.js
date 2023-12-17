@@ -2,13 +2,12 @@
 import { NavigationContainer } from '@react-navigation/native';
 
 // Stacks
-import AuthScreens from './auth';
-import UserScreens from './user';
-import ExecutiveScreens from './executive';
-import DeliveryScreens from './delivery';
+import { AuthScreens, UserScreens, ExecutiveScreens, DeliveryScreens } from './screens'
 
 // Hooks
 import useCheckLogin from '../module/auth/hooks/use-check-login';
+
+// Data
 import { ROLE } from '../data/constant';
 
 function Navigation() {
@@ -22,14 +21,12 @@ function Navigation() {
   } = loggedInStatus || {};
 
   function GetStack() {
-    // console.log("Navigation Role: ", userType);
     if (isLoggedIn) {
       switch (userType) {
         case ROLE.RESTAURANT: {
           return <UserScreens />;
         }
         case ROLE.EXECUTIVE: {
-          9999;
           return <ExecutiveScreens />;
         }
         case ROLE.DELIVERY: {

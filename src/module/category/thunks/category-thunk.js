@@ -27,7 +27,7 @@ export const getProductsListAction = createAsyncThunk(
     async ({ categoryId }, { rejectWithValue }) => {
         try {
             const response = await getProductListApi(categoryId);
-            console.log("GET PRODUCT DETAILS:", response.data.data);
+            // console.log("GET PRODUCT DETAILS:", response.data.data);
 
             return response.data.data;
         } catch (error) {
