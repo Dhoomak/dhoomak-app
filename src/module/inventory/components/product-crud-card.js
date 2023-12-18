@@ -1,13 +1,12 @@
 import React from 'react';
-import { View, Text, Image, TouchableHighlight, TextInput } from 'react-native';
+import { View, Text, Image, TouchableHighlight, TextInput, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
 
 import { PRODUCTS_DEFAULT_IMAGE } from '../../../data/constant';
 import { USER } from '../../../utils/strings/screen-name';
 import STRINGS from '../../../utils/strings';
 import { useDispatch } from 'react-redux';
-import { addProductInventoryUnits, removeProductInventoryUnits } from '../reducers/inventory-reducer';
+import { addProductInventoryUnits, removeProductInventoryUnits, enterProductInventoryUnits } from '../reducers/inventory-reducer';
 
 export default function ProductCrudCard(item) {
     const dispatch = useDispatch();
@@ -24,6 +23,7 @@ export default function ProductCrudCard(item) {
         images: [img = PRODUCTS_DEFAULT_IMAGE] = [],
     } = item;
 
+
     function handleNavigateToItemDetails() {
         navigation.navigate(USER.ITEM_DETAIL, { item })
     }
@@ -32,6 +32,10 @@ export default function ProductCrudCard(item) {
     }
     function handleDecrementProductQuantity() {
         dispatch(removeProductInventoryUnits({ _id }));
+    }
+    function handleEnterProductQuantity(value) {
+        console.log(value)
+        dispatch(enterProductInventoryUnits({ _id, value }));
     }
 
     return (
@@ -53,14 +57,19 @@ export default function ProductCrudCard(item) {
 
             <View className='flex-1'>
                 <Text className='text-base text-black font-bold truncate text-center mb-1'>{STRINGS.rupeeSign}{unitPrice * unitAdded}</Text>
-                <View className='rounded-md bg-primary px-1 py-1 flex-row'>
-                    <TouchableHighlight onPress={handleDecrementProductQuantity} className='flex-1 justify-center items-center rounded-md'>
-                        <Text className='text-lg bg-primary text-black w-full text-center'>-</Text>
-                    </TouchableHighlight>
-                    <TextInput keyboardType='numeric' defaultValue={`${unitAdded}`} className='bg-white text-center p-0 flex-2 rounded-md' />
-                    <TouchableHighlight onPress={handleIncreementProductQuantity} className='flex-1 justify-center items-center rounded-md'>
-                        <Text className='text-lg bg-primary text-black w-full text-center'>+</Text>
-                    </TouchableHighlight>
+                <View className='rounded-lg flex-row'>
+                    <TouchableOpacity onPress={handleDecrementProductQuantity} className='flex-1 justify-center items-center rounded-l-lg'>
+                        <Text className='text-lg bg-secondary text-white w-full text-center rounded-l-lg '>-</Text>
+                    </TouchableOpacity>
+                    <TextInput
+                        keyboardType='numeric'
+                        defaultValue={`${unitAdded}`}
+                        className='bg-white text-center p-0 flex-2 '
+                        onChangeText={(value) => handleEnterProductQuantity(value)}
+                    />
+                    <TouchableOpacity onPress={handleIncreementProductQuantity} className='flex-1 justify-center items-center rounded-r-lg'>
+                        <Text className='text-lg bg-secondary text-white w-full text-center rounded-r-lg'>+</Text>
+                    </TouchableOpacity>
                 </View>
 
             </View>

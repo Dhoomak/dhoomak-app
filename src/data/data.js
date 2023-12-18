@@ -443,6 +443,14 @@ export const products = [
     },
 ]
 
+export const subscriptionBenefitList = [
+    { title: "Free Delivery", icon: '' },
+    { title: "24/7 Support", icon: '' },
+    { title: "Executive Visit", icon: '' },
+    { title: "On Time Delivery", icon: '' },
+
+]
+
 export const unitQuantityType = ["kg", "gm", "ltr", "ml"];
 
 export const homeBanners = [IMAGES.banner.banner1, IMAGES.banner.banner2, IMAGES.banner.banner3];

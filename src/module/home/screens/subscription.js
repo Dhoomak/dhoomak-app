@@ -1,164 +1,163 @@
-import { View, Text, ScrollView, Image, FlatList, Pressable, TouchableOpacity } from 'react-native'
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
 import CheckBox from '@react-native-community/checkbox';
 import React, { useState } from 'react'
 import STRINGS from '../../../utils/strings'
-import { InputDate, InputTime } from '../../../common/form/input-fields'
+import { InputDate, InputTime, InputDropdown } from '../../../common/form/input-fields'
 import FilledButton from '../../../common/button';
 import { USER } from '../../../utils/strings/screen-name';
 import commonStyles from './../../../common/styles';
-import IMAGES from '../../../assets/images';
 import COLORS from '../../../utils/color';
+import DhoomakFlatlist from '../../../common/components/dhoomak-flatlist';
+import Icon from 'react-native-vector-icons/Ionicons'
+import { DELIVERY_TIME_SLOTS, SUBSCRIPTION_AMOUNT, SUBSCRIPTION_TYPE } from '../../../data/constant';
+import ProductDetailListCard from '../components/product-detail-list-card';
+import { subscriptionBenefitList } from '../../../data/data';
+import { toast } from '../../../utils/toast';
 
-const Subscription = ({ navigation }) => {
+
+const Subscription = ({ navigation, route }) => {
+  const { inventoryItems } = route.params;
+
   const [termsChecked, setTermsChecked] = useState(true);
-  const [sampleChecked, setSampleChecked] = useState(true);
+  const [sampleChecked, setSampleChecked] = useState(false);
+  const [startDate, setStartDate] = useState('');
+  const [timeSlot, setTimeSlot] = useState('');
+  const [frequency, setFrequency] = useState(SUBSCRIPTION_TYPE.WEEKLY);
 
-  const data = [
-    {
-      itemName: "Notebooks",
-      description: "Set of 3 ",
-      quantity: 5
-    },
-    {
-      itemName: "Pens",
-      description: "Blue bal",
-      quantity: 10
-    },
-    {
-      itemName: "Coffee Mugs",
-      description: "Ceramic mugs",
-      quantity: 6
-    },
-    {
-      itemName: "Desk Chair",
-      description: "Comfortable ",
-      quantity: 1
-    },
-    {
-      itemName: "USB Flash Drives",
-      description: "32GB USB 3.0 ",
-      quantity: 3
-    },
-  ]
+  const [showFullList, setShowFullList] = useState(true);
+
+  const inventoryListLength = inventoryItems.length;
 
   const inputDateAttributes = {
-    name: 'dateInput',
+    name: 'Date',
+    label: '',
   };
 
-  const handleFormData = () => {
-    console.log(date)
+  const handleDate = (date) => {
+    console.log(date);
+    setStartDate(date);
   }
 
-  const renderItem = ({ item }) => (
-    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: 4 }}>
-      <Image source={IMAGES.banner.banner1} style={{ width: 50, height: 50, borderRadius: 8, }} />
-      <View style={{ marginLeft: 5, flexDirection: 'column', flex: 1, }}>
-        <Text style={{ fontWeight: 'bold', color: COLORS.black }}>{item.itemName}</Text>
-        <Text style={{ fontSize: 12 }}>{item.description}</Text>
-      </View>
-      <Text style={{ fontSize: 14, color: COLORS.black }}>
-        {item.quantity}
-      </Text>
-    </View>
-  );
+  const handleTimeSlot = (value) => {
+    console.log(value);
+    setTimeSlot(value);
+  }
 
   const submitForm = () => {
-    console.log("Form Submitted....");
-    handleNavigation();
+    // console.log(inventoryItems);
+    if (!termsChecked) {
+      toast('Accept Terms & Conditions');
+      return;
+    } else if (startDate == '') {
+      toast('Select Date');
+      return;
+    } else if (timeSlot == '') {
+      toast('Select Time Slot');
+      return;
+    }
+
+    navigation.navigate(USER.PAYMENT);
   }
 
-  function handleNavigation() {
-    navigation.navigate(USER.PAYMENT)
+  const toggleFullList = () => {
+    setShowFullList((prev) => !prev);
   }
 
-  const handleShare = () => {
-    console.log('Share Item')
+  const handleEdit = () => {
+    console.log('Delete Items');
+    navigation.navigate(USER.INVENTORY_LIST);
   }
-
-  const handleDelete = () => {
-    console.log('Delete Items')
-  }
-
 
   return (
     <ScrollView className="bg-white">
-      <Text className="text-red flex justify-center align-middle text-center font-bold text-lg my-3">{STRINGS.inventoryCompleted}</Text>
+      <Text className="text-secondary flex justify-center align-middle text-center font-bold text-lg m-3">{STRINGS.inventoryCompleted}</Text>
       {/* Total Item Details Container */}
-      <View className="px-5 py-4 mx-4 mb-6 bg-white rounded-xl shadow-lg " style={commonStyles.shadow}>
-        <View className="flex flex-row items-center mb-4">
+      <View className="px-4 py-4 mx-3 mb-4 bg-white rounded-xl shadow-sm " style={commonStyles.shadow}>
+        <View className="flex flex-row items-center mb-2">
           <View className="flex-1 flex flex-col justify-between ">
             <Text className="text-lg text-black font-bold">Total Items</Text>
-            <Text className="text-xs text-black ">15/15 ITEMS SELECTED(475 KG)</Text>
+            <Text className="text-sm text-black ">{inventoryItems.length} Items Selected</Text>
           </View>
           <View className="flex flex-row items-center gap-2">
-            <TouchableOpacity onPress={handleShare}>
-              <Image source={IMAGES.shareIcon} />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={handleDelete}>
-              <Image source={IMAGES.deleteIcon} />
+            <TouchableOpacity onPress={handleEdit}>
+              <Icon name="create-outline" size={24} color={COLORS.black} />
             </TouchableOpacity>
           </View>
         </View>
 
-        <View style={{ height: 200 }}>
-          <FlatList
+        <View style={{ height: showFullList ? 200 : 'auto' }}>
+          <DhoomakFlatlist
             nestedScrollEnabled
-            data={data}
-            renderItem={renderItem}
+            data={inventoryItems}
+            renderItem={({ item }) => <ProductDetailListCard {...item} />}
             keyExtractor={(item, index) => index.toString()}
             ItemSeparatorComponent={() => <View style={{ borderBottomWidth: 1, marginVertical: 5 }} className="border-grey" />}
           />
         </View>
+        {inventoryListLength > 3 ? (<TouchableOpacity className='p-2 pb-0 justify-between items-center flex-row' onPress={toggleFullList}>
+          <Text className='text-black font-semibold text-base'>{showFullList ? 'View More' : 'View Less'}</Text>
+          <Icon name={showFullList ? "chevron-down-circle-outline" : "chevron-up-circle-outline"} size={24} color={COLORS.secondary} />
+        </TouchableOpacity>) : (<></>)}
       </View>
 
       {/* Choose Plan */}
-      <View className="px-5 py-4 mx-4 mb-6 bg-white rounded-xl shadow-lg" style={commonStyles.shadow}>
-        <Text className="text-lg text-black font-bold ">Choose Your Plan</Text>
+      <View className="px-4 py-4 mx-3 mb-4 bg-white rounded-xl shadow-sm" style={commonStyles.shadow}>
+        <Text className="text-lg text-black font-bold mb-2">Choose Your Plan</Text>
 
         <View className="flex flex-row">
-          <View className="flex flex-row gap-3 my-1">
-            <Pressable className="flex item-center text-center">
-              <Text className="bg-primary py-1 px-3 text-xs text-black font-semibold rounded">Monthly </Text>
-            </Pressable>
-            <Pressable className="flex item-center text-center">
-              <Text className="bg-primary py-1 px-3 text-xs text-black font-semibold rounded">Fortnight </Text>
-            </Pressable>
-            <Pressable className="flex item-center text-center">
-              <Text className="bg-primary py-1 px-3 text-xs text-black font-semibold rounded">Weekly </Text>
-            </Pressable>
-          </View>
+          {/* <View className="flex flex-row gap-3 w-full"> */}
+          {
+            Object.values(SUBSCRIPTION_TYPE).map((key) => {
+              return (<>
+                <TouchableOpacity key={key} className="flex item-center text-center mr-2" onPress={() => setFrequency(() => key)}>
+                  <Text className={`${frequency == key ? 'bg-primary' : 'bg-grey'} py-1 px-3 text-xs text-black font-semibold rounded capitalize`}>{key}</Text>
+                </TouchableOpacity>
+              </>)
+            })
+          }
         </View>
-        <Text className="text-xl text-black font-bold my-2">
-          ₹999
-        </Text>
-        <View className="flex flex-row gap-2 ">
-          <View>
-            <Text className="text-black font-normal text-xs">Free Delivery</Text>
-            <Text className="text-black font-normal text-xs">Free Delivery</Text>
-            <Text className="text-black font-normal text-xs">Free Delivery</Text>
-            <Text className="text-black font-normal text-xs">Free Delivery</Text>
-          </View>
-          {/* <View>
-          </View> */}
+
+        <Text className="text-2xl font-bold my-2 text-red">{STRINGS.rupeeSign}{SUBSCRIPTION_AMOUNT}</Text>
+
+        <View className="flex flex-row gap-1 flex-wrap">
+          {
+            subscriptionBenefitList.map((item) => (
+              <View className="w-[45%]">
+                <Text className="text-black font-normal text-xs">{item.title}</Text>
+              </View>
+            ))
+          }
         </View>
 
       </View>
 
       {/* Start Date */}
-      <View className="px-5 py-4 mx-4 mb-6 bg-white rounded-xl shadow-lg " style={commonStyles.shadow}>
+      <View className="px-4 py-4 mx-3 mb-4 bg-white rounded-xl shadow-sm" style={commonStyles.shadow}>
         <Text className="text-lg text-black font-bold">Start Date</Text>
-        <View >
-          <InputDate
-            attributes={inputDateAttributes}
-            handleFormData={handleFormData}
-          />
-          <InputTime
-            attributes={inputDateAttributes}
-            handleFormData={handleFormData} />
-        </View>
+        {/* <View > */}
+        <InputDate
+          attributes={inputDateAttributes}
+          handleFormData={handleDate}
+        />
+        <View className='mb-4'></View>
+        <InputDropdown
+          attributes={{
+            label: 'Time Slot',
+            showLabel: false,
+            name: '',
+            data: DELIVERY_TIME_SLOTS,
+            setValueKey: 'value',
+            extraProps: {
+              buttonTextAfterSelection: (selectedItem) => selectedItem.value,
+              rowTextForSelection: (item) => item.title
+            }
+          }}
+          handleFormData={handleTimeSlot}
+        />
+        {/* </View> */}
       </View>
       {/* Accept Agreement */}
-      <View className="mx-4 mb-2">
+      <View className="mx-3 mb-2">
         <View className="flex flex-row items-center ">
           <CheckBox
             tintColors={{

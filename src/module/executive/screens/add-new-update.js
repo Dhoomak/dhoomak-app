@@ -49,7 +49,6 @@ const AddNewUpdate = () => {
                 placeholder: 'Enter Details',
                 multiline: true,
                 numberOfLines: 3,
-
             },
         },
 

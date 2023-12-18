@@ -10,7 +10,10 @@ const inventorySlice = createSlice({
     },
     reducers: {
         addToInventory(state, action) {
-            state.inventoryItems = [...state.inventoryItems, action.payload];
+            // const item = action.payload;
+            // item.unitAdded = 1
+            // console.log('Added to Cart :', item)
+            state.inventoryItems = [...state.inventoryItems, { ...action.payload, unitAdded: 1 }];
             state.inventoryAddedIdList = [...state.inventoryAddedIdList, action.payload._id];
             updateCommonState(state);
         },
@@ -24,6 +27,9 @@ const inventorySlice = createSlice({
         },
         removeProductInventoryUnits(state, action) {
             state = decrementParticularProductUnits(state, action.payload);
+        },
+        enterProductInventoryUnits(state, action) {
+            state = enterParticularProductUnits(state, action.payload);
         },
     },
 })
@@ -55,6 +61,28 @@ function decrementParticularProductUnits(state, payload) {
     return state;
 }
 
+function enterParticularProductUnits(state, payload) {
+    const inventory = state.inventoryItems.find((inventoryItem) => inventoryItem._id == payload._id);
+
+    if (payload.value == 0) {
+        state.inventoryItems = state.inventoryItems.filter((inventoryItem) => inventoryItem._id !== payload._id);
+        state.inventoryAddedIdList = state.inventoryAddedIdList.filter((inventoryId) => inventoryId !== payload._id);
+        updateCommonState(state);
+        return state;
+    }
+
+    inventory.unitAdded = parseInt(payload.value);
+    return state;
+}
+
 export const getInventoryState = (state) => state.inventory;
-export const { addToInventory, removeFromInventory, addProductInventoryUnits, removeProductInventoryUnits } = inventorySlice.actions;
+
+export const {
+    addToInventory,
+    removeFromInventory,
+    addProductInventoryUnits,
+    removeProductInventoryUnits,
+    enterProductInventoryUnits
+} = inventorySlice.actions;
+
 export default inventorySlice.reducer;

@@ -14,23 +14,24 @@ export default function InventoryList() {
     const { inventoryItems, totalInventoryItems } = useSelector(getInventoryState)
 
     const handleMakeSubscription = () => {
-        // toast(JSON.stringify(inventoryItems));
+        toast(JSON.stringify(inventoryItems));
         navigation.navigate(USER.SUBSCRIPTION, { inventoryItems });
     };
 
     return (
         <KeyboardAvoidingView className='flex-1' behavior='height'>
-            <View className=' w-full flex-1 bg-magnolia'>
-
+            <View className=' w-full flex-1 bg-grey'>
                 {
                     totalInventoryItems >= 1 ? (
-                        <DhoomakFlatlist
-                            data={inventoryItems}
-                            keyExtractor={item => item._id}
-                            className=' m-3 mb-0  rounded-md flex-1 '
-                            renderItem={({ item }) => <ProductCrudCard {...item} />}
-                            ItemSeparatorComponent={() => <View className='bg-grey h-[1px]'></View>}
-                        />
+                        <View className='rounded-md overflow-hidden flex-1 border border-grey m-3 mb-0'>
+                            <DhoomakFlatlist
+                                data={inventoryItems}
+                                keyExtractor={item => item._id}
+                                className='rounded-md flex-1 bg-white overflow-hidden'
+                                renderItem={({ item }) => <ProductCrudCard {...item} />}
+                                ItemSeparatorComponent={() => <View className='bg-grey h-[2px]'></View>}
+                            />
+                        </View>
                     ) : (
                         <View className='flex-1 justify-center items-center'>
                             <Text className='italic text-red text-base'>No Item in the Inventory</Text>
@@ -38,8 +39,12 @@ export default function InventoryList() {
                     )
                 }
 
-                <View className='p-3'>
-                    <FilledButton text='Create Subscription' onPress={handleMakeSubscription} />
+                <View className='m-3'>
+                    <FilledButton
+                        text='Add Items in Subscription'
+                        onPress={handleMakeSubscription}
+                        textProps={{ className: 'text-black font-semibold' }}
+                    />
                 </View>
             </View>
         </KeyboardAvoidingView>

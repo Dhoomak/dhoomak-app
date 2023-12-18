@@ -54,7 +54,6 @@ export default function AddCustomItemForm() {
             unitAdded: 1,
             unitPrice: 0,
             images: [PRODUCTS_DEFAULT_IMAGE],
-
         }
         // console.log(item);
 

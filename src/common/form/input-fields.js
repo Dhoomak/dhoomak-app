@@ -105,6 +105,7 @@ const InputDropdown = ({ attributes, handleFormData }) => {
     const {
         extraProps = {},
         label = '',
+        showLabel = true,
         name = '',
         data = [],
         setValueKey = '',
@@ -114,7 +115,7 @@ const InputDropdown = ({ attributes, handleFormData }) => {
     return (
         <>
             <View style={[styles.formFieldContainer, containerStyle]}>
-                <Text style={styles.formInputTitle}>{label}</Text>
+                {showLabel && label ? <Text style={styles.formInputTitle}>{label}</Text> : <></>}
                 <SelectDropdown
                     data={data}
                     defaultButtonText={`Select ${label}`}

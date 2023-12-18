@@ -29,7 +29,7 @@ function MobileNumber() {
       behavior='height'
     >
       <View>
-        <Text className="text-base font-bold text-left mb-6 text-black">
+        <Text className="text-base font-bold mb-6 text-black text-center">
           {STRINGS.enterNumberAndLogin}
         </Text>
         <TextInput

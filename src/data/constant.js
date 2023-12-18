@@ -16,6 +16,41 @@ export const ASYNC_STORAGE_KEY = {
   AUTH_TOKEN: 'authToken',
 };
 
+export const SUBSCRIPTION_TYPE = {
+  WEEKLY: 'WEEKLY',
+  FORTNIGHT: 'FORTNIGHT',
+  MONTHLY: 'MONTHLY',
+}
+
+export const SUBSCRIPTION_PAYMENT_TYPE = {
+  PAY_NOW: 'PAY_NOW',
+  PAY_LATER: 'PAY_LATER',
+}
+
+export const DELIVERY_TIME_SLOTS = [
+  {
+    value: '10AM-12PM',
+    title: '10am - 12pm',
+  },
+  {
+    value: '12PM-14PM',
+    title: '12pm - 14pm',
+  },
+  {
+    value: '14PM-16PM',
+    title: '14pm - 16pm',
+  },
+  {
+    value: '16PM-18PM',
+    title: '16pm - 18pm',
+  },
+  {
+    value: '18PM-20PM',
+    title: '18pm - 20pm',
+  },
+]
+
 export const CATEGORY_DEFAULT_IMAGE = 'https://dhoomak.com/a/img/logo.png';
 export const PRODUCTS_DEFAULT_IMAGE = 'https://dhoomak.com/a/img/logo.png';
+export const SUBSCRIPTION_AMOUNT = 999;
 

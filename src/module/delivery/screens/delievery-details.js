@@ -6,7 +6,7 @@ import COLORS from '../../../utils/color';
 import { PrimaryButton } from '../../../common/button';
 import IMAGES from '../../../assets/images';
 import RestaurantDetails from '../../executive/components/restaurant-details';
-import DeliveryItemDetails from './components/delivery-details';
+import DeliveryItemDetails from '../components/delivery-details';
 const DeliveryDetails = ({ navigation }) => {
   const fakeData = {
     image: 'https://example.com/restaurant-image.jpg',
@@ -29,16 +29,16 @@ const DeliveryDetails = ({ navigation }) => {
   ];
 
   const mockData = {
-  restaurantName: "Delicious Delights",
-  ownerDetails: "John Doe",
-  id: "ENQ123456",
-  contactNumber: "9876543210",
-  email: "john.doe@example.com",
-  address: "123 Main Street, Cityville",
-  date: '12/13/2024',
+    restaurantName: "Delicious Delights",
+    ownerDetails: "John Doe",
+    id: "ENQ123456",
+    contactNumber: "9876543210",
+    email: "john.doe@example.com",
+    address: "123 Main Street, Cityville",
+    date: '12/13/2024',
     time: '9.00 P.M',
-  status: 'Delievered',
-};
+    status: 'Delievered',
+  };
 
 
   const renderItem = ({ item, index }) => (
@@ -57,12 +57,12 @@ const DeliveryDetails = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-        <Text style={styles.headingText}>
-            Restaurant Details
-        </Text>
+      <Text style={styles.headingText}>
+        Restaurant Details
+      </Text>
       <RestaurantDetails data={fakeData} />
       <Text style={styles.headingText}>Delivery Details</Text>
-      <DeliveryItemDetails data={mockData}/>
+      <DeliveryItemDetails data={mockData} />
       <ScrollView>
       </ScrollView>
     </View>
@@ -87,12 +87,12 @@ const styles = StyleSheet.create({
   },
   restaurantName: {
   },
-  headingText:{
+  headingText: {
     marginLeft: scale(14),
-    fontSize:scale(16),
+    fontSize: scale(16),
     marginTop: scale(10),
-    fontWeight:"bold",
-    color:COLORS.black
+    fontWeight: "bold",
+    color: COLORS.black
   }
 });
 

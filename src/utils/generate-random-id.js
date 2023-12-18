@@ -1,3 +1,3 @@
-export function generateRandomId(min = 100, max = 999) {
-    return Math.random() * (max - min) + min;
+export function generateRandomId(min = 10000, max = 99999) {
+    return Math.round(Math.random() * (max - min) + min);
 }
