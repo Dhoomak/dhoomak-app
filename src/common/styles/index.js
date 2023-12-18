@@ -19,6 +19,17 @@ const commonStyles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         justifyContent:'space-between',
+    },
+    flexRowSB:{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent:'space-between',
+    },
+    flexRowSBW_100:{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent:'space-between',
+        width:"100%"
     }
 
 })

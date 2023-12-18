@@ -8,8 +8,7 @@ export default function SplashScreen({ navigation }) {
 
     useEffect(() => {
         setTimeout(() => {
-            // console.log(isLoggedIn)
-            // console.log(typeof isLoggedIn)
+
             if (isLoggedIn !== true && isLoggedIn !== null && isLoggedIn !== '') {
                 navigation.navigate(AUTH.LOGIN);
                 // console.log('USER NOT LOGGED IN SPLASH SCREEN')

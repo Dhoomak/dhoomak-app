@@ -8,6 +8,8 @@ import COLORS from '../../utils/color';
 import { EXECUTIVE } from '../../utils/strings/screen-name';
 import UserIcon from '../../module/home/components/user-icon';
 import ExecutiveDrawers from './executive-drawer';
+import { AddItems, CategoryList, ItemDetail, } from '../../module/category/screens'
+
 
 // Stack
 const ExecutiveStack = createNativeStackNavigator();
@@ -88,6 +90,36 @@ const ExecutiveScreens = () => {
             <ExecutiveStack.Screen
                 name={EXECUTIVE.EXECUTIVE_ADD_NEW}
                 component={AddNewUpdate}
+                options={{
+                    title: 'Onboarding Details',
+                    headerStyle: {
+                        backgroundColor: COLORS.primary
+                    },
+                }}
+            />
+            <ExecutiveStack.Screen
+                name={EXECUTIVE.ADD_NEW}
+                component={AddItems}
+                options={{
+                    title: 'Add Item',
+                    headerStyle: {
+                        backgroundColor: COLORS.primary
+                    },
+                }}
+            />
+            <ExecutiveStack.Screen
+                name={EXECUTIVE.EXECUTIVE_ITEM_DETAILS}
+                component={ItemDetail}
+                options={{
+                    title: 'Onboarding Details',
+                    headerStyle: {
+                        backgroundColor: COLORS.primary
+                    },
+                }}
+            />
+            <ExecutiveStack.Screen
+                name={EXECUTIVE.CATEGORY}
+                component={CategoryList}
                 options={{
                     title: 'Onboarding Details',
                     headerStyle: {

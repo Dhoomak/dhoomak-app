@@ -22,7 +22,6 @@ export default function OtpNumber({mobileNumber = '',navigation}) {
   const {phoneNumber} = route.params;
 
   console.log(typeof phoneNumber);
-
   const handleVerifyOtp = async () => {
     if (otpValue.length !== OTP_LENGTH) {
       console.log('Invalid OTP Length');
@@ -31,6 +30,7 @@ export default function OtpNumber({mobileNumber = '',navigation}) {
     }
     dispatch(verifyOtpAction({phone: phoneNumber, otp: otpValue}));
     console.log('verifyOtpAction dispatched...');
+    console.log("alling")
 
   };
 

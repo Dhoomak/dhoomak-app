@@ -12,7 +12,6 @@ export const getCategoryListAction = createAsyncThunk(
         } catch (error) {
             const stringfiedError = JSON.stringify(error);
             const errorMessage = error?.data?.data?.error || 'An error occurred.'
-
             console.log("Error Get Categories: ", stringfiedError);
             // Handle error and show toast
             toast(errorMessage);

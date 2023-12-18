@@ -10,7 +10,7 @@ export const TableHeader = ({ tableHeader }) => (
   </View>
 );
 export const TableRow = ({ data, tableConfig, getDotStyleGenerator,navigate }) => (
-  <View style={styles.tableRow}>
+  <Pressable style={styles.tableRow} onPress={navigate}>
     {tableConfig.map((column) => (
       <TouchableOpacity key={column.key} style={styles.columnContainer} onPress={navigate}>
         {column.key === 'interest' && (
@@ -19,7 +19,7 @@ export const TableRow = ({ data, tableConfig, getDotStyleGenerator,navigate }) =
         <Text style={styles.tableRowText}>{data[column.key]}</Text>
       </TouchableOpacity>
     ))}
-  </View>
+  </Pressable>
 );
 
 const styles = StyleSheet.create({

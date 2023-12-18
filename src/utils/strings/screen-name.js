@@ -28,14 +28,22 @@ export const EXECUTIVE = {
     ONBOARDING_HISTORY_: 'OnboardingHistory',
     ENQUIRY_DETAILS: "EnquiryDetails",
     ONBOARDING_HISTORY_DETAILS: "OnboardingHistoryDetails",
-    EXECUTIVE_ADD_NEW: "AddNewUpdate"
+    EXECUTIVE_ADD_NEW: "AddNewUpdate",
+    ADD_NEW: 'Add New Item',
+    EXECUTIVE_ITEM_DETAILS: 'DeliveryDashboard',
+    CATEGORY: 'Category',
 }
+
 
 export const DELIVERY = {
     STACK: 'DeliveryStack',
     TAB: 'DeliveryTab',
     DRAWER: 'DeliveryDrawer',
     DASHBOARD: 'DeliveryDashboard',
+    DELIVERY_ITEMS:"Delivery Items",
+    DELIVERY_DETAILS:"Delivery Details",
+    DASHBOARD:"Dashboard",
+    PROFILE:"Profile",
 }
 
 export const AUTH = {

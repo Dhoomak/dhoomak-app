@@ -25,7 +25,9 @@ function CreateAccount({ navigation }) {
     console.log(form);
     toast('Form Submitted Successfully');
     setForm(initialState);
-    navigation.navigate(EXECUTIVE.VERIFICATION_OTP);
+    navigation.navigate(EXECUTIVE.VERIFICATION_OTP,{
+      data:form
+    });
   }
 
   const formFormat = [

@@ -5,9 +5,9 @@ export const API_VERSION = '/v1';
 
 export const ROLE = {
   RESTAURANT: 'RESTAURANT',
-  DELIVERY: 'DELIVERY',
+  DELIVERY: 'DELIVERY_AGENT',
   USER: 'USER',
-  EXECUTIVE: 'EXECUTIVE',
+  EXECUTIVE: 'SALES_AGENT',
 };
 
 export const ASYNC_STORAGE_KEY = {
