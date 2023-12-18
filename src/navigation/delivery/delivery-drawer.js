@@ -19,7 +19,7 @@ function DeliveryDrawers() {
                 name={DELIVERY.TAB}
                 component={DeliveryTabs}
                 options={{
-                    // headerTitle: '',
+                    headerTitle: '',
                     title: 'Dashboard',
                     headerVisible: false,
                     headerLeftLabelVisible: false,

@@ -18,5 +18,5 @@ export default function SplashScreen({ navigation }) {
         }, 1000);
     });
 
-    return (<AuthUiWrapper>{ }</AuthUiWrapper>);
+    return (<AuthUiWrapper>{}</AuthUiWrapper>);
 }

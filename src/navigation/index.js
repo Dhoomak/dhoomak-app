@@ -23,17 +23,18 @@ function Navigation() {
   function GetStack() {
     if (isLoggedIn) {
       switch (userType) {
-        case ROLE.RESTAURANT: {
-          return <UserScreens />;
-        }
-        case ROLE.EXECUTIVE: {
-          return <ExecutiveScreens />;
-        }
-        case ROLE.DELIVERY: {
-          return <DeliveryScreens />;
-        }
+        // case ROLE.RESTAURANT: {
+        //   return <UserScreens />;
+        // }
+        // case ROLE.EXECUTIVE: {
+        //   return <ExecutiveScreens />;
+        // }
+        // case ROLE.DELIVERY: {
+        //   return <DeliveryScreens />;
+        // }
         default: {
-          return <UserScreens />;
+          return <DeliveryScreens />;
+          // return <UserScreens />;
           // return <ExecutiveScreens />;
         }
       }

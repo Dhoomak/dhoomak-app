@@ -17,37 +17,39 @@ const DeliveryStack = createNativeStackNavigator();
 
 const DeliveryScreens = () => {
     return (
-        <DeliveryStack.Navigator>
+        <DeliveryStack.Navigator
+            screenOptions={{
+                headerStyle: {
+                    backgroundColor: COLORS.primary,
+                }
+            }}
+        >
             <DeliveryStack.Screen
                 name={DELIVERY.DASHBOARD}
                 component={DeliveryDrawers}
                 options={{
                     title: "Delivery Dashboard",
+                    headerShown: false,
                     headerStyle: {
-                        backgroundColor: COLORS.primary,
-                         headerVisible: false,
+                        headerVisible: false,
                     },
                     headerRight: () => <UserIcon />
                 }}
             />
+
             <DeliveryStack.Screen
                 name={DELIVERY.DELIVERY_ITEMS}
                 component={DeliveryScreenListing}
                 options={{
                     title: "Delivery Items",
-                    headerStyle: {
-                        backgroundColor: COLORS.primary,
-                    }
                 }}
             />
+
             <DeliveryStack.Screen
                 name={DELIVERY.DELIVERY_DETAILS}
                 component={DeliveryDetails}
                 options={{
                     title: "Delivery Items",
-                    headerStyle: {
-                        backgroundColor: COLORS.primary
-                    }
                 }}
             />
         </DeliveryStack.Navigator>
