@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // Screens
-import { Dashboard, DeliveryScreenListing } from '../../module/delivery/screens'
+import { DeliveryScreenListing, DeliveryDetails } from '../../module/delivery/screens'
 
 // Components
 import UserIcon from '../../module/home/components/user-icon';
@@ -9,7 +9,8 @@ import UserIcon from '../../module/home/components/user-icon';
 // Utilities
 import { DELIVERY } from '../../utils/strings/screen-name';
 import COLORS from '../../utils/color';
-import DeliveryDetails from '../../module/delivery/screens/delievery-details';
+
+// Drawer
 import DeliveryDrawers from './delivery-drawer';
 
 // Stack
@@ -23,6 +24,7 @@ const DeliveryScreens = () => {
                     backgroundColor: COLORS.primary,
                 }
             }}
+
         >
             <DeliveryStack.Screen
                 name={DELIVERY.DASHBOARD}

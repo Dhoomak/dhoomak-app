@@ -1,6 +1,8 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 // Screens
+import { Dashboard, DeliveryProfile } from '../../module/delivery/screens';
 
 // Components
 import UserIcon from '../../module/home/components/user-icon';
@@ -8,9 +10,6 @@ import UserIcon from '../../module/home/components/user-icon';
 // Utilities
 import COLORS from '../../utils/color';
 import { DELIVERY, EXECUTIVE } from '../../utils/strings/screen-name';
-import Icon from 'react-native-vector-icons/Ionicons';
-import { Dashboard } from '../../module/delivery/screens';
-import DeliveryProfile from '../../module/delivery/screens/delivery-profile';
 
 // Tab
 const DeliveryTab = createBottomTabNavigator(); // Renamed the function component
@@ -21,8 +20,8 @@ function DeliveryTabs() {
             screenOptions={({ route }) => ({
                 headerShown: false,
                 headerStyle: {
-                    backgroundColor: COLORS.primary,headerVisible: false,
-
+                    backgroundColor: COLORS.primary,
+                    headerVisible: false,
                 },
                 tabBarActiveTintColor: COLORS.bottomTabActive,
                 tabBarInactiveTintColor: COLORS.bottomTabInactive,

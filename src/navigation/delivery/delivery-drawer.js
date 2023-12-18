@@ -1,9 +1,16 @@
 import { createDrawerNavigator } from '@react-navigation/drawer';
+
+// Components
 import UserIcon from '../../module/home/components/user-icon';
-import { DELIVERY } from './../../utils/strings/screen-name';
+
+// Utils
 import COLORS from '../../utils/color';
+import { DELIVERY } from './../../utils/strings/screen-name';
+
+// Tab
 import DeliveryTabs from './delivery-tab';
 
+// Drawer Config
 const DeliveryDrawer = createDrawerNavigator();
 
 function DeliveryDrawers() {
@@ -21,8 +28,6 @@ function DeliveryDrawers() {
                 options={{
                     headerTitle: '',
                     title: 'Dashboard',
-                    headerVisible: false,
-                    headerLeftLabelVisible: false,
                     headerRight: () => <UserIcon className='mr-0' />
                 }}
             />
