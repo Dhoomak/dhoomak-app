@@ -54,19 +54,20 @@ const UserScreens = () => {
                 })}
             />
 
-            <UserStack.Screen
-                name={USER.INVENTORY_LIST}
-                component={InventoryList}
-                options={{
-                    title: 'Inventory List',
-                }}
-            />
 
             <UserStack.Screen
                 name={USER.SUBSCRIPTION}
                 component={Subscription}
                 options={{
                     title: 'Subscription',
+                }}
+            />
+
+            <UserStack.Screen
+                name={USER.INVENTORY_LIST}
+                component={InventoryList}
+                options={{
+                    title: 'Inventory List',
                 }}
             />
         </UserStack.Navigator>

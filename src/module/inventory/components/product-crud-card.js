@@ -6,7 +6,9 @@ import { PRODUCTS_DEFAULT_IMAGE } from '../../../data/constant';
 import { USER } from '../../../utils/strings/screen-name';
 import STRINGS from '../../../utils/strings';
 import { useDispatch } from 'react-redux';
+import Icon from 'react-native-vector-icons/Ionicons'
 import { addProductInventoryUnits, removeProductInventoryUnits, enterProductInventoryUnits } from '../reducers/inventory-reducer';
+import COLORS from '../../../utils/color';
 
 export default function ProductCrudCard(item) {
     const dispatch = useDispatch();
@@ -23,18 +25,20 @@ export default function ProductCrudCard(item) {
         images: [img = PRODUCTS_DEFAULT_IMAGE] = [],
     } = item;
 
-
     function handleNavigateToItemDetails() {
         navigation.navigate(USER.ITEM_DETAIL, { item })
     }
+
     function handleIncreementProductQuantity() {
         dispatch(addProductInventoryUnits({ _id }));
     }
+
     function handleDecrementProductQuantity() {
         dispatch(removeProductInventoryUnits({ _id }));
     }
-    function handleEnterProductQuantity(value) {
-        console.log(value)
+
+    function handleEnterProductQuantity(value = 0) {
+        // console.log(value)
         dispatch(enterProductInventoryUnits({ _id, value }));
     }
 
@@ -51,13 +55,17 @@ export default function ProductCrudCard(item) {
 
             <View className='flex-2 justify-center'>
                 <Text className='text-base text-black font-semibold truncate'>{name}</Text>
-                <Text className='text-12 text-black truncate'>{brandName}</Text>
-                <Text className='text-12 text-black truncate'>{STRINGS.rupeeSign}{unitPrice} | {unitQuantity}{unitType}</Text>
+                {brandName ? <Text className='text-12 text-black truncate'>{brandName}</Text> : <></>}
+                {unitPrice ? <Text className='text-12 text-black truncate'>{STRINGS.rupeeSign}{unitPrice} | {unitQuantity}{unitType}</Text> : <></>}
             </View>
 
-            <View className='flex-1'>
-                <Text className='text-base text-black font-bold truncate text-center mb-1'>{STRINGS.rupeeSign}{unitPrice * unitAdded}</Text>
-                <View className='rounded-lg flex-row'>
+            <View className='flex-1 justify-center'>
+                <Text className='text-base text-black font-bold truncate text-center mb-1'>
+                    {
+                        unitPrice ? `${STRINGS.rupeeSign}${unitPrice * unitAdded}` : `${unitQuantity}${unitType}`
+                    }
+                </Text>
+                {unitPrice ? <View className='rounded-lg flex-row'>
                     <TouchableOpacity onPress={handleDecrementProductQuantity} className='flex-1 justify-center items-center rounded-l-lg'>
                         <Text className='text-lg bg-secondary text-white w-full text-center rounded-l-lg '>-</Text>
                     </TouchableOpacity>
@@ -70,8 +78,13 @@ export default function ProductCrudCard(item) {
                     <TouchableOpacity onPress={handleIncreementProductQuantity} className='flex-1 justify-center items-center rounded-r-lg'>
                         <Text className='text-lg bg-secondary text-white w-full text-center rounded-r-lg'>+</Text>
                     </TouchableOpacity>
-                </View>
-
+                </View> : <></>
+                }
+            </View>
+            <View className='justify-center items-center '>
+                <TouchableOpacity className='p-1' onPress={() => handleEnterProductQuantity(0)}>
+                    <Icon name='close' size={20} color={COLORS.lightGrey} />
+                </TouchableOpacity>
             </View>
         </View>
     );

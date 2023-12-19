@@ -18,18 +18,29 @@ import COLORS from '../../../utils/color';
 import { homeBanners, navigations } from '../../../data/data';
 import HomeHeader from '../components/home-header';
 import DhoomakScrollView from '../../../common/components/dhoomak-scrollview';
+import { getSubscriptionDetailsAction } from '../thunks/subscription-thunk';
+import { getAsyncStorageObjectItem } from '../../../utils/async-storage';
+import { ASYNC_STORAGE_KEY } from '../../../data/constant';
 
 
-export default function Home() {
+export default function Home({ route }) {
+  const {userId = ''} = route.params
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getCategoryListAction({}));
+    (async () => {
+      const userdata = await getAsyncStorageObjectItem(ASYNC_STORAGE_KEY.USER_DATA);
+      console.log(userdata._id);
+
+      dispatch(getSubscriptionDetailsAction({ userId: userId ? userId : userdata._id }));
+      // TODO: Add Profile Details API
+    })()
   }, [])
 
   return (
     <>
-      <ScrollView className='flex-1'>
+      <ScrollView className='flex-1 bg-grey'>
         {/* Order Details Section */}
         <HomeHeader />
 

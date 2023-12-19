@@ -10,9 +10,6 @@ const inventorySlice = createSlice({
     },
     reducers: {
         addToInventory(state, action) {
-            // const item = action.payload;
-            // item.unitAdded = 1
-            // console.log('Added to Cart :', item)
             state.inventoryItems = [...state.inventoryItems, { ...action.payload, unitAdded: 1 }];
             state.inventoryAddedIdList = [...state.inventoryAddedIdList, action.payload._id];
             updateCommonState(state);
