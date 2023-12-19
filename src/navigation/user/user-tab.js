@@ -45,6 +45,7 @@ function UserTabs() {
           title: 'Home',
           headerRight: () => <UserIcon />
         }}
+        initialParams={{ userId: '' }}
       />
 
       <UserTab.Screen

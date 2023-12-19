@@ -1,11 +1,20 @@
-import {View, Text} from 'react-native';
-import React from 'react';
+import { View, Text } from 'react-native';
+import React, { useEffect } from 'react';
 
-const ThankYou = () => {
+const ThankYou = ({ navigation }) => {
+
+  useEffect(() => {
+    const id = setTimeout(() => {
+      navigation.popToTop();
+    }, 4000);
+
+    () => { clearTimeout(id) }
+  }, [])
+
   return (
-    <View>
-      <Text>ThankYou</Text>
-      <Text>lorem text test something</Text>
+    <View className='justify-center items-center flex-1 bg-white'>
+      <Text className='text-xl mb-3 text-secondary font-bold'>ThankYou</Text>
+      <Text className='text-sm text-black font-medium'>Your Inventory has been created Successfully!!!</Text>
     </View>
   );
 };

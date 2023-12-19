@@ -23,8 +23,8 @@ import { getAsyncStorageObjectItem } from '../../../utils/async-storage';
 import { ASYNC_STORAGE_KEY } from '../../../data/constant';
 
 
-export default function Home({ route }) {
-  const {userId = ''} = route.params
+export default function Home({ route = {} }) {
+  const { userId = '' } = route?.params ;
   const dispatch = useDispatch();
 
   useEffect(() => {

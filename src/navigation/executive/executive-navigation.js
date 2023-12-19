@@ -1,4 +1,4 @@
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // Screens
 import {
@@ -9,11 +9,12 @@ import {
   OnboardingDetails,
   AddNewUpdate,
   CreateAccount,
+  ThankYou
 } from '../../module/executive/screens';
 
 // Utilities
 import COLORS from '../../utils/color';
-import {EXECUTIVE} from '../../utils/strings/screen-name';
+import { EXECUTIVE } from '../../utils/strings/screen-name';
 import UserIcon from '../../module/home/components/user-icon';
 import ExecutiveDrawers from './executive-drawer';
 import {
@@ -21,7 +22,7 @@ import {
   CategoryList,
   ItemDetail,
 } from '../../module/category/screens';
-import {InventoryList} from '../../module/inventory/screens';
+import { InventoryList } from '../../module/inventory/screens';
 
 // Stack
 const ExecutiveStack = createNativeStackNavigator();
@@ -142,6 +143,18 @@ const ExecutiveScreens = () => {
         component={InventoryList}
         options={{
           title: 'Inventory List',
+          headerStyle: {
+            backgroundColor: COLORS.primary,
+          },
+        }}
+      />
+      <ExecutiveStack.Screen
+        name={EXECUTIVE.THANK_YOU}
+        component={ThankYou}
+        options={{
+          headerShown: false,
+          headerTitle: '',
+          title: '',
           headerStyle: {
             backgroundColor: COLORS.primary,
           },

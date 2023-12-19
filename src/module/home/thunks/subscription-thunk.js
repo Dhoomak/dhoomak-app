@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getSubscriptionDetailsApi, createSubscriptionApi } from '../api/subscription-api';
 import { toast } from '../../../utils/toast';
+import { ROLE } from '../../../data/constant';
 
 
 export const getSubscriptionDetailsAction = createAsyncThunk(
@@ -46,10 +47,18 @@ export const createSubscriptionAction = createAsyncThunk(
 
 export const saveInventoryAction = createAsyncThunk(
     'subscription/saveInventoryAction',
-    async ({ subscriptionData, userId }, { rejectWithValue }) => {
+    async ({ subscriptionData, navigation, SCREEN, inventoryItems, userType }, { rejectWithValue }) => {
         try {
+            console.log('SUBSCRIPTION DATA: ', subscriptionData)
             const response = await createSubscriptionApi(subscriptionData);
             console.log("SAVE INVENTORY DETAILS:", response.data);
+
+            if (userType === ROLE.EXECUTIVE) {
+                navigation.navigate(SCREEN.EXECUTIVE.THANK_YOU);
+            } else {
+                navigation.navigate(SCREEN.USER.SUBSCRIPTION, { inventoryItems });
+            }
+
 
             return response.data;
         } catch (error) {

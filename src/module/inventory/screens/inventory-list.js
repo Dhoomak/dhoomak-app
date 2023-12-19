@@ -8,24 +8,43 @@ import DhoomakFlatlist from '../../../common/components/dhoomak-flatlist';
 import { toast } from '../../../utils/toast';
 import { useNavigation } from '@react-navigation/native';
 import { USER } from '../../../utils/strings/screen-name';
-import { getAsyncStorageObjectItem } from '../../../utils/async-storage';
-import { ASYNC_STORAGE_KEY } from '../../../data/constant';
+import { getAsyncStorageItem, getAsyncStorageObjectItem } from '../../../utils/async-storage';
+import { ASYNC_STORAGE_KEY, ROLE } from '../../../data/constant';
+import useAppNavigation from '../../../common/hooks/use-app-navigation';
+import { saveInventoryAction } from '../../home/thunks/subscription-thunk';
 
 export default function InventoryList() {
-    const navigation = useNavigation();
+    const [navigation, SCREEN] = useAppNavigation();
     const dispatch = useDispatch();
     const { inventoryItems, totalInventoryItems } = useSelector(getInventoryState)
 
     const handleMakeSubscription = async () => {
         const userdata = await getAsyncStorageObjectItem(ASYNC_STORAGE_KEY.USER_DATA);
-        console.log(userdata.userType);
-        // userdata.userType
-
-        // dispatch()
-
-
+        let payload;
+        // console.log(userdata.userType);
         toast(JSON.stringify(inventoryItems));
-        // navigation.navigate(USER.SUBSCRIPTION, { inventoryItems });
+
+        if (userdata.userType === ROLE.EXECUTIVE) {
+            const restaurantUserId = await getAsyncStorageItem(ASYNC_STORAGE_KEY.USER_RESTAURANT_ID);
+            console.log("RESTAURANT ID BY EXECUTIVE :", restaurantUserId)
+            payload = {
+                products: inventoryItems,
+                user: restaurantUserId,
+            }
+        } else {
+            payload = {
+                products: inventoryItems,
+                user: userdata._id,
+            }
+        }
+
+        // console.log("PAYLOAD:", payload)
+        // dispatch(saveInventoryAction({ subscriptionData: payload, inventoryItems, navigation, SCREEN, userType: userdata.userType }));
+        if (userdata.userType === ROLE.EXECUTIVE) {
+            navigation.navigate(SCREEN.EXECUTIVE.THANK_YOU);
+        } else {
+            navigation.navigate(SCREEN.USER.SUBSCRIPTION, { inventoryItems });
+        }
     };
 
     return (

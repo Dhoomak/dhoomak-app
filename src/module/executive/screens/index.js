@@ -9,6 +9,7 @@ import EnquiryDetails from "./enquiry-details";
 import OnboardingDetails from "./onboarding-details";
 import AddNewUpdate from "./add-new-update";
 import OnBoardingHistoryTable from "./onboarding-history";
+import ThankYou from "./thank-you";
 
 
 
@@ -17,4 +18,4 @@ import OnBoardingHistoryTable from "./onboarding-history";
 
 
 
-export { Dashboard, EnquiryForm, VerificationOTP, Profile, Notification, CreateAccount, EnquiryHistory, EnquiryDetails, OnboardingDetails, AddNewUpdate, OnBoardingHistoryTable };
+export { Dashboard, EnquiryForm, VerificationOTP, Profile, Notification, CreateAccount, EnquiryHistory, EnquiryDetails, OnboardingDetails, AddNewUpdate, OnBoardingHistoryTable, ThankYou };
