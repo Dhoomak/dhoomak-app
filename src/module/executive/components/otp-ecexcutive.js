@@ -56,7 +56,6 @@ export default function OtpNumberExecutive({mobileNumber = '', uid = ''}) {
     return () => {
       clearInterval(intervalId);
     };
-    // dispatch(verifyRestaurantAction({enquiryForm}));
   }, [disableSendButton, timer]);
 
   useEffect(() => {
@@ -78,10 +77,12 @@ export default function OtpNumberExecutive({mobileNumber = '', uid = ''}) {
       otp: '3333',
     };
 
-    dispatch(verifyRestaurantAction({enquiryForm: enquiryForm}));
+    dispatch(
+      verifyRestaurantAction({enquiryForm: enquiryForm, navigation, SCREEN}),
+    );
+    dispatch(getCategoryListAction({}));
     // setDisableSendButton(true);
     // console.log('timer');
-    // dispatch(getCategoryListAction({}));
     // navigation.navigate(EXECUTIVE.ADD_NEW);
   };
 

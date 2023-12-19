@@ -38,7 +38,7 @@ export default function AddCustomItemForm() {
         } else if (category == '') {
             toast('Please Enter Category');
         } else {
-            toast(`You Added: ${itemName} of ${category} | Quanity: ${quanity}${quanityTypeVal}`);
+            toast(`You Added: ${itemName} | Quanity: ${quanity}${quanityTypeVal}`);
             handleAddToCart();
         }
     }
@@ -47,7 +47,7 @@ export default function AddCustomItemForm() {
         const item = {
             _id: generateRandomId().toString(),
             name: itemName,
-            brandName: itemName,
+            brandName: "",
             unitQuantity: quanity,
             unitType: quanityTypeVal,
             categoryId: category,

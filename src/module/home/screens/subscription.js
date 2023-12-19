@@ -167,7 +167,7 @@ const Subscription = ({ navigation, route }) => {
             value={termsChecked}
             onValueChange={(isChecked) => setTermsChecked(isChecked)}
           />
-          <Text className="ml-2 text-sm">I agree to the Terms and Conditions</Text>
+          <Text className="ml-2 text-sm text-black">I agree to the Terms and Conditions</Text>
         </View>
         <View className="flex flex-row items-center ">
           <CheckBox
@@ -178,7 +178,7 @@ const Subscription = ({ navigation, route }) => {
             value={sampleChecked}
             onValueChange={(isChecked) => setSampleChecked(isChecked)}
           />
-          <Text className="ml-2 text-sm">Request for Sample</Text>
+          <Text className="ml-2 text-sm text-black">Request for Sample</Text>
         </View>
       </View>
 

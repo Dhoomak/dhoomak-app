@@ -2,20 +2,30 @@ import React from 'react';
 import { Text, View, KeyboardAvoidingView } from 'react-native';
 import FilledButton from '../../../common/button';
 import ProductCrudCard from '../components/product-crud-card';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getInventoryState } from '../reducers/inventory-reducer';
 import DhoomakFlatlist from '../../../common/components/dhoomak-flatlist';
 import { toast } from '../../../utils/toast';
 import { useNavigation } from '@react-navigation/native';
 import { USER } from '../../../utils/strings/screen-name';
+import { getAsyncStorageObjectItem } from '../../../utils/async-storage';
+import { ASYNC_STORAGE_KEY } from '../../../data/constant';
 
 export default function InventoryList() {
     const navigation = useNavigation();
+    const dispatch = useDispatch();
     const { inventoryItems, totalInventoryItems } = useSelector(getInventoryState)
 
-    const handleMakeSubscription = () => {
+    const handleMakeSubscription = async () => {
+        const userdata = await getAsyncStorageObjectItem(ASYNC_STORAGE_KEY.USER_DATA);
+        console.log(userdata.userType);
+        // userdata.userType
+
+        // dispatch()
+
+
         toast(JSON.stringify(inventoryItems));
-        navigation.navigate(USER.SUBSCRIPTION, { inventoryItems });
+        // navigation.navigate(USER.SUBSCRIPTION, { inventoryItems });
     };
 
     return (
