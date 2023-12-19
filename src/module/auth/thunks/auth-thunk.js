@@ -1,12 +1,16 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { sendOtpApi, verifyOtpApi } from '../api/auth-api';
-import { toast } from '../../../utils/toast';
-import { setAsyncStorageItem, setAsyncStorageObjectItem, } from '../../../utils/async-storage';
-import { ASYNC_STORAGE_KEY } from '../../../data/constant';
+import {createAsyncThunk} from '@reduxjs/toolkit';
+import {sendOtpApi, verifyOtpApi} from '../api/auth-api';
+import {toast} from '../../../utils/toast';
+import {
+  setAsyncStorageItem,
+  setAsyncStorageObjectItem,
+} from '../../../utils/async-storage';
+import {ASYNC_STORAGE_KEY} from '../../../data/constant';
+import {EXECUTIVE} from '../../../utils/strings/screen-name';
 
 export const sendOtpAction = createAsyncThunk(
   'auth/sendOtpAction',
-  async ({ phoneNumber, navigation, SCREEN }, { rejectWithValue }) => {
+  async ({phoneNumber, navigation, SCREEN}, {rejectWithValue}) => {
     try {
       const phoneNumberWithPrefix = '+91' + phoneNumber;
       const response = await sendOtpApi(phoneNumberWithPrefix);
@@ -17,7 +21,7 @@ export const sendOtpAction = createAsyncThunk(
         });
       }
     } catch (error) {
-      const errorMessage = error?.data?.data?.error || 'An error occurred.'
+      const errorMessage = error?.data?.data?.error || 'An error occurred.';
       // Handle error and show toast
       toast(errorMessage);
       // Return error using rejectWithValue
@@ -28,13 +32,13 @@ export const sendOtpAction = createAsyncThunk(
 
 export const verifyOtpAction = createAsyncThunk(
   'auth/verifyOtpAction',
-  async ({ phoneNumber, otp }, { rejectWithValue }) => {
+  async ({phoneNumber, otp}, {rejectWithValue}) => {
     try {
       const response = await verifyOtpApi(phoneNumber, otp);
       if (response?.status) {
-
-        const { data = {}, message } = response?.data?.data;
-        const { accessToken = '', user = {} } = data;
+        console.log(response.data);
+        const {data = {}, message} = response?.data?.data;
+        const {accessToken = '', user = {}} = data;
 
         await setAsyncStorageItem(ASYNC_STORAGE_KEY.IS_LOGGED_IN, 'true');
         await setAsyncStorageItem(ASYNC_STORAGE_KEY.AUTH_TOKEN, accessToken);
@@ -45,7 +49,7 @@ export const verifyOtpAction = createAsyncThunk(
         return data;
       }
     } catch (error) {
-      const errorMessage = error?.data?.data?.error || 'An error occurred.'
+      const errorMessage = error?.data?.data?.error || 'An error occurred.';
       // Handle error and show toast
       toast(errorMessage);
       // Return error using rejectWithValue

@@ -4,6 +4,9 @@ import COLORS from '../../../utils/color';
 import Form from '../../../common/form';
 import { toast } from '../../../utils/toast';
 import { EXECUTIVE } from '../../../utils/strings/screen-name';
+import { createAccountAction } from '../thunk/executive-thunk';
+import { useDispatch } from 'react-redux';
+import useAppNavigation from '../../../common/hooks/use-app-navigation';
 
 
 const initialState = {
@@ -18,17 +21,28 @@ const initialState = {
   panNo: '',
 };
 
-function CreateAccount({ navigation }) {
+function CreateAccount() {
   const [form, setForm] = useState(initialState);
+  const dispatch=useDispatch()
+  const [navigation, SCREEN] = useAppNavigation()
 
   const handleSubmit = () => {
-    console.log(form);
+    console.log("............",form);
+
     toast('Form Submitted Successfully');
-    setForm(initialState);
-    navigation.navigate(EXECUTIVE.VERIFICATION_OTP,{
-      data:form
-    });
+    // setForm(initialState);
+    dispatch(createAccountAction({enquiryForm:form,navigation,SCREEN}))
+    console.log("dispatchdone")
+    // navigation.navigate(EXECUTIVE.VERIFICATION_OTP,{
+    //   data:form
+    // });
   }
+
+    // const handleSubmit = async () => {
+    //   console.log('Submit Successfully');
+    //       dispatch(createAccountAction(form))
+    // }
+
 
   const formFormat = [
     {

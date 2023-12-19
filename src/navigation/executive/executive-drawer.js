@@ -51,13 +51,6 @@ function ExecutiveDrawers() {
                     title: 'Onboarding History',
                 }}
             />
-            <ExecutiveDrawer.Screen
-                name={EXECUTIVE.PROFILE}
-                component={Profile}
-                options={{
-                    title: 'Profile',
-                }}
-            />
         </ExecutiveDrawer.Navigator>
     );
 }

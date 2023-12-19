@@ -8,9 +8,9 @@ const VerificationOTP = () => {
     const route = useRoute();
   const {data} = route.params;
   return (
-    <AuthUiWrapper>
+    <>
       <OtpNumberExecutive mobileNumber={data.mobileNo}/>
-    </AuthUiWrapper>
+    </>
   )
 }
 

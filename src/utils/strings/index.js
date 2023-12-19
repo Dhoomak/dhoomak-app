@@ -9,6 +9,7 @@ const STRINGS = {
     enterOtp: "Send OTP",
     loginTextPlaceholder: "9988221100",
     enterOtpAndVerify: "Please enter the OTP sent to your number",
+    enterOtpAndVerifyExecutive: "OTP has been sent to",
     verifyOtp: "Verify OTP",
     inventoryCompleted: "Your Inventory is completed",
     comingSoon: 'Coming Soon!!',

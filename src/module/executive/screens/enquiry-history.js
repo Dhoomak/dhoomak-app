@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, FlatList, StyleSheet, Pressable, TouchableOpacity }from 'react-native';
 import { TableHeader, TableRow } from '../components/table';
 import { EXECUTIVE } from '../../../utils/strings/screen-name';
 import { scale } from '../../../utils/scale';
+import { useDispatch } from 'react-redux';
+import { getEnquiryHistoryAction } from '../thunk/executive-thunk';
 
 const tableHeaderConfig = [
   { key: 'restaurant', label: 'Restaurant',  },
@@ -41,7 +43,6 @@ const generateRandomData = () => {
   }
   return data;
 };
-
 const data2 = generateRandomData();
 
 const getDotStyle = (interest) => {
@@ -73,9 +74,15 @@ const FilterFunctionality = () => (
 
 
 const EnquiryHistoryTable = ({ navigation }) => {
+const dispatch=useDispatch()
 const navigateToDetails=()=>{
     navigation.navigate(EXECUTIVE.ENQUIRY_DETAILS)
 }
+
+useEffect(()=>{
+  dispatch(getEnquiryHistoryAction())
+},[])
+
 return(
   <View style={styles.container}>
     <FilterFunctionality/>
