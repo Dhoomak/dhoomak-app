@@ -13,6 +13,9 @@ import {
   isValidPhoneNumber,
   isZipValid,
 } from '../../../common/utility/validators';
+import {sendOtpApi} from '../../auth/api/auth-api';
+import {setAsyncStorageItem} from '../../../utils/async-storage';
+import {ASYNC_STORAGE_KEY} from '../../../data/constant';
 
 export const createInquiryAction = createAsyncThunk(
   'executive/enquiry',
@@ -142,9 +145,12 @@ export const createAccountAction = createAsyncThunk(
         panNo: panNo,
       });
       if (response) {
-        console.log(response, 'response..............');
+        console.log(response, 'response from create account ');
+        console.log(response.data.profile._id);
+        console.log(response.data.profile.user);
         navigation.navigate(EXECUTIVE.VERIFICATION_OTP, {
           data: enquiryForm,
+          uid: response.data.profile._id,
         });
       }
       return response;
@@ -162,25 +168,41 @@ export const verifyRestaurantAction = createAsyncThunk(
   'executive/verifyRestaurant',
   async ({enquiryForm, navigation, SCREEN}, {rejectWithValue}) => {
     console.log('thunk', enquiryForm);
-    const {} = enquiryForm;
+    const {profileId} = enquiryForm;
     try {
-      const response = await verifyRestaurant({
-        profileId: '6581955ec4d3fdc0b27233d8',
-        phoneNumber: '+9184728792321',
-        otp: '3333',
+      const response = await verifyRestaurant(enquiryForm);
+      setAsyncStorageItem(ASYNC_STORAGE_KEY.USER_RESTAURANT_ID, profileId);
+      navigation.navigate(SCREEN.EXECUTIVE.ADD_NEW, {
+        userId: profileId,
       });
       if (response) {
         console.log(response, 'response..............');
-        // navigation.navigate(EXECUTIVE.VERIFICATION_OTP,{
-        // data: enquiryForm
-        // });
       }
       return response;
     } catch (error) {
-      // console.log("thunk inside catch")
+      console.log('thunk inside catch');
       console.log(error);
       const errorMessage = error?.data?.data?.error || 'An error occurred.';
       toast(errorMessage);
+      return rejectWithValue(errorMessage);
+    }
+  },
+);
+
+export const restaurantSendOtpAction = createAsyncThunk(
+  'executive/restaurantSendOtpAction',
+  async ({phoneNumber, navigation, SCREEN}, {rejectWithValue}) => {
+    try {
+      const phoneNumberWithPrefix = '+91' + phoneNumber;
+      const response = await sendOtpApi(phoneNumberWithPrefix);
+      if (response?.status) {
+        toast(response?.data?.data?.message);
+      }
+    } catch (error) {
+      const errorMessage = error?.data?.data?.error || 'An error occurred.';
+      // Handle error and show toast
+      toast(errorMessage);
+      // Return error using rejectWithValue
       return rejectWithValue(errorMessage);
     }
   },

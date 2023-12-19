@@ -1,6 +1,7 @@
 export const APP_NAME = 'Dhoomak';
 export const OTP_LENGTH = 4;
-export const BASE_API_URL = 'http://ec2-13-232-182-101.ap-south-1.compute.amazonaws.com/';
+export const BASE_API_URL =
+  'http://ec2-13-232-182-101.ap-south-1.compute.amazonaws.com/';
 export const API_VERSION = '/v1';
 
 export const ROLE = {
@@ -14,18 +15,19 @@ export const ASYNC_STORAGE_KEY = {
   IS_LOGGED_IN: 'isLoggedIn',
   USER_DATA: 'userData',
   AUTH_TOKEN: 'authToken',
+  USER_RESTAURANT_ID: 'restaurantId',
 };
 
 export const SUBSCRIPTION_TYPE = {
   WEEKLY: 'WEEKLY',
   FORTNIGHT: 'FORTNIGHT',
   MONTHLY: 'MONTHLY',
-}
+};
 
 export const SUBSCRIPTION_PAYMENT_TYPE = {
   PAY_NOW: 'PAY_NOW',
   PAY_LATER: 'PAY_LATER',
-}
+};
 
 export const DELIVERY_TIME_SLOTS = [
   {
@@ -48,9 +50,8 @@ export const DELIVERY_TIME_SLOTS = [
     value: '18PM-20PM',
     title: '18pm - 20pm',
   },
-]
+];
 
 export const CATEGORY_DEFAULT_IMAGE = 'https://dhoomak.com/a/img/logo.png';
 export const PRODUCTS_DEFAULT_IMAGE = 'https://dhoomak.com/a/img/logo.png';
 export const SUBSCRIPTION_AMOUNT = 999;
-

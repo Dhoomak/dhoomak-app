@@ -18,12 +18,21 @@ import {useNavigation, useRoute} from '@react-navigation/native';
 import {EXECUTIVE} from '../../../utils/strings/screen-name';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {scale} from '../../../utils/scale';
+import {getCategoryListAction} from '../../category/thunks/category-thunk';
+import {
+  restaurantSendOtpAction,
+  verifyRestaurantAction,
+} from '../thunk/executive-thunk';
+import {getAsyncStorageObjectItem} from '../../../utils/async-storage';
+import {ASYNC_STORAGE_KEY} from '../../../data/constant';
+import {sendOtpAction} from '../../auth/thunks/auth-thunk';
+import useAppNavigation from '../../../common/hooks/use-app-navigation';
+// ASYNC_STORAGE_KEY
 
 const OTP_LENGTH = 4;
 const SEND_OTP_DELAY = 60000;
 
-export default function OtpNumberExecutive({mobileNumber = ''}) {
-  const navigation = useNavigation();
+export default function OtpNumberExecutive({mobileNumber = '', uid = ''}) {
   const dispatch = useDispatch();
   const [otpValue, setOtpValue] = useState('');
   const route = useRoute();
@@ -31,10 +40,10 @@ export default function OtpNumberExecutive({mobileNumber = ''}) {
   const [modalVisible, setModalVisible] = useState(false);
   const [disableSendButton, setDisableSendButton] = useState(false);
   const [timer, setTimer] = useState(60);
-
+  console.log(uid, 'yeh dobara uid');
+  const [navigation, SCREEN] = useAppNavigation();
   useEffect(() => {
     let intervalId;
-
     if (disableSendButton && timer > 0) {
       intervalId = setInterval(() => {
         setTimer(prevTimer => prevTimer - 1);
@@ -47,11 +56,33 @@ export default function OtpNumberExecutive({mobileNumber = ''}) {
     return () => {
       clearInterval(intervalId);
     };
+    // dispatch(verifyRestaurantAction({enquiryForm}));
   }, [disableSendButton, timer]);
 
+  useEffect(() => {
+    dispatch(
+      restaurantSendOtpAction({phoneNumber: number, navigation, SCREEN}),
+    );
+  }, []);
+
   const handleVerifyOtp = async () => {
-    setDisableSendButton(true);
-    console.log('timer');
+    const userdata = await getAsyncStorageObjectItem(
+      ASYNC_STORAGE_KEY.USER_DATA,
+    );
+    // const {_id} = userdata;
+    // console.log(_id, 'id');
+    console.log(otpValue);
+    let enquiryForm = {
+      profileId: uid,
+      phoneNumber: '+91' + number,
+      otp: '3333',
+    };
+
+    dispatch(verifyRestaurantAction({enquiryForm: enquiryForm}));
+    // setDisableSendButton(true);
+    // console.log('timer');
+    // dispatch(getCategoryListAction({}));
+    // navigation.navigate(EXECUTIVE.ADD_NEW);
   };
 
   return (
@@ -72,9 +103,7 @@ export default function OtpNumberExecutive({mobileNumber = ''}) {
         <Pressable
           style={{display: 'flex', position: 'absolute', right: 0}}
           onPress={() => setModalVisible(true)}>
-          <Pressable
-            onPress={() => handleVerifyOtp()}
-            disabled={disableSendButton}>
+          <Pressable onPress={handleVerifyOtp} disabled={disableSendButton}>
             <Text style={styles.textStyle}>
               {disableSendButton ? `Resend OTP\n(in ${timer}s)` : 'Send OTP'}
             </Text>

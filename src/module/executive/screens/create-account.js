@@ -26,6 +26,7 @@ function CreateAccount() {
   const [navigation, SCREEN] = useAppNavigation();
 
   const handleSubmit = () => {
+    toast('Form Submitted Successfully');
     dispatch(createAccountAction({enquiryForm: form, navigation, SCREEN}));
   };
   const formFormat = [

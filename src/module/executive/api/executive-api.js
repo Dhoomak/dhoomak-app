@@ -29,12 +29,15 @@ export async function verifyOtpApi(phoneNumber, otp) {
   return response;
 }
 
-export async function verifyRestaurant(phoneNumber, otp) {
-  const response = await axiosInstance.post('/user/verify-otp', {
-    profileId: profileId,
-    phoneNumber: phoneNumber,
-    otp: otp.toString(),
-  });
+// this is for restraunt otp verification
+
+export async function verifyRestaurant(enquiryForm) {
+  // console.log(profileId, phoneNumber, otp, 'inside api service');
+  console.log(enquiryForm, 'inside api service');
+  const response = await axiosInstance.post(
+    '/profile/verify-account-otp',
+    enquiryForm,
+  );
   return response;
 }
 
