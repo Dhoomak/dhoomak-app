@@ -1,13 +1,12 @@
-import { useState } from 'react';
-import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
+import {useState} from 'react';
+import {SafeAreaView, ScrollView, StyleSheet} from 'react-native';
 import COLORS from '../../../utils/color';
 import Form from '../../../common/form';
-import { toast } from '../../../utils/toast';
-import { EXECUTIVE } from '../../../utils/strings/screen-name';
-import { createAccountAction } from '../thunk/executive-thunk';
-import { useDispatch } from 'react-redux';
+import {toast} from '../../../utils/toast';
+import {EXECUTIVE} from '../../../utils/strings/screen-name';
+import {createAccountAction} from '../thunk/executive-thunk';
+import {useDispatch} from 'react-redux';
 import useAppNavigation from '../../../common/hooks/use-app-navigation';
-
 
 const initialState = {
   restaurantName: '',
@@ -23,27 +22,12 @@ const initialState = {
 
 function CreateAccount() {
   const [form, setForm] = useState(initialState);
-  const dispatch=useDispatch()
-  const [navigation, SCREEN] = useAppNavigation()
+  const dispatch = useDispatch();
+  const [navigation, SCREEN] = useAppNavigation();
 
   const handleSubmit = () => {
-    console.log("............",form);
-
-    toast('Form Submitted Successfully');
-    // setForm(initialState);
-    dispatch(createAccountAction({enquiryForm:form,navigation,SCREEN}))
-    console.log("dispatchdone")
-    // navigation.navigate(EXECUTIVE.VERIFICATION_OTP,{
-    //   data:form
-    // });
-  }
-
-    // const handleSubmit = async () => {
-    //   console.log('Submit Successfully');
-    //       dispatch(createAccountAction(form))
-    // }
-
-
+    dispatch(createAccountAction({enquiryForm: form, navigation, SCREEN}));
+  };
   const formFormat = [
     {
       fieldType: 'Input',
@@ -88,14 +72,14 @@ function CreateAccount() {
     },
     {
       fieldType: 'Heading',
-      text: "Restaurant Address",
+      text: 'Restaurant Address',
       containerStyle: {
         marginBottom: 8,
       },
       style: {
         fontWeight: 'bold',
         fontSize: 15,
-      }
+      },
     },
     {
       fieldType: 'Input',
@@ -115,9 +99,9 @@ function CreateAccount() {
           label: '',
           value: form.city,
           extraProps: {
-            placeholder: 'City'
+            placeholder: 'City',
           },
-          containerStyle: { flex: 1 },
+          containerStyle: {flex: 1},
         },
         {
           fieldType: 'Input',
@@ -129,7 +113,7 @@ function CreateAccount() {
             keyboardType: 'numeric',
             maxLength: 6,
           },
-          containerStyle: { flex: 1 },
+          containerStyle: {flex: 1},
         },
       ],
     },
@@ -166,8 +150,7 @@ function CreateAccount() {
     <SafeAreaView style={styles.container}>
       <ScrollView
         showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
-      >
+        showsVerticalScrollIndicator={false}>
         <Form form={form} setForm={setForm} formFormat={formFormat} />
       </ScrollView>
     </SafeAreaView>
@@ -179,7 +162,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     backgroundColor: COLORS.white,
-  }
-})
+  },
+});
 
 export default CreateAccount;

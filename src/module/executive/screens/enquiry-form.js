@@ -6,6 +6,7 @@ import {getMinimumDate} from '../../../utils/date-formatter';
 import {useDispatch} from 'react-redux';
 import {createInquiryAction} from '../thunk/executive-thunk';
 import {EXECUTIVE} from '../../../utils/strings/screen-name';
+import useAppNavigation from '../../../common/hooks/use-app-navigation';
 
 const initialState = {
   meetingWith: '',
@@ -44,8 +45,9 @@ const interestOptions = [
 const meetingWith = ['Restaurant Owner', 'Manager'];
 
 const minimumDate = getMinimumDate();
-function EnquiryForm({navigation}) {
+function EnquiryForm() {
   const [form, setForm] = useState(initialState);
+  const [navigation, SCREEN] = useAppNavigation();
   const dispatch = useDispatch();
 
   const handleSubmit = async () => {
@@ -78,7 +80,7 @@ function EnquiryForm({navigation}) {
         Alert.alert('Please fill out all fields');
         return;
       }
-      dispatch(createInquiryAction({enquiryForm: form}));
+      dispatch(createInquiryAction({enquiryForm: form, navigation, SCREEN}));
     } catch (error) {
       console.error('Error submitting form:', error);
     }
