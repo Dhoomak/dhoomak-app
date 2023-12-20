@@ -16,6 +16,7 @@ export const ASYNC_STORAGE_KEY = {
   USER_DATA: 'userData',
   AUTH_TOKEN: 'authToken',
   USER_RESTAURANT_ID: 'restaurantId',
+  USER_ID: 'userId',
 };
 
 export const SUBSCRIPTION_TYPE = {

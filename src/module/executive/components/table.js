@@ -1,22 +1,40 @@
-import { View, Text, FlatList, StyleSheet, Pressable, TouchableOpacity } from 'react-native';
-import { scale } from '../../../utils/scale';
-export const TableHeader = ({ tableHeader }) => (
+import {
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+  Pressable,
+  TouchableOpacity,
+} from 'react-native';
+import {scale} from '../../../utils/scale';
+import {dateFormatter} from '../../../common/utility/validators';
+// dateFormatterx/
+export const TableHeader = ({tableHeader}) => (
   <View style={styles.tableHeader}>
-    {tableHeader.map((column) => (
+    {tableHeader.map(column => (
       <Text key={column.key} style={[styles.tableHeaderText]}>
         {column.label}
       </Text>
     ))}
   </View>
 );
-export const TableRow = ({ data, tableConfig, getDotStyleGenerator,navigate }) => (
+export const TableRow = ({
+  data,
+  tableConfig,
+  getDotStyleGenerator,
+  navigate,
+}) => (
   <Pressable style={styles.tableRow} onPress={navigate}>
-    {tableConfig.map((column) => (
-      <TouchableOpacity key={column.key} style={styles.columnContainer} onPress={navigate}>
-        {column.key === 'interest' && (
-          <View style={getDotStyleGenerator(data[column.key])} />
-        )}
-        <Text style={styles.tableRowText}>{data[column.key]}</Text>
+    {tableConfig.map(column => (
+      <TouchableOpacity
+        key={column.key}
+        style={styles.columnContainer}
+        onPress={navigate}>
+        <Text style={styles.tableRowText}>
+          {column.key === 'nextMeetingSchedule'
+            ? dateFormatter(data[column.key])
+            : data[column.key]}{' '}
+        </Text>
       </TouchableOpacity>
     ))}
   </Pressable>
@@ -25,50 +43,49 @@ export const TableRow = ({ data, tableConfig, getDotStyleGenerator,navigate }) =
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor:"#F8F3FF",
-    padding:scale(5)
+    backgroundColor: '#F8F3FF',
+    padding: scale(5),
   },
-  filterFunctionalities:{
-    marginVertical:scale(5),
+  filterFunctionalities: {
+    marginVertical: scale(5),
     flexDirection: 'row',
     padding: scale(10),
-    justifyContent:"space-between",
+    justifyContent: 'space-between',
   },
   tableHeader: {
-    marginVertical:scale(5),
+    marginVertical: scale(5),
     flexDirection: 'row',
     backgroundColor: 'white',
     padding: scale(15),
-    borderTopRightRadius:8,
-    borderTopLeftRadius:8,
-    justifyContent:"space-around",
-
+    borderTopRightRadius: 8,
+    borderTopLeftRadius: 8,
+    justifyContent: 'space-around',
   },
   tableHeaderText: {
-    fontWeight: 'bold', 
-    justifyContent:"space-between",
+    fontWeight: 'bold',
+    justifyContent: 'space-between',
   },
   tableRow: {
-    display:"flex",
+    display: 'flex',
     flexDirection: 'row',
-    justifyContent:"space-around",
-    marginBottom:scale(2),
+    justifyContent: 'space-around',
+    marginBottom: scale(2),
     padding: scale(15),
     backgroundColor: 'white',
     flexDirection: 'row',
   },
   tableRowText: {
-    color:"#403F3F"
+    color: '#403F3F',
   },
 
-    columnContainer: {
+  columnContainer: {
     flex: 1,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
   },
-   dot: {
+  dot: {
     width: 10,
     height: 10,
     borderRadius: 5,

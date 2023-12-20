@@ -1,5 +1,6 @@
 import axiosInstance from '../../../axios';
 import {ASYNC_STORAGE_KEY} from '../../../data/constant';
+import {getAsyncStorageObjectItem} from '../../../utils/async-storage';
 
 export async function createInquiry(inquiryData) {
   try {
@@ -42,11 +43,25 @@ export async function verifyRestaurant(enquiryForm) {
 }
 
 export async function getEnquiryHistory(phoneNumber, otp) {
-  const agentID = await getAsyncStorageItem(ASYNC_STORAGE_KEY.USER_DATA);
-  console.log(agentID);
-  // const response = await axiosInstance.post(`enquiry/agent/`, {
-  //     phoneNumber: phoneNumber,
-  //     otp: otp.toString(),
-  // });
+  console.log('get api service');
+  const userData = await getAsyncStorageObjectItem(ASYNC_STORAGE_KEY.USER_DATA);
+  console.log(userData, 'agent data');
+  const response = await axiosInstance.get(`/enquiry/agent/${userData._id}`);
+  console.log(response?.data?.data?.enquiries);
+  return response;
+}
+
+export async function updateEnquiry(meetingWith, comment, interest) {
+  console.log('update api');
+  const userData = await getAsyncStorageObjectItem(ASYNC_STORAGE_KEY.USER_DATA);
+  console.log(userData, 'agent data');
+  const response = await axiosInstance.put(`/enquiry`, {
+    meetingWith,
+    comment,
+    interest,
+    id: id,
+  });
+  console.log(response);
+  console.log(response?.data?.data?.enquiries);
   return response;
 }
