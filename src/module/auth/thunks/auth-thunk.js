@@ -33,17 +33,21 @@ export const sendOtpAction = createAsyncThunk(
 export const verifyOtpAction = createAsyncThunk(
   'auth/verifyOtpAction',
   async ({phoneNumber, otp}, {rejectWithValue}) => {
+    console.log('calling verifyOtpAction');
     try {
       const response = await verifyOtpApi(phoneNumber, otp);
       if (response?.status) {
-        console.log(response.data);
+        console.log(response.data, 'data from auth ');
+        console.log(response.data.user, 'data from auth user need the id ');
+        // console.log(
+        //   response.data.user._id,
+        //   'data from auth user id .....................................id ',
+        // );
         const {data = {}, message} = response?.data?.data;
         const {accessToken = '', user = {}} = data;
-
         await setAsyncStorageItem(ASYNC_STORAGE_KEY.IS_LOGGED_IN, 'true');
         await setAsyncStorageItem(ASYNC_STORAGE_KEY.AUTH_TOKEN, accessToken);
         await setAsyncStorageObjectItem(ASYNC_STORAGE_KEY.USER_DATA, user);
-
         toast(message);
 
         return data;

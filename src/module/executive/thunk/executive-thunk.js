@@ -208,10 +208,18 @@ export const restaurantSendOtpAction = createAsyncThunk(
   },
 );
 
-export const getEnquiryHistoryAction = createAsyncThunk(
-  'executive/get-history',
-  async ({enquiryForm, navigation, SCREEN}, {rejectWithValue}) => {
-    console.log('thunk');
-    await getEnquiryHistory();
-  },
-);
+// export const getEnquiryHistoryAction = createAsyncThunk(
+//   'executive/get-history',
+//   async ({}, {rejectWithValue}) => {
+//     console.log('thunk inside getEnquiryHistoryAction');
+//     try {
+//       const response = await getEnquiryHistory();
+//       console.log('try');
+//       console.log(response?.data?.data?.enquiries, 'response data');
+//     } catch (error) {
+//       const errorMessage = error?.data?.data?.error || 'An error occurred.';
+//       toast(errorMessage);
+//       return rejectWithValue(errorMessage);
+//     }
+//   },
+// );
