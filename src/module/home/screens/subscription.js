@@ -57,7 +57,7 @@ const Subscription = ({ navigation, route }) => {
     }
 
     navigation.navigate(USER.PAYMENT);
-    
+
   }
 
   const toggleFullList = () => {

@@ -1,13 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+const initialState = {
+    inventoryItems: [],
+    inventoryAddedIdList: [],
+    totalInventoryItems: 0,
+    showProductInventoryTab: false,
+}
+
 const inventorySlice = createSlice({
     name: 'inventory',
-    initialState: {
-        inventoryItems: [],
-        inventoryAddedIdList: [],
-        totalInventoryItems: 0,
-        showProductInventoryTab: false,
-    },
+    initialState,
     reducers: {
         addToInventory(state, action) {
             state.inventoryItems = [...state.inventoryItems, { ...action.payload, unitAdded: 1 }];
@@ -28,6 +30,12 @@ const inventorySlice = createSlice({
         enterProductInventoryUnits(state, action) {
             state = enterParticularProductUnits(state, action.payload);
         },
+        resetInventory(state, action) {
+            console.log('reseting inventory reducer', initialState)
+            // state = initialState;
+            // state = initialState;
+            return initialState;
+        }
     },
 })
 
@@ -79,7 +87,8 @@ export const {
     removeFromInventory,
     addProductInventoryUnits,
     removeProductInventoryUnits,
-    enterProductInventoryUnits
+    enterProductInventoryUnits,
+    resetInventory,
 } = inventorySlice.actions;
 
 export default inventorySlice.reducer;

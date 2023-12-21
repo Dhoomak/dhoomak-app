@@ -52,7 +52,7 @@ export default function ProductCard(props) {
                 <Image source={{ uri: img }} className='w-full h-20' style={{ resizeMode: 'contain' }} />
             </View>
             <View className='w-full mb-6' >
-                <Text className='text-10'>{brandName}</Text>
+                <Text className='text-10 text-black'>{brandName}</Text>
                 <Text className='text-xs text-black'>{name}</Text>
             </View>
             <View className='w-full mb-2' >
@@ -67,7 +67,6 @@ export default function ProductCard(props) {
         </Pressable>
     );
 }
-
 
 const styles = StyleSheet.create({
     shadow: {

@@ -51,7 +51,7 @@ export const saveInventoryAction = createAsyncThunk(
         try {
             // TODO: Send data when API is working fine
 
-            // console.log('SUBSCRIPTION DATA: ', subscriptionData)
+            console.log('SUBSCRIPTION DATA: ', JSON.stringify(subscriptionData))
             // const response = await createSubscriptionApi(subscriptionData);
             // console.log("SAVE INVENTORY DETAILS:", response.data);
 

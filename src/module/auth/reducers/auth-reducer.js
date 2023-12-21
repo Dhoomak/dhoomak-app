@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { verifyOtpAction } from '../thunks/auth-thunk';
+import { logoutAction, verifyOtpAction } from '../thunks/auth-thunk';
 
 const authSlice = createSlice({
     name: 'auth',
@@ -9,11 +9,11 @@ const authSlice = createSlice({
         authToken: '',
     },
     reducers: {
-        logout(state) {
-            state.isLoggedIn = false;
-            state.userData = {};
-            state.authToken = '';
-        },
+        // logout(state) {
+        //     state.isLoggedIn = false;
+        //     state.userData = {};
+        //     state.authToken = '';
+        // },
         setUserData(state, action) {
             console.log("INSIDE SET USER DATA:", action.payload);
             state.userData = action.payload;
@@ -30,9 +30,19 @@ const authSlice = createSlice({
                 state.userData = action.payload.existingUser;
                 state.authToken = action.payload.authToken;
             })
+            .addCase(logoutAction.fulfilled, (state, action) => {
+                state.isLoggedIn = false;
+                state.userData = {};
+                state.authToken = '';
+            })
+            .addCase(logoutAction.rejected, (state, action) => {
+                state.isLoggedIn = false;
+                state.userData = {};
+                state.authToken = '';
+            })
     },
 })
 
 export const getAuthState = (state) => state.auth;
-export const { logout, setCreds, setUserData, setAuthToken } = authSlice.actions;
+export const { setCreds, setUserData, setAuthToken } = authSlice.actions;
 export default authSlice.reducer;

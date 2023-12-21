@@ -66,21 +66,28 @@ export default function ProductCrudCard(item) {
                     }
                 </Text>
                 {unitPrice ? <View className='rounded-lg flex-row'>
-                    <TouchableOpacity onPress={handleDecrementProductQuantity} className='flex-1 justify-center items-center rounded-l-lg'>
-                        <Text className='text-lg bg-secondary text-white w-full text-center rounded-l-lg '>-</Text>
+                    <TouchableOpacity onPress={handleDecrementProductQuantity} className=' justify-center items-center rounded-l-lg'>
+                        <Text className='px-1 text-lg bg-secondary text-white w-full text-center rounded-l-lg '>
+                            <Icon name='remove' size={14} color={COLORS.white} />
+                        </Text>
                     </TouchableOpacity>
                     <TextInput
                         keyboardType='numeric'
                         defaultValue={`${unitAdded}`}
-                        className='bg-white text-center p-0 flex-2 '
+                        className='bg-white text-center p-0 flex-2 text-black'
                         onChangeText={(value) => handleEnterProductQuantity(value)}
+                        placeholderTextColor={COLORS.lightGrey}
                     />
-                    <TouchableOpacity onPress={handleIncreementProductQuantity} className='flex-1 justify-center items-center rounded-r-lg'>
-                        <Text className='text-lg bg-secondary text-white w-full text-center rounded-r-lg'>+</Text>
+                    <TouchableOpacity onPress={handleIncreementProductQuantity} className=' justify-center items-center rounded-r-lg'>
+                        <Text className='px-1 text-lg bg-secondary text-white w-full text-center rounded-r-lg'>
+                            <Icon name='add' size={14} color={COLORS.white} />
+                        </Text>
+
                     </TouchableOpacity>
                 </View> : <></>
                 }
             </View>
+
             <View className='justify-center items-center '>
                 <TouchableOpacity className='p-1' onPress={() => handleEnterProductQuantity(0)}>
                     <Icon name='close' size={20} color={COLORS.lightGrey} />

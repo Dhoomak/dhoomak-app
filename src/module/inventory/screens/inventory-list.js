@@ -21,20 +21,20 @@ export default function InventoryList() {
   const dispatch = useDispatch();
   const { inventoryItems, totalInventoryItems } = useSelector(getInventoryState);
   console.log(inventoryItems, 'inteventory items sending');
-  
+
   const handleMakeSubscription = async () => {
     const userdata = await getAsyncStorageObjectItem(
       ASYNC_STORAGE_KEY.USER_DATA,
     );
     let payload;
     // console.log(userdata.userType);
-    toast(JSON.stringify(inventoryItems));
+    // toast(JSON.stringify(inventoryItems));
 
     if (userdata.userType === ROLE.EXECUTIVE) {
       const restaurantUserId = await getAsyncStorageItem(
         ASYNC_STORAGE_KEY.USER_RESTAURANT_ID,
       );
-      console.log('RESTAURANT ID BY EXECUTIVE :', restaurantUserId);
+      // console.log('RESTAURANT ID BY EXECUTIVE :', restaurantUserId);
       payload = {
         products: inventoryItems,
         user: restaurantUserId,

@@ -52,19 +52,16 @@ const Payment = () => {
         toast("Pay Later");
     }
 
-
-
-
     return (
         <View className="bg-white flex-1 ">
             <View className="m-4 mb-0">
-                <Text className="text-xl text-black font-bold mb-4">Payment Options</Text>
+                {/* <Text className="text-xl text-black font-bold mb-4">Payment Options</Text> */}
                 <View className="flex flex-row">
                     <View className="flex flex-row gap-3">
                         {
                             SUBSCRIPTION_PAYMENT_TYPE.map((type) => (
                                 <TouchableOpacity onPress={() => handleSelectPaymentOption(type.value)} className="flex item-center text-center">
-                                    <Text className={` border py-1 px-3 text-sm font-semibold rounded ${selectedPaymentOption === type.value ? 'bg-primary border-primary text-black' : 'text-green bg-white border-green'}`}>{type.title}</Text>
+                                    <Text className={` border py-1 px-3 text-base font-semibold rounded ${selectedPaymentOption === type.value ? 'bg-primary border-primary text-black' : 'text-green bg-white border-green'}`}>{type.title}</Text>
                                 </TouchableOpacity>
                             ))
                         }
@@ -134,11 +131,11 @@ const Payment = () => {
                         </>)
                 }
             </View>
-
-            <View className="bg-dark-pink rounded-t-xl shadow-lg">
-                <View className="m-5">
+            {/* FOOTER */}
+            <View className="bg-dark-pink rounded-t-lg">
+                <View className="m-4">
                     <View className="flex flex-row justify-between align-middle text-center ">
-                        <Text className="text-black text-center w-full text-sm">We have served  1 lac+ happy customers across India</Text>
+                        <Text className="text-black text-center w-full text-xs">We have served  1 lac+ happy customers across India</Text>
                     </View>
                 </View>
             </View>

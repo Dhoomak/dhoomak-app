@@ -73,8 +73,9 @@ export default function AddCustomItemForm() {
                     onChangeText={onChangeItemName}
                     value={itemName}
                     placeholder={STRINGS.itemName}
-                    className='shadow-md rounded-md p-1 px-2 w-full bg-white'
+                    className='shadow-md rounded-md p-1 px-2 w-full bg-white text-black'
                     style={styles.shadow}
+                    placeholderTextColor={COLORS.lightGrey}
                 />
             </View>
             {/* Category */}
@@ -110,8 +111,9 @@ export default function AddCustomItemForm() {
                     onChangeText={onChangeQuanity}
                     keyboardType='numeric'
                     placeholder={STRINGS.quanity}
-                    className='shadow-md rounded-md p-1 px-2 flex-2 bg-white'
+                    className='shadow-md rounded-md p-1 px-2 flex-2 bg-white text-black'
                     style={styles.shadow}
+                    placeholderTextColor={COLORS.lightGrey}
                 />
                 <View
                     className='flex flex-1 shadow-md rounded-md bg-white overflow-hidden'

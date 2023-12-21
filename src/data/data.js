@@ -451,6 +451,6 @@ export const subscriptionBenefitList = [
 
 ]
 
-export const unitQuantityType = ["kg", "gm", "ltr", "ml"];
+export const unitQuantityType = ["Kg", "gm", "ltr", "ml"];
 
 export const homeBanners = [IMAGES.banner.banner1, IMAGES.banner.banner2, IMAGES.banner.banner3];

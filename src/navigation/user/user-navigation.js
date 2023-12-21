@@ -46,7 +46,7 @@ const UserScreens = () => {
                 name={USER.PAYMENT}
                 component={PaymentOptions}
                 options={{
-                    title: '',
+                    title: 'Payment Options',
                 }}
             />
             <UserStack.Screen

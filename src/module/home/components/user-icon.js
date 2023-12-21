@@ -1,22 +1,20 @@
 import React from 'react';
 import { Image, TouchableOpacity } from 'react-native';
-import IMAGES from '../../../assets/images';
-import { removeAsyncStorageItem } from '../../../utils/async-storage';
 import { useDispatch } from 'react-redux';
-import { logout } from '../../auth/reducers/auth-reducer';
-import { ASYNC_STORAGE_KEY } from '../../../data/constant';
 import Icon from 'react-native-vector-icons/Ionicons';
+// import IMAGES from '../../../assets/images';
+// import { removeAsyncStorageItem } from '../../../utils/async-storage';
+// import { logout } from '../../auth/reducers/auth-reducer';
+// import { ASYNC_STORAGE_KEY } from '../../../data/constant';
 import COLORS from '../../../utils/color';
+import { logoutAction } from '../../auth/thunks/auth-thunk';
 
 
 export default function UserIcon({ className = '' }) {
     const dispatch = useDispatch();
 
     async function handleIcon() {
-        dispatch(logout());
-        await removeAsyncStorageItem(ASYNC_STORAGE_KEY.IS_LOGGED_IN);
-        await removeAsyncStorageItem(ASYNC_STORAGE_KEY.USER_DATA);
-        await removeAsyncStorageItem(ASYNC_STORAGE_KEY.AUTH_TOKEN);
+        dispatch(logoutAction());
     }
 
     return (

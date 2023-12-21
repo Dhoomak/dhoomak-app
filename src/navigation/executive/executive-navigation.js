@@ -132,7 +132,7 @@ const ExecutiveScreens = () => {
         name={EXECUTIVE.CATEGORY}
         component={CategoryList}
         options={{
-          title: 'Onboarding Details',
+          title: 'Categories',
           headerStyle: {
             backgroundColor: COLORS.primary,
           },

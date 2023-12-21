@@ -1,6 +1,6 @@
 // Navigations
 import { NavigationContainer } from '@react-navigation/native';
-
+import { useColorScheme } from 'react-native';
 // Stacks
 import { AuthScreens, UserScreens, ExecutiveScreens, DeliveryScreens } from './screens'
 
@@ -9,9 +9,11 @@ import useCheckLogin from '../module/auth/hooks/use-check-login';
 
 // Data
 import { ROLE } from '../data/constant';
+import COLORS from '../utils/color';
 
 function Navigation() {
   const loggedInStatus = useCheckLogin();
+  const scheme = useColorScheme();
 
   const {
     isLoggedIn = false,
@@ -43,9 +45,21 @@ function Navigation() {
     }
   }
 
+  const DefaultTheme = {
+    dark: false,
+    colors: {
+      primary: COLORS.primary,
+      background: COLORS.grey,
+      card: COLORS.white,
+      text: COLORS.black,
+      border: 'rgb(216, 216, 216)',
+      notification: 'rgb(255, 59, 48)',
+    },
+  };
+
   return (
     <>
-      <NavigationContainer>
+      <NavigationContainer theme={scheme === 'dark' ? DefaultTheme : DefaultTheme}>
         <GetStack />
       </NavigationContainer>
     </>

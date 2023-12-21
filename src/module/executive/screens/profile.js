@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from 'react';
-import {View, Text, Image, StyleSheet, TextInput} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, Image, StyleSheet } from 'react-native';
 import IMAGES from '../../../assets/images';
 import COLORS from '../../../utils/color';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {getAsyncStorageObjectItem} from '../../../utils/async-storage';
-import {ASYNC_STORAGE_KEY} from '../../../data/constant';
+import { getAsyncStorageObjectItem } from '../../../utils/async-storage';
+import { ASYNC_STORAGE_KEY } from '../../../data/constant';
 
 const Profile = () => {
   const [data, setData] = useState([]);
@@ -32,7 +32,7 @@ const Profile = () => {
       await getUserData();
     };
     fetchData();
-    return () => {};
+    return () => { };
   }, []);
 
   return (

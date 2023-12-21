@@ -1,26 +1,27 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getSubscriptionDetailsAction } from '../thunks/subscription-thunk';
 
+const initialState = {
+  subscriptionDetails: {},
+  isSubscriptionCreated: false,
+  isSubscriptionPaymentDone: false,
+  subscriptionDetailsLoading: false,
+  subscriptionDetailsError: '',
+}
+
 const subscriptionSlice = createSlice({
   name: 'subscription',
-  initialState: {
-    subscriptionDetails: {},
-    isSubscriptionCreated: false,
-    isSubscriptionPaymentDone: false,
-    subscriptionDetailsLoading: false,
-    subscriptionDetailsError: '',
+  initialState,
+  reducers: {
+    resetSubscription(state, action) {
+      console.log('reseting subscription reducer', initialState)
+      // state = initialState;
+      return initialState;
+    },
   },
-  reducers: {},
   extraReducers: builder => {
     builder
       .addCase(getSubscriptionDetailsAction.fulfilled, (state, action) => {
-        // console.log("action: ", action.payload?.products?.length)
-        // console.log("action: ", action.payload?.products?.length > 0)
-        // console.log("isSubscriptionCreated: ", action?.payload?.isSubscriptionCreated)
-        // console.log("isSubscriptionCreated value: ", action?.payload?.isSubscriptionCreated || false)
-        // console.log("isSubscriptionPaymentDone: ", action?.payload?.isSubscriptionPaymentDone)
-        // console.log("isSubscriptionPaymentDone value: ", action?.payload?.isSubscriptionPaymentDone || false)
-
         state.subscriptionDetails = action.payload;
         state.isSubscriptionCreated = action.payload?.products?.length > 0 || false;
         state.isSubscriptionPaymentDone = action?.payload?.isSubscriptionPaymentDone || false;
@@ -41,5 +42,5 @@ const subscriptionSlice = createSlice({
 });
 
 export const getSubscriptionState = state => state.subscription;
-export const { } = subscriptionSlice.actions;
+export const { resetSubscription } = subscriptionSlice.actions;
 export default subscriptionSlice.reducer;
