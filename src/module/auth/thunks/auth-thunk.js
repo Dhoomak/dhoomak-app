@@ -69,11 +69,11 @@ export const logoutAction = createAsyncThunk(
   'auth/logoutAction',
   async ({ } = {}, { rejectWithValue, dispatch }) => {
     try {
-      dispatch(resetInventory());
-      dispatch(resetSubscription());
       await removeAsyncStorageItem(ASYNC_STORAGE_KEY.IS_LOGGED_IN);
       await removeAsyncStorageItem(ASYNC_STORAGE_KEY.USER_DATA);
       await removeAsyncStorageItem(ASYNC_STORAGE_KEY.AUTH_TOKEN);
+      dispatch(resetInventory());
+      dispatch(resetSubscription());
 
       return;
 

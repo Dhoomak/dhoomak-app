@@ -34,7 +34,6 @@ export default function Home({ route = {} }) {
       console.log(userdata._id);
 
       dispatch(getSubscriptionDetailsAction({ userId: userId ? userId : userdata._id }));
-      // TODO: Add Profile Details API
     })()
   }, [])
 

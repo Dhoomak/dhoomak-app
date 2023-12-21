@@ -2,7 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 import { getSubscriptionDetailsAction } from '../thunks/subscription-thunk';
 
 const initialState = {
-  subscriptionDetails: {},
+  subscriptionDetails: {
+    products: [],
+  },
   isSubscriptionCreated: false,
   isSubscriptionPaymentDone: false,
   subscriptionDetailsLoading: false,
@@ -14,15 +16,13 @@ const subscriptionSlice = createSlice({
   initialState,
   reducers: {
     resetSubscription(state, action) {
-      console.log('reseting subscription reducer', initialState)
-      // state = initialState;
       return initialState;
     },
   },
   extraReducers: builder => {
     builder
       .addCase(getSubscriptionDetailsAction.fulfilled, (state, action) => {
-        state.subscriptionDetails = action.payload;
+        state.subscriptionDetails = action.payload || {};
         state.isSubscriptionCreated = action.payload?.products?.length > 0 || false;
         state.isSubscriptionPaymentDone = action?.payload?.isSubscriptionPaymentDone || false;
         state.subscriptionDetailsLoading = false;

@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { View, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-// import { products } from '../../../data/data';
 import CategoryListCard from '../components/category-list-card';
 import COLORS from '../../../utils/color';
 import ProductCard from '../components/product-card';

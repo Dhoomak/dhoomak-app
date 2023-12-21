@@ -2,7 +2,8 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // Screens
-import { Home, Profile } from '../../module/home/screens';
+import { Home } from '../../module/home/screens';
+import { Profile } from '../../module/profile/screens';
 
 // Components
 import UserIcon from '../../module/home/components/user-icon';

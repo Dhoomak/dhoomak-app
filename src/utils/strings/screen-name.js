@@ -11,6 +11,7 @@ export const USER = {
   INVENTORY_LIST: 'InventoryList',
   SUBSCRIPTION: 'Subscription',
   PAYMENT: 'Payment',
+  PROFILE: 'Profile',
 };
 
 export const EXECUTIVE = {
@@ -56,4 +57,4 @@ export const AUTH = {
   CREATE_ACCOUNT: 'CreateAccount',
 };
 
-export default {USER, AUTH, EXECUTIVE, DELIVERY};
+export default { USER, AUTH, EXECUTIVE, DELIVERY };

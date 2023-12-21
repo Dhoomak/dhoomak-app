@@ -4,9 +4,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Subscription } from '../../module/home/screens';
 import { PaymentOptions } from '../../module/payment/screens';
 
-
+// Screens
 import { AddItems, CategoryList, ItemDetail, } from '../../module/category/screens'
 import { InventoryList, } from '../../module/inventory/screens'
+// import { Profile } from '../../module/profile/screens';
 
 // Drawer
 import UserDrawers from './user-drawer';
@@ -56,7 +57,6 @@ const UserScreens = () => {
                     title: route?.params?.item?.name ? `${route?.params?.item?.name} Details` : 'Product Details',
                 })}
             />
-
 
             <UserStack.Screen
                 name={USER.SUBSCRIPTION}

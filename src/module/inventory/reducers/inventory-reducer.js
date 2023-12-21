@@ -31,9 +31,6 @@ const inventorySlice = createSlice({
             state = enterParticularProductUnits(state, action.payload);
         },
         resetInventory(state, action) {
-            console.log('reseting inventory reducer', initialState)
-            // state = initialState;
-            // state = initialState;
             return initialState;
         }
     },

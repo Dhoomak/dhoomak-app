@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import IMAGES from '../../../assets/images';
 import commonStyles from '../../../common/styles';
@@ -7,13 +7,12 @@ import { USER } from '../../../utils/strings/screen-name';
 import { useSelector } from 'react-redux';
 import { getSubscriptionState } from '../reducers/subscription-reducer';
 
-export default function HomeHeader() {
+function HomeHeader() {
     const navigation = useNavigation();
     const {
         isSubscriptionCreated = false,
         isSubscriptionPaymentDone = false,
         subscriptionDetails: { products = [] } = {}
-        // } = {};
     } = useSelector(getSubscriptionState);
 
     function handleNavigateToCreateInventory() {
@@ -74,3 +73,5 @@ export default function HomeHeader() {
         </View>
     );
 }
+
+export default memo(HomeHeader);

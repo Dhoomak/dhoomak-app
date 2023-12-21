@@ -11,7 +11,7 @@ export const getSubscriptionDetailsAction = createAsyncThunk(
             const response = await getSubscriptionDetailsApi(userId);
             console.log("Data Get Subscription:", JSON.stringify(response.data));
 
-            return response.data.subscrption;
+            return response?.data?.subscrption;
         } catch (error) {
             const stringfiedError = JSON.stringify(error);
             const errorMessage = error?.message || 'An error occurred.'
