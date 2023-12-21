@@ -11,148 +11,29 @@ import commonStyles from '../../../common/styles';
 import {scale} from '../../../utils/scale';
 import COLORS from '../../../utils/color';
 import IMAGES from '../../../assets/images';
-import {RestaurantDetails} from '../components/restaurant-details';
+import {
+  RestaurantDetails,
+  RestaurantDetailsOnBoardingDetails,
+} from '../components/restaurant-details';
 import Comments, {SubscriptionType} from '../components/comments';
 import TotalItems from '../components/total-items';
 
-const OnboardingDetails = () => {
-  const fakeData = {
-    image: 'https://example.com/restaurant-image.jpg',
-    restaurantName: 'Fake Restaurant',
+const OnboardingDetails = ({navigation, route}) => {
+  const {item} = route.params;
+  console.log(item, 'item in onbaording de');
+  console.log(item.products, 'products');
+
+  const data = {
+    restaurantName: item.profile.name,
     ownerDetails: 'John Doe',
-    address: '123 Main Street, Cityville',
-    contactNumber: '123-456-7890',
+    street: item.profile,
+    address: 'item.profile.address.city',
+    address: 'item.profile.address.city',
+    contactNumber: item?.profile?.phoneNumber,
     id: '123-4',
-    email: 'ashifkhn02@gmail.com',
+    email: item?.profile?.email,
+    zipcode: item.profile.address.zipcode,
   };
-
-  const item = {
-    _id: '6580aa259c18061fc4d134a1',
-    isDeleted: false,
-    agent: '657839327758f3b95eda8854',
-    meetingWith: 'manager',
-    restaurantName: 'New restaurant 1',
-    meetingPersonName: 'Ramesh',
-    phoneNumber: '7275036261',
-    email: 'deepakk@gmail.com',
-    address: {
-      city: 'Delhi',
-      street: 'street',
-      zipcode: '209801',
-    },
-    serviceNeeded: 'INVENTORY',
-    serviceComment: 'we need inventory service',
-    nextMeetingSchedule: '2023-12-23T00:00:00.000Z',
-    comments: ['we need 100kg of rice per month, 25 kg arahar k daal'],
-    interest: 'HIGH',
-    __v: 0,
-  };
-
-  const data = [
-    {
-      id: '1',
-      date: '12/12',
-      levelStatus: 'Level 1',
-      description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc',
-    },
-    {
-      id: '2',
-      date: '12/13',
-      levelStatus: 'Level 2',
-      description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc',
-    },
-    {
-      id: '2',
-      date: '12/13',
-      levelStatus: 'Level 2',
-      description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc',
-    },
-    {
-      id: '2',
-      date: '12/13',
-      levelStatus: 'Level 2',
-      description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc',
-    },
-    {
-      id: '2',
-      date: '12/13',
-      levelStatus: 'Level 2',
-      description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc',
-    },
-    {
-      id: '2',
-      date: '12/13',
-      levelStatus: 'Level 2',
-      description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc',
-    },
-    {
-      id: '2',
-      date: '12/13',
-      levelStatus: 'Level 2',
-      description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc',
-    },
-    {
-      id: '2',
-      date: '12/13',
-      levelStatus: 'Level 2',
-      description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc',
-    },
-    {
-      id: '2',
-      date: '12/13',
-      levelStatus: 'Level 2',
-      description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc',
-    },
-    {
-      id: '2',
-      date: '12/13',
-      levelStatus: 'Level 2',
-      description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc',
-    },
-    {
-      id: '2',
-      date: '12/13',
-      levelStatus: 'Level 2',
-      description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc',
-    },
-    {
-      id: '2',
-      date: '12/13',
-      levelStatus: 'Level 2',
-      description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc',
-    },
-    {
-      id: '2',
-      date: '12/13',
-      levelStatus: 'Level 2',
-      description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc',
-    },
-    {
-      id: '2',
-      date: '12/13',
-      levelStatus: 'Level 2',
-      description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc',
-    },
-    {
-      id: '2',
-      date: '12/13',
-      levelStatus: 'Level 2',
-      description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc',
-    },
-    {
-      id: '2',
-      date: '12/13',
-      levelStatus: 'Level 2',
-      description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc',
-    },
-    {
-      id: '2',
-      date: '12/1ß3',
-      levelStatus: 'Level 2',
-      description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc',
-    },
-    // Add more data items as needed
-  ];
 
   const data2 = [
     {
@@ -182,15 +63,14 @@ const OnboardingDetails = () => {
     },
   ];
 
-  let commentsss = ['abc', '1234', '84933498'];
-
+  // let commentsss = ['abc', '1234', '84933498'];
   return (
     <View style={styles.container}>
       <ScrollView>
-        <RestaurantDetails data={fakeData} />
-        <TotalItems flatListdata={data2} />
-        <SubscriptionType />
-        <Comments data={commentsss} />
+        <RestaurantDetailsOnBoardingDetails data={data} />
+        <TotalItems flatListdata={item.products} />
+        <SubscriptionType item={item} />
+        {/* <Comments data={commentsss} /> */}
       </ScrollView>
     </View>
   );

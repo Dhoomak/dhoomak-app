@@ -35,6 +35,31 @@ export const RestaurantDetails = ({data}) => {
   );
 };
 
+export const RestaurantDetailsOnBoardingDetails = ({data}) => {
+  return (
+    <View
+      style={{backgroundColor: 'white'}}
+      className="px-5 py-4 mx-4 mb-6 bg-white rounded-xl shadow-lg my-5 ">
+      <View style={styles.restaurantDetails}>
+        <Image source={IMAGES.comingSoon} style={styles.image} />
+        <View style={commonStyles.shadow}>
+          <Text
+            style={styles.restaurantName}
+            className="text-secondary font-bold">
+            {data.restaurantName}
+          </Text>
+        </View>
+      </View>
+      <View>
+        <Text>{`Enquiry ID: ${data?.contactNumber}`}</Text>
+        <Text>{`email: ${data?.email}`}</Text>
+        {/* <Text>{`email: ${data?.email}`}</Text> */}
+      </View>
+      {/* <Text>{`Address: ${data?.profile?.address?.s} ,${data.address.city}`}</Text> */}
+    </View>
+  );
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
