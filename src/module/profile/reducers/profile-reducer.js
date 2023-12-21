@@ -39,7 +39,7 @@ const profileSlice = createSlice({
 export const getProfileState = (state) => state.profile;
 
 export const {
-    resetInventory,
+    resetProfile,
 } = profileSlice.actions;
 
 export default profileSlice.reducer;

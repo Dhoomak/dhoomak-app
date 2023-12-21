@@ -10,6 +10,7 @@ import { ASYNC_STORAGE_KEY } from '../../../data/constant';
 // import { EXECUTIVE } from '../../../utils/strings/screen-name';
 import { resetInventory } from '../../inventory/reducers/inventory-reducer';
 import { resetSubscription } from '../../home/reducers/subscription-reducer';
+import { resetProfile } from '../../profile/reducers/profile-reducer';
 
 export const sendOtpAction = createAsyncThunk(
   'auth/sendOtpAction',
@@ -74,6 +75,7 @@ export const logoutAction = createAsyncThunk(
       await removeAsyncStorageItem(ASYNC_STORAGE_KEY.AUTH_TOKEN);
       dispatch(resetInventory());
       dispatch(resetSubscription());
+      dispatch(resetProfile());
 
       return;
 
