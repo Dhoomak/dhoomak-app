@@ -15,16 +15,23 @@ const renderItem = ({item}) => (
       gap: 4,
     }}>
     <Image
-      source={IMAGES.banner.banner1}
+      // source={IMAGES.banner.banner1}
+      source={{uri: item?.products?.images[0]}}
       style={{width: 50, height: 50, borderRadius: 8}}
     />
     <View style={{marginLeft: 5, flexDirection: 'column', flex: 1}}>
-      <Text style={{fontWeight: 'bold', color: COLORS.black}}>
+      <Text
+        style={{fontWeight: 'bold', color: COLORS.black}}
+        className="text-black">
         {item.brandName}
       </Text>
-      <Text style={{fontSize: 12}}>{item.description}</Text>
+      <Text style={{fontSize: 12}} className="text-black">
+        {item.description}
+      </Text>
     </View>
-    <Text style={{fontSize: 14, color: COLORS.black}}>{item.quantity}</Text>
+    <Text style={{fontSize: 14, color: COLORS.black}} className="text-black">
+      {item?.quantity}
+    </Text>
   </View>
 );
 
@@ -36,9 +43,7 @@ const TotalItems = ({data, flatListdata}) => {
       <View className="flex flex-row items-center mb-4">
         <View className="flex-1 flex flex-col justify-between ">
           <Text className="text-lg text-black font-bold">Total Items</Text>
-          <Text className="text-xs text-black ">
-            {/* 15/15 ITEMS SELECTED(475 KG) */}
-          </Text>
+          <Text className="text-xs text-black "></Text>
         </View>
         <View className="flex flex-row items-center gap-2">
           <TouchableOpacity>

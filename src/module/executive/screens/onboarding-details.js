@@ -63,7 +63,6 @@ const OnboardingDetails = ({navigation, route}) => {
     },
   ];
 
-  // let commentsss = ['abc', '1234', '84933498'];
   return (
     <View style={styles.container}>
       <ScrollView>

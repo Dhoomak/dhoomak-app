@@ -1,26 +1,27 @@
 // Navigations
-import { NavigationContainer } from '@react-navigation/native';
-import { useColorScheme } from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {useColorScheme} from 'react-native';
 // Stacks
-import { AuthScreens, UserScreens, ExecutiveScreens, DeliveryScreens } from './screens'
+import {
+  AuthScreens,
+  UserScreens,
+  ExecutiveScreens,
+  DeliveryScreens,
+} from './screens';
 
 // Hooks
 import useCheckLogin from '../module/auth/hooks/use-check-login';
 
 // Data
-import { ROLE } from '../data/constant';
+import {ROLE} from '../data/constant';
 import COLORS from '../utils/color';
 
 function Navigation() {
   const loggedInStatus = useCheckLogin();
   const scheme = useColorScheme();
 
-  const {
-    isLoggedIn = false,
-    userData: {
-      userType = ''
-    } = {}
-  } = loggedInStatus || {};
+  const {isLoggedIn = false, userData: {userType = ''} = {}} =
+    loggedInStatus || {};
 
   function GetStack() {
     if (isLoggedIn) {
@@ -59,7 +60,8 @@ function Navigation() {
 
   return (
     <>
-      <NavigationContainer theme={scheme === 'dark' ? DefaultTheme : DefaultTheme}>
+      <NavigationContainer
+        theme={scheme === 'dark' ? DefaultTheme : DefaultTheme}>
         <GetStack />
       </NavigationContainer>
     </>

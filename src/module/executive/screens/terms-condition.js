@@ -168,7 +168,7 @@ const source = {
 const TermsCondition = () => {
   const {width} = useWindowDimensions();
   return (
-    <View className={'px-2'}>
+    <View className={'px-2 bg-grey2'}>
       <ScrollView>
         <RenderHtml contentWidth={width} source={source} />
       </ScrollView>

@@ -11,7 +11,7 @@ const renderItem = ({item, index}) => (
         <Text className="font-bold">Date:{item.date}</Text>
         <Text className="font-bold">Level Status: {item.levelStatus}</Text>
       </View> */}
-      <Text>{item}</Text>
+      <Text className="text-black">{item}</Text>
     </View>
   </View>
 );
@@ -35,7 +35,7 @@ const Comments = ({data}) => {
   return (
     <View>
       <View style={[commonStyles.flexRowSB]} className="px-5 mb-3">
-        <Text className="font-bold">Comment</Text>
+        <Text className="font-bold text-black">Comment</Text>
         {/* <Text className="font-bold">Visited: 2 Times</Text> */}
       </View>
       <FlatList

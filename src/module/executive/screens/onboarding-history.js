@@ -68,7 +68,7 @@ const OnBoardingHistoryTable = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <FilterFunctionality />
+      {/* <FilterFunctionality /> */}
       <TableHeader tableHeader={tableHeaderConfig} />
       <FlatList
         data={data}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -11,28 +11,28 @@ import OTPTextView from 'react-native-otp-textinput';
 import commonStyles from '../../../common/styles';
 import STRINGS from '../../../utils/strings';
 import FilledButton from '../../../common/button';
-import { toast } from '../../../utils/toast';
+import {toast} from '../../../utils/toast';
 import COLORS from '../../../utils/color';
-import { useDispatch } from 'react-redux';
-import { useNavigation, useRoute } from '@react-navigation/native';
-import { EXECUTIVE } from '../../../utils/strings/screen-name';
+import {useDispatch} from 'react-redux';
+import {useNavigation, useRoute} from '@react-navigation/native';
+import {EXECUTIVE} from '../../../utils/strings/screen-name';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { scale } from '../../../utils/scale';
-import { getCategoryListAction } from '../../category/thunks/category-thunk';
+import {scale} from '../../../utils/scale';
+import {getCategoryListAction} from '../../category/thunks/category-thunk';
 import {
   restaurantSendOtpAction,
   verifyRestaurantAction,
 } from '../thunk/executive-thunk';
-import { getAsyncStorageObjectItem } from '../../../utils/async-storage';
-import { ASYNC_STORAGE_KEY } from '../../../data/constant';
-import { sendOtpAction } from '../../auth/thunks/auth-thunk';
+import {getAsyncStorageObjectItem} from '../../../utils/async-storage';
+import {ASYNC_STORAGE_KEY} from '../../../data/constant';
+import {sendOtpAction} from '../../auth/thunks/auth-thunk';
 import useAppNavigation from '../../../common/hooks/use-app-navigation';
 // ASYNC_STORAGE_KEY
 
 const OTP_LENGTH = 4;
 const SEND_OTP_DELAY = 60000;
 
-export default function OtpNumberExecutive({ mobileNumber = '', uid = '' }) {
+export default function OtpNumberExecutive({mobileNumber = '', uid = ''}) {
   const dispatch = useDispatch();
   const [otpValue, setOtpValue] = useState('');
   const route = useRoute();
@@ -40,7 +40,6 @@ export default function OtpNumberExecutive({ mobileNumber = '', uid = '' }) {
   const [modalVisible, setModalVisible] = useState(false);
   const [disableSendButton, setDisableSendButton] = useState(false);
   const [timer, setTimer] = useState(60);
-  console.log(uid, 'yeh dobara uid');
   const [navigation, SCREEN] = useAppNavigation();
   useEffect(() => {
     let intervalId;
@@ -60,7 +59,7 @@ export default function OtpNumberExecutive({ mobileNumber = '', uid = '' }) {
 
   useEffect(() => {
     dispatch(
-      restaurantSendOtpAction({ phoneNumber: number, navigation, SCREEN }),
+      restaurantSendOtpAction({phoneNumber: number, navigation, SCREEN}),
     );
   }, []);
 
@@ -78,12 +77,14 @@ export default function OtpNumberExecutive({ mobileNumber = '', uid = '' }) {
     };
 
     dispatch(
-      verifyRestaurantAction({ enquiryForm: enquiryForm, navigation, SCREEN }),
+      verifyRestaurantAction({enquiryForm: enquiryForm, navigation, SCREEN}),
     );
     dispatch(getCategoryListAction({}));
-    // setDisableSendButton(true);
-    // console.log('timer');
-    // navigation.navigate(EXECUTIVE.ADD_NEW);
+  };
+
+  const resendOtpHandler = () => {
+    dispatch(restaurantSendOtpAction({phoneNumber: number}));
+    setDisableSendButton(true);
   };
 
   return (
@@ -93,7 +94,7 @@ export default function OtpNumberExecutive({ mobileNumber = '', uid = '' }) {
       <Text className="text-base font-bold text-left text-black my-2">
         {STRINGS.enterOtpAndVerifyExecutive} to:
       </Text>
-      <View style={{ display: 'flex', justifyContent: 'center' }}>
+      <View style={{display: 'flex', justifyContent: 'center'}}>
         <TextInput
           value={number}
           style={styles.input}
@@ -103,9 +104,9 @@ export default function OtpNumberExecutive({ mobileNumber = '', uid = '' }) {
           placeholderTextColor={COLORS.lightGrey}
         />
         <Pressable
-          style={{ display: 'flex', position: 'absolute', right: 0 }}
+          style={{display: 'flex', position: 'absolute', right: 0}}
           onPress={() => setModalVisible(true)}>
-          <Pressable onPress={handleVerifyOtp} disabled={disableSendButton}>
+          <Pressable onPress={resendOtpHandler} disabled={disableSendButton}>
             <Text style={styles.textStyle}>
               {disableSendButton ? `Resend OTP\n(in ${timer}s)` : 'Send OTP'}
             </Text>
@@ -138,8 +139,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    // backgroundColor: COLORS.white,
-    // alignItems: 'center',
   },
   centeredView: {
     flex: 1,

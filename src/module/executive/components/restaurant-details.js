@@ -16,21 +16,23 @@ export const RestaurantDetails = ({data}) => {
         <View style={commonStyles.shadow}>
           <Text
             style={styles.restaurantName}
-            className="text-secondary font-bold">
+            className="text-secondary font-bold text-green">
             {data.restaurantName}
           </Text>
-          <Text className="font-bold">{`Meeting: ${data.meetingWith}`}</Text>
-          <Text className="font-bold">{`Date: ${dateFormatter(
+          <Text className="font-bold text-black">{`Meeting: ${data.meetingWith}`}</Text>
+          <Text className="font-bold text-black">{`Date: ${dateFormatter(
             data.nextMeetingSchedule,
           )}`}</Text>
         </View>
       </View>
       <View>
-        <Text>{`Enquiry ID: ${data?.contactNumber}`}</Text>
-        <Text>{`email: ${data?.email}`}</Text>
+        <Text className="font-bold text-black">{`Enquiry ID: ${data?.contactNumber}`}</Text>
+        <Text className="font-bold text-black">{`email: ${data?.email}`}</Text>
       </View>
-      <Text>{`Address: ${data?.address?.street} ,${data.address.city}`}</Text>
-      <Text>{`Zip Code: ${data?.address?.zipcode}`}</Text>
+      <Text className="font-bold text-black">
+        {`Address: ${data?.address?.street} ,${data.address.city}`}
+      </Text>
+      <Text className="font-bold text-black">{`Zip Code: ${data?.address?.zipcode}`}</Text>
     </View>
   );
 };
@@ -44,15 +46,15 @@ export const RestaurantDetailsOnBoardingDetails = ({data}) => {
         <Image source={IMAGES.comingSoon} style={styles.image} />
         <View style={commonStyles.shadow}>
           <Text
-            style={styles.restaurantName}
+            style={styles.restaurantNameOb}
             className="text-secondary font-bold">
             {data.restaurantName}
           </Text>
         </View>
       </View>
       <View>
-        <Text>{`Enquiry ID: ${data?.contactNumber}`}</Text>
-        <Text>{`email: ${data?.email}`}</Text>
+        <Text className="font-bold text-black">{`Enquiry ID: ${data?.contactNumber}`}</Text>
+        <Text className="font-bold text-black">{`email: ${data?.email}`}</Text>
         {/* <Text>{`email: ${data?.email}`}</Text> */}
       </View>
       {/* <Text>{`Address: ${data?.profile?.address?.s} ,${data.address.city}`}</Text> */}
@@ -76,6 +78,9 @@ const styles = StyleSheet.create({
     width: scale(80),
     height: scale(80),
   },
-  restaurantName: {},
+  restaurantNameOb: {
+    width: '80%',
+    marginLeft: scale(10),
+  },
 });
 export default RestaurantDetails;

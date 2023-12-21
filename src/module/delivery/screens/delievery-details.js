@@ -25,46 +25,6 @@ const DeliveryDetails = ({navigation}) => {
     email: 'ashifkhn02@gmail.com',
   };
 
-  const data = [
-    {
-      id: '1',
-      date: '12/12',
-      levelStatus: 'Level 1',
-      description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc',
-    },
-    {
-      id: '2',
-      date: '12/13',
-      levelStatus: 'Level 2',
-      description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc',
-    },
-    {
-      id: '2',
-      date: '12/13',
-      levelStatus: 'Level 2',
-      description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc',
-    },
-    {
-      id: '2',
-      date: '12/13',
-      levelStatus: 'Level 2',
-      description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc',
-    },
-    {
-      id: '2',
-      date: '12/13',
-      levelStatus: 'Level 2',
-      description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc',
-    },
-    {
-      id: '2',
-      date: '12/13',
-      levelStatus: 'Level 2',
-      description: 'Lorem ipsum dolor sit amet, consectetur adip nonum soc',
-    },
-    // Add more data items as needed
-  ];
-
   const mockData = {
     restaurantName: 'Delicious Delights',
     ownerDetails: 'John Doe',

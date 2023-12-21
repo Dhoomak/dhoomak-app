@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
   tableHeaderText: {
     fontWeight: 'bold',
     justifyContent: 'space-between',
+    color: 'grey',
   },
   tableRow: {
     display: 'flex',
