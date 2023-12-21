@@ -51,6 +51,17 @@ export async function getEnquiryHistory(phoneNumber, otp) {
   return response;
 }
 
+export async function getOnboardingHistory(phoneNumber, otp) {
+  console.log('get api service');
+  const userData = await getAsyncStorageObjectItem(ASYNC_STORAGE_KEY.USER_DATA);
+  console.log(userData, 'agent data');
+  const response = await axiosInstance.get(
+    `/subscription/agent/${userData._id}`,
+  );
+  console.log(response?.data?.data?.enquiries);
+  return response;
+}
+
 export async function updateEnquiry(meetingWith, comment, interest) {
   console.log('update api');
   const userData = await getAsyncStorageObjectItem(ASYNC_STORAGE_KEY.USER_DATA);

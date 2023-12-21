@@ -23,7 +23,8 @@ export const SubscriptionType = ({item, index}) => (
     <View style={[commonStyles.flexColumn]}>
       <View style={[commonStyles.flexRowSB]} className="my-2">
         <Text>
-          Your subscription in <Text className="font-bold">Monthly</Text>
+          Your subscription in{' '}
+          <Text className="font-bold">{item.frequency}</Text>
         </Text>
       </View>
     </View>

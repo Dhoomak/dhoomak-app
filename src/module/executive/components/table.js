@@ -40,6 +40,33 @@ export const TableRow = ({
   </Pressable>
 );
 
+export const TableRowOnboardingHistory = ({
+  data,
+  tableConfig,
+  getDotStyleGenerator,
+  navigate,
+}) => (
+  <Pressable style={styles.tableRow} onPress={navigate}>
+    {tableConfig.map(item => (
+      <TouchableOpacity
+        key={item.key}
+        style={styles.columnContainer}
+        onPress={navigate}>
+        {/* <Text style={styles.tableRowText}>{data[column.key]} </Text> */}
+        {/* <Text style={styles.tableRowText}>{data.restaurantID} </Text>
+        <Text style={styles.tableRowText}>{data.profile.restaurantID} </Text>
+        <Text style={styles.tableRowText}>{data.profile.restaurantID} </Text> */}
+        <Text style={styles.tableRowText}>{data.item.profile.name} </Text>
+        <Text style={styles.tableRowText}>{data.item.createdAt} </Text>
+        <Text style={styles.tableRowText}>
+          {data.item?.profile?.restaurantId}{' '}
+        </Text>
+      </TouchableOpacity>
+    ))}
+  </Pressable>
+  // <Text>hello</Text>
+);
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
