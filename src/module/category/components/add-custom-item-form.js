@@ -47,7 +47,7 @@ export default function AddCustomItemForm() {
         const item = {
             _id: generateRandomId().toString(),
             name: itemName,
-            brandName: "",
+            brandName: itemName,
             unitQuantity: quanity,
             unitType: quanityTypeVal,
             categoryId: category,

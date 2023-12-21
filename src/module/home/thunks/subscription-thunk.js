@@ -49,9 +49,11 @@ export const saveInventoryAction = createAsyncThunk(
     'subscription/saveInventoryAction',
     async ({ subscriptionData, navigation, SCREEN, inventoryItems, userType }, { rejectWithValue }) => {
         try {
-            console.log('SUBSCRIPTION DATA: ', subscriptionData)
-            const response = await createSubscriptionApi(subscriptionData);
-            console.log("SAVE INVENTORY DETAILS:", response.data);
+            // TODO: Send data when API is working fine
+
+            // console.log('SUBSCRIPTION DATA: ', subscriptionData)
+            // const response = await createSubscriptionApi(subscriptionData);
+            // console.log("SAVE INVENTORY DETAILS:", response.data);
 
             if (userType === ROLE.EXECUTIVE) {
                 navigation.navigate(SCREEN.EXECUTIVE.THANK_YOU);
@@ -59,8 +61,7 @@ export const saveInventoryAction = createAsyncThunk(
                 navigation.navigate(SCREEN.USER.SUBSCRIPTION, { inventoryItems });
             }
 
-
-            return response.data;
+            // return response.data;
         } catch (error) {
             const stringfiedError = JSON.stringify(error);
             const errorMessage = error?.error || 'An error occurred.'

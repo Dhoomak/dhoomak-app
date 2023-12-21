@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getInventoryState } from '../reducers/inventory-reducer';
 import DhoomakFlatlist from '../../../common/components/dhoomak-flatlist';
 import { toast } from '../../../utils/toast';
-import { useNavigation } from '@react-navigation/native';
-import { USER } from '../../../utils/strings/screen-name';
+// import { useNavigation } from '@react-navigation/native';
+// import { USER } from '../../../utils/strings/screen-name';
 import { getAsyncStorageItem, getAsyncStorageObjectItem } from '../../../utils/async-storage';
 import { ASYNC_STORAGE_KEY, ROLE } from '../../../data/constant';
 import useAppNavigation from '../../../common/hooks/use-app-navigation';
@@ -38,13 +38,8 @@ export default function InventoryList() {
             }
         }
 
-        // console.log("PAYLOAD:", payload)
-        // dispatch(saveInventoryAction({ subscriptionData: payload, inventoryItems, navigation, SCREEN, userType: userdata.userType }));
-        if (userdata.userType === ROLE.EXECUTIVE) {
-            navigation.navigate(SCREEN.EXECUTIVE.THANK_YOU);
-        } else {
-            navigation.navigate(SCREEN.USER.SUBSCRIPTION, { inventoryItems });
-        }
+        console.log("PAYLOAD:", payload)
+        dispatch(saveInventoryAction({ subscriptionData: payload, inventoryItems, navigation, SCREEN, userType: userdata.userType }));
     };
 
     return (

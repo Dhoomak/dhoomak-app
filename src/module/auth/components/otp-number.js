@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useState } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, KeyboardAvoidingView } from 'react-native';
 import OTPTextView from 'react-native-otp-textinput';
 import commonStyles from '../../../common/styles';
 import STRINGS from '../../../utils/strings';
@@ -24,29 +24,34 @@ function OtpNumber({ phoneNumber = '' }) {
   }, [otpValue]);
 
   return (
-    <View
-      className="w-full p-5 bg-white rounded-xl shadow-lg"
-      style={commonStyles.shadow}>
-      <Text className="text-base font-bold text-left mb-6 text-black">
-        {STRINGS.enterOtpAndVerify} {phoneNumber}
-      </Text>
-      <View className="pb-4 px-4">
-        <OTPTextView
-          inputCount={OTP_LENGTH}
-          tintColor={COLORS.primary}
-          offTintColor={COLORS.grey}
-          handleTextChange={setOtpValue}
-          textInputStyle={{
-            borderWidth: 1,
-            borderBottomWidth: 1,
-            borderRadius: 10,
-            fontSize: 16,
-            fontWeight: '400',
-          }}
-        />
+    <KeyboardAvoidingView
+      className="w-full"
+      behavior='height'
+    >
+      <View
+        className="p-5 bg-white rounded-xl shadow-lg"
+        style={commonStyles.shadow}>
+        <Text className="text-base font-bold text-left mb-6 text-black">
+          {STRINGS.enterOtpAndVerify} {phoneNumber}
+        </Text>
+        <View className="pb-4 px-4">
+          <OTPTextView
+            inputCount={OTP_LENGTH}
+            tintColor={COLORS.primary}
+            offTintColor={COLORS.grey}
+            handleTextChange={setOtpValue}
+            textInputStyle={{
+              borderWidth: 1,
+              borderBottomWidth: 1,
+              borderRadius: 10,
+              fontSize: 16,
+              fontWeight: '400',
+            }}
+          />
+        </View>
+        <FilledButton text={STRINGS.verifyOtp} onPress={handleVerifyOtp} />
       </View>
-      <FilledButton text={STRINGS.verifyOtp} onPress={handleVerifyOtp} />
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 

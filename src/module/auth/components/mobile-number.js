@@ -24,11 +24,10 @@ function MobileNumber() {
 
   return (
     <KeyboardAvoidingView
-      className="w-full p-5 bg-white rounded-xl shadow-lg"
-      style={commonStyles.shadow}
+      className="w-full"
       behavior='height'
     >
-      <View>
+      <View className='p-5 bg-white rounded-xl shadow-lg' style={commonStyles.shadow}>
         <Text className="text-base font-bold mb-6 text-black text-center">
           {STRINGS.enterNumberAndLogin}
         </Text>

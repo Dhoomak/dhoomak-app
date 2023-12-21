@@ -24,10 +24,16 @@ export const SUBSCRIPTION_TYPE = {
   MONTHLY: 'MONTHLY',
 };
 
-export const SUBSCRIPTION_PAYMENT_TYPE = {
-  PAY_NOW: 'PAY_NOW',
-  PAY_LATER: 'PAY_LATER',
-};
+export const SUBSCRIPTION_PAYMENT_TYPE = [
+  {
+    title: 'Pay Now',
+    value: 'PAY_NOW',
+  },
+  {
+    title: 'Pay Later',
+    value: 'PAY_LATER',
+  },
+];
 
 export const DELIVERY_TIME_SLOTS = [
   {

@@ -1,7 +1,10 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // Screen
-import { Payment, Subscription } from '../../module/home/screens';
+import { Subscription } from '../../module/home/screens';
+import { PaymentOptions } from '../../module/payment/screens';
+
+
 import { AddItems, CategoryList, ItemDetail, } from '../../module/category/screens'
 import { InventoryList, } from '../../module/inventory/screens'
 
@@ -41,9 +44,9 @@ const UserScreens = () => {
 
             <UserStack.Screen
                 name={USER.PAYMENT}
-                component={Payment}
+                component={PaymentOptions}
                 options={{
-                    title: 'Payment',
+                    title: '',
                 }}
             />
             <UserStack.Screen

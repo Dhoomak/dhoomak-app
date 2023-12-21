@@ -10,7 +10,7 @@ export default function SplashScreen({ navigation }) {
         setTimeout(() => {
 
             if (isLoggedIn !== true && isLoggedIn !== null && isLoggedIn !== '') {
-                navigation.navigate(AUTH.LOGIN);
+                navigation.replace(AUTH.LOGIN);
                 // console.log('USER NOT LOGGED IN SPLASH SCREEN')
             } else {
                 // console.log('USER LOGGED IN SPLASH SCREEN')
@@ -18,5 +18,5 @@ export default function SplashScreen({ navigation }) {
         }, 1000);
     });
 
-    return (<AuthUiWrapper>{}</AuthUiWrapper>);
+    return (<AuthUiWrapper>{ }</AuthUiWrapper>);
 }
