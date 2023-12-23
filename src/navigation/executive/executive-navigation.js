@@ -34,7 +34,6 @@ const ExecutiveScreens = () => {
   return (
     <ExecutiveStack.Navigator
       initialRouteName={EXECUTIVE.DRAWER}
-    // initialRouteName={EXECUTIVE.THANK_YOU}
     >
       <ExecutiveStack.Screen
         name={EXECUTIVE.DRAWER}

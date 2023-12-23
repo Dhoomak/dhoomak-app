@@ -8,8 +8,8 @@ import { USER } from '../../../utils/strings/screen-name';
 
 export default function PaymentFailModal({ route, navigation }) {
     const {
-        title = "" || "Payment Fail !!!",
-        description = "" || "Click on the 'Retry Now' Button tor try again.",
+        title = title || "Oops, we're sorry",
+        description = description || "Kindly press on 'Retry Now' to complete the process.",
     } = route.params || {};
 
     function handleBackToHome() {
@@ -18,7 +18,6 @@ export default function PaymentFailModal({ route, navigation }) {
 
     function handleRetryNow() {
         navigation.navigate(USER.PAYMENT, { defaultSelectedPaymentOptionIndex: 1 });
-        toast('retry now');
     }
 
     return (

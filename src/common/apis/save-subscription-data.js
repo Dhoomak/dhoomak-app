@@ -4,16 +4,16 @@ import store from "../../store/store";
 
 
 export async function saveSubscriptionDataInDb(subscriptionData) {
-    // console.log('INSIDE SAVE SUBSCRIPTION DATA IN DB UTILITY FUNCTION')
+    console.log('Subscription data:', subscriptionData)
     let response;
 
     const isSubscribed = store.getState().subscription.isSubscriptionCreated;
 
     if (!isSubscribed) {
-        // console.log('INSIDE CREATE SUBSCRIPTION');
+        console.log('INSIDE CREATE SUBSCRIPTION');
         response = await createSubscriptionApi(subscriptionData);
     } else {
-        // console.log('INSIDE UPDATE SUBSCRIPTION');
+        console.log('INSIDE UPDATE SUBSCRIPTION');
         response = await saveSubscriptionApi(subscriptionData);
     }
 

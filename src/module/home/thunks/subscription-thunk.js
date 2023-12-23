@@ -29,8 +29,9 @@ export const getSubscriptionDetailsAction = createAsyncThunk(
 
 export const saveInventoryDetailsAction = createAsyncThunk(
     'subscription/saveInventoryDetailsAction',
-    async ({ subscriptionData, navigation, SCREEN, inventoryItems }, { rejectWithValue, getState, dispatch }) => {
+    async ({ subscriptionData, navigation, SCREEN, inventoryItems, userType }, { rejectWithValue, getState, dispatch }) => {
         try {
+            console.log("user type: ", userType)
             const response = await saveSubscriptionDataInDb(subscriptionData);
 
             // To Reset the subscription we recently saved in db
@@ -61,6 +62,7 @@ export const saveSubscriptionDetailsAction = createAsyncThunk(
     'subscription/saveSubscriptionDetailsAction',
     async ({ subscriptionData, navigation, SCREEN, inventoryItems, userType }, { rejectWithValue, getState, dispatch }) => {
         try {
+            console.log("user type: ", userType)
             const response = await saveSubscriptionDataInDb(subscriptionData);
             // let response;
             // // console.log('SUBSCRIPTION DATA: ', JSON.stringify(subscriptionData))

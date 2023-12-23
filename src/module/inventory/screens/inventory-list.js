@@ -20,7 +20,7 @@ export default function InventoryList() {
   const [navigation, SCREEN] = useAppNavigation();
   const dispatch = useDispatch();
   const { inventoryItems, totalInventoryItems } = useSelector(getInventoryState);
-  console.log(inventoryItems, 'inteventory items sending');
+  // console.log(inventoryItems, 'inteventory items sending');
 
   const handleMakeSubscription = async () => {
     const userdata = await getAsyncStorageObjectItem(
@@ -32,7 +32,7 @@ export default function InventoryList() {
       const restaurantUserId = await getAsyncStorageItem(
         ASYNC_STORAGE_KEY.USER_RESTAURANT_ID,
       );
-
+      console.log("Restaurant Id: ", restaurantUserId)
       payload = {
         products: inventoryItems,
         user: restaurantUserId,
