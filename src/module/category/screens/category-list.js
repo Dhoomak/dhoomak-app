@@ -15,8 +15,9 @@ export default function CategoryList({ route }) {
   const { categories, products } = useSelector(getCategoryState);
 
   const {
-    selectedCategoryId = categories?.[0]?._id,
-  } = route.params;
+    selectedCategoryId = selectedCategoryId || categories?.[0]?._id || '',
+  } = route?.params || {};
+
 
   const [activeCategoryId, setActiveCategoryId] = useState(selectedCategoryId);
 

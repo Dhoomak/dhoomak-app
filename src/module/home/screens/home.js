@@ -24,15 +24,13 @@ import { ASYNC_STORAGE_KEY } from '../../../data/constant';
 
 
 export default function Home({ route = {} }) {
-  const { userId = '' } = route?.params ;
+  const { userId = '' } = route?.params;
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getCategoryListAction({}));
     (async () => {
       const userdata = await getAsyncStorageObjectItem(ASYNC_STORAGE_KEY.USER_DATA);
-      console.log(userdata._id);
-
       dispatch(getSubscriptionDetailsAction({ userId: userId ? userId : userdata._id }));
     })()
   }, [])

@@ -8,7 +8,7 @@ const VerificationOTP = () => {
   const route = useRoute();
   const {data, uid} = route.params;
   // console.log(data, 'data');
-  console.log(uid, 'yeh hamara uid');
+  // console.log(uid, 'yeh hamara uid');
   return (
     <>
       <OtpNumberExecutive mobileNumber={data.mobileNo} uid={uid} />

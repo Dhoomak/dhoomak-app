@@ -38,7 +38,6 @@ export default function ProductCrudCard(item) {
     }
 
     function handleEnterProductQuantity(value = 0) {
-        // console.log(value)
         dispatch(enterProductInventoryUnits({ _id, value }));
     }
 
@@ -88,7 +87,7 @@ export default function ProductCrudCard(item) {
                 }
             </View>
 
-            <View className='justify-center items-center '>
+            <View className='justify-start items-center '>
                 <TouchableOpacity className='p-1' onPress={() => handleEnterProductQuantity(0)}>
                     <Icon name='close' size={20} color={COLORS.lightGrey} />
                 </TouchableOpacity>

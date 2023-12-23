@@ -1,55 +1,22 @@
 import React, { useState } from 'react'
-import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native'
-import IMAGES from '../../../assets/images';
+import { View, Text, TouchableOpacity } from 'react-native'
 import { SUBSCRIPTION_PAYMENT_TYPE } from '../../../data/constant';
-import FilledButton from '../../../common/button';
-import { toast } from '../../../utils/toast';
-import IonIcon from 'react-native-vector-icons/Ionicons'
-import COLORS from '../../../utils/color';
-// import { ScrollView } from 'react-native-gesture-handler';
+// import IMAGES from '../../../assets/images';
+// import FilledButton from '../../../common/button';
+// import { toast } from '../../../utils/toast';
+// import IonIcon from 'react-native-vector-icons/Ionicons'
+// import COLORS from '../../../utils/color';
+import PayLaterOption from '../components/pay-later';
+import PayNowOptions from '../components/pay-now';
 
-const payLaterCondition = [
-    {
-        icon: 'checkmark-circle-outline',
-        desc: 'While paying offline, you need to pay the amount to our Sales Agent.',
-    },
-    {
-        icon: 'checkmark-circle-outline',
-        desc: 'While paying offline, your subscription fees will be charged in your first billing of purchase',
-    },
-    {
-        icon: 'checkmark-circle-outline',
-        desc: 'While paying offline, you need to pay the amount to our Sales Agent.',
-    },
-    {
-        icon: 'checkmark-circle-outline',
-        desc: 'While paying offline, your subscription fees will be charged in your first billing of purchase',
-    },
-    {
-        icon: 'checkmark-circle-outline',
-        desc: 'While paying offline, you need to pay the amount to our Sales Agent.',
-    },
-    {
-        icon: 'checkmark-circle-outline',
-        desc: 'While paying offline, your subscription fees will be charged in your first billing of purchase',
-    },
-
-]
-
-
-const Payment = () => {
-
-    const [selectedPaymentOption, setSelectedPaymentOption] = useState(SUBSCRIPTION_PAYMENT_TYPE[0].value);
+const Payment = (route) => {
+    const {
+        defaultSelectedPaymentOptionIndex = 0,
+    } = route.params || {};
+    const [selectedPaymentOption, setSelectedPaymentOption] = useState(SUBSCRIPTION_PAYMENT_TYPE[defaultSelectedPaymentOptionIndex].value);
 
     function handleSelectPaymentOption(type) {
         setSelectedPaymentOption(() => type)
-    }
-
-    function handlePayOnline() {
-        toast("Pay Online is Temporarily not working.");
-    }
-    function handlePayLater() {
-        toast("Pay Later");
     }
 
     return (
@@ -72,72 +39,12 @@ const Payment = () => {
             <View className="flex-1 flex-col gap-y-2 m-4">
                 <Text className="py-1 text-sm text-black font-semibold mb-3">For safe payment, pay using net banking</Text>
                 {
-                    selectedPaymentOption === SUBSCRIPTION_PAYMENT_TYPE[0].value ?
-                        // Code of Pay ONLINE 
-                        // TODO: Make it a seprate component
-                        (<>
-                            <View className="flex-1 ">
-                                <View className="bg-dark-pink rounded-lg shadow-lg ">
-                                    <View className="p-4">
-                                        <View>
-                                            <View className="flex flex-row justify-between my-1 ">
-                                                <Text className="text-black text-sm font-medium">Subscription Amount</Text>
-                                                <Text className="text-black text-sm font-medium">819.18</Text>
-                                            </View>
-                                            <View className="flex flex-row justify-between my-1 ">
-                                                <Text className="text-black text-sm font-medium">GST</Text>
-                                                <Text className="text-black text-sm font-medium">179.82</Text>
-                                            </View>
-                                        </View>
-                                        <View className="h-[1px] bg-gray-800 my-2" />
-                                        <View className="flex flex-row justify-between my-1 ">
-                                            <Text className="text-black text-sm font-medium">Total Amount</Text>
-                                            <Text className="text-black text-sm font-medium">999.00</Text>
-                                        </View>
-                                    </View>
-                                </View>
-
-                            </View>
-                            <FilledButton
-                                text='Pay Now'
-                                onPress={handlePayOnline}
-                            />
-                        </>
-                        )
-                        :
-                        // Code of Pay later
-                        // TODO: Make it a seprate component
-                        (<>
-                            <View className="flex-1 ">
-
-                                <ScrollView className='flex-1'>
-                                    {
-                                        payLaterCondition.map((condition) => (
-                                            <>
-                                                <View className='flex flex-row mb-2 gap-x-2 items-center'>
-                                                    <IonIcon name={condition.icon} size={20} color={COLORS.secondary} />
-                                                    <Text className='text-xs text-black'>{condition.desc}</Text>
-                                                </View>
-                                            </>
-                                        ))
-                                    }
-                                </ScrollView>
-
-                            </View>
-                            <FilledButton
-                                text='Pay Later'
-                                onPress={handlePayLater}
-                            />
-                        </>)
+                    selectedPaymentOption === SUBSCRIPTION_PAYMENT_TYPE[0].value ? <PayNowOptions /> : <PayLaterOption />
                 }
             </View>
             {/* FOOTER */}
-            <View className="bg-dark-pink rounded-t-lg">
-                <View className="m-4">
-                    <View className="flex flex-row justify-between align-middle text-center ">
-                        <Text className="text-black text-center w-full text-xs">We have served  1 lac+ happy customers across India</Text>
-                    </View>
-                </View>
+            <View className="bg-grey rounded-t-lg p-4">
+                <Text className="text-black text-center text-xs">We have served  1 lac+ happy customers across India</Text>
             </View>
         </View >
     )

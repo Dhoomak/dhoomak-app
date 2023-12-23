@@ -6,6 +6,7 @@ export const getCategoryListAction = createAsyncThunk(
     'category/getCategoryListAction',
     async ({ }, { rejectWithValue }) => {
         try {
+            console.log('GET CATEGORY LIST API fired')
             const response = await getCategoryListApi();
 
             return response.data.data;

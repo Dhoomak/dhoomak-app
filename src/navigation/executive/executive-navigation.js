@@ -11,6 +11,10 @@ import {
   CreateAccount,
   ThankYou
 } from '../../module/executive/screens';
+import { InventoryList } from '../../module/inventory/screens';
+import { Subscription } from '../../module/home/screens';
+
+
 
 // Utilities
 import COLORS from '../../utils/color';
@@ -22,14 +26,16 @@ import {
   CategoryList,
   ItemDetail,
 } from '../../module/category/screens';
-import { InventoryList } from '../../module/inventory/screens';
 
 // Stack
 const ExecutiveStack = createNativeStackNavigator();
 
 const ExecutiveScreens = () => {
   return (
-    <ExecutiveStack.Navigator initialRouteName={EXECUTIVE.DRAWER}>
+    <ExecutiveStack.Navigator
+      initialRouteName={EXECUTIVE.DRAWER}
+    // initialRouteName={EXECUTIVE.THANK_YOU}
+    >
       <ExecutiveStack.Screen
         name={EXECUTIVE.DRAWER}
         component={ExecutiveDrawers}
@@ -149,8 +155,20 @@ const ExecutiveScreens = () => {
         }}
       />
       <ExecutiveStack.Screen
+        name={EXECUTIVE.SUBSCRIPTION}
+        component={Subscription}
+        options={{
+          title: 'Subscription',
+          headerStyle: {
+            backgroundColor: COLORS.primary,
+          },
+        }}
+      />
+      <ExecutiveStack.Screen
         name={EXECUTIVE.THANK_YOU}
         component={ThankYou}
+        // initialParams={}
+        initialParams={{ userId: "" }}
         options={{
           headerShown: false,
           headerTitle: '',

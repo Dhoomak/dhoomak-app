@@ -15,8 +15,9 @@ import { getProfileState } from './../reducers/profile-reducer';
 const Profile = () => {
     const dispatch = useDispatch();
     const { profileData = {} } = useSelector(getProfileState)
-
+    console.log('PROFILE DATA: ', profileData)
     const {
+        _id = '',
         phoneNumber = '',
         email = '',
         name = '',
@@ -84,7 +85,7 @@ const Profile = () => {
                     </View>
                     <Text className='text-black text-center text-xl font-semibold mb-1'>{name}</Text>
                     <Text className="text-red text-center">
-                        Id : {restaurantId}
+                        Id : {restaurantId || _id}
                     </Text>
                 </View>
 

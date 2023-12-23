@@ -1,4 +1,5 @@
 import IMAGES from "../assets/images"
+import store from "../store/store";
 import { USER } from "../utils/strings/screen-name";
 import { toast } from "../utils/toast";
 
@@ -8,7 +9,11 @@ export const navigations = [
         title: 'Inventory',
         img: IMAGES.inventoryIcon,
         onPress: (navigation) => {
-            navigation.navigate(USER.ADD_ITEMS);
+            if (store.getState().subscription.isSubscriptionCreated) {
+                navigation.navigate(USER.INVENTORY_DISPLAY_LIST);
+            } else {
+                navigation.navigate(USER.ADD_ITEMS);
+            }
         }
     },
     {

@@ -32,7 +32,7 @@ function HomeHeader() {
                         (<View className='justify-center flex flex-1 items-start'>
                             <Text className='font-semibold text-base text-black mb-2'>Hi, User!!!</Text>
                             <TouchableOpacity className='bg-secondary rounded-md px-2 py-1 shadow-md mb-2 border-white border' style={commonStyles.shadow} onPress={handleNavigateToCreateInventory}>
-                                <Text className='text-sm text-white font-semibold'>Create Your Inventory</Text>
+                                <Text className='text-sm text-white font-semibold'>Create Inventory</Text>
                             </TouchableOpacity>
                         </View>)
                         :
@@ -46,7 +46,7 @@ function HomeHeader() {
                         (<View className='justify-center flex flex-1 items-start'>
                             <Text className='font-semibold text-base text-black mb-2'>Start Your Delivery</Text>
                             <TouchableOpacity className='bg-secondary rounded-md px-2 py-1 shadow-md mb-2 border-white border' style={commonStyles.shadow} onPress={handleNavigateToPayment}>
-                                <Text className='text-sm text-white font-semibold'>Pay Now</Text>
+                                <Text className='text-sm text-white font-semibold'>Subscribe Now</Text>
                             </TouchableOpacity>
                         </View>)
                         :
@@ -66,7 +66,7 @@ function HomeHeader() {
                         (<></>)
                 }
             </View>
-            <View className='w-0.5 h-full bg-secondary mx-1' />
+            <View className='w-[0.5px] h-full bg-secondary mx-1' />
             <View className='flex-1 p-2'>
                 <Image source={IMAGES.groceryBasketImg} className='w-full h-24' resizeMode={'contain'} />
             </View>
@@ -74,4 +74,4 @@ function HomeHeader() {
     );
 }
 
-export default memo(HomeHeader);
+export default HomeHeader;

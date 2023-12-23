@@ -11,6 +11,11 @@ const inventorySlice = createSlice({
     name: 'inventory',
     initialState,
     reducers: {
+        setInventory(state, action) {
+            state.inventoryItems = [...action.payload];
+            state.inventoryAddedIdList = action.payload.map((item) => item._id);
+            updateCommonState(state);
+        },
         addToInventory(state, action) {
             state.inventoryItems = [...state.inventoryItems, { ...action.payload, unitAdded: 1 }];
             state.inventoryAddedIdList = [...state.inventoryAddedIdList, action.payload._id];
@@ -86,6 +91,7 @@ export const {
     removeProductInventoryUnits,
     enterProductInventoryUnits,
     resetInventory,
+    setInventory,
 } = inventorySlice.actions;
 
 export default inventorySlice.reducer;

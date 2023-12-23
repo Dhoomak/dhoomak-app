@@ -1,32 +1,42 @@
+import React, { useState } from 'react'
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
 import CheckBox from '@react-native-community/checkbox';
-import React, { useState } from 'react'
-import STRINGS from '../../../utils/strings'
-import { InputDate, InputTime, InputDropdown } from '../../../common/form/input-fields'
+import { useDispatch } from 'react-redux';
+
+// Components - Common
+import SubscriptionProductListCard from '../components/subscription-product-list-card';
+import { InputDate, InputDropdown } from '../../../common/form/input-fields'
 import FilledButton from '../../../common/button';
-import { USER } from '../../../utils/strings/screen-name';
 import commonStyles from './../../../common/styles';
+
+// Utils
 import COLORS from '../../../utils/color';
-import DhoomakFlatlist from '../../../common/components/dhoomak-flatlist';
-import Icon from 'react-native-vector-icons/Ionicons'
-import { DELIVERY_TIME_SLOTS, SUBSCRIPTION_AMOUNT, SUBSCRIPTION_TYPE } from '../../../data/constant';
-import ProductDetailListCard from '../components/product-detail-list-card';
-import { subscriptionBenefitList } from '../../../data/data';
+import STRINGS from '../../../utils/strings'
+// import { USER } from '../../../utils/strings/screen-name';
 import { toast } from '../../../utils/toast';
+import { getAsyncStorageObjectItem, getAsyncStorageItem } from '../../../utils/async-storage';
+
+// Data
+import { ASYNC_STORAGE_KEY, DELIVERY_TIME_SLOTS, ROLE, SUBSCRIPTION_AMOUNT, SUBSCRIPTION_TYPE } from '../../../data/constant';
+import { subscriptionBenefitList } from '../../../data/data';
+import { saveSubscriptionDetailsAction } from '../thunks/subscription-thunk';
+import useAppNavigation from '../../../common/hooks/use-app-navigation';
 
 
-const Subscription = ({ navigation, route }) => {
+// import DhoomakFlatlist from '../../../common/components/dhoomak-flatlist';
+// import Icon from 'react-native-vector-icons/Ionicons'
+// import ProductDetailListCard from '../components/product-detail-list-card';
+
+const Subscription = ({ route }) => {
   const { inventoryItems } = route.params;
+  const dispatch = useDispatch();
+  const [navigation, SCREEN] = useAppNavigation();
 
   const [termsChecked, setTermsChecked] = useState(true);
   const [sampleChecked, setSampleChecked] = useState(false);
   const [startDate, setStartDate] = useState('');
   const [timeSlot, setTimeSlot] = useState('');
   const [frequency, setFrequency] = useState(SUBSCRIPTION_TYPE.WEEKLY);
-
-  const [showFullList, setShowFullList] = useState(true);
-
-  const inventoryListLength = inventoryItems.length;
 
   const inputDateAttributes = {
     name: 'Date',
@@ -43,7 +53,11 @@ const Subscription = ({ navigation, route }) => {
     setTimeSlot(value);
   }
 
-  const submitForm = () => {
+  async function submitForm() {
+    const userdata = await getAsyncStorageObjectItem(
+      ASYNC_STORAGE_KEY.USER_DATA,
+    );
+
     // console.log(inventoryItems);
     if (!termsChecked) {
       toast('Accept Terms & Conditions');
@@ -56,49 +70,47 @@ const Subscription = ({ navigation, route }) => {
       return;
     }
 
-    navigation.navigate(USER.PAYMENT);
+    let payload;
 
-  }
+    if (userdata.userType === ROLE.EXECUTIVE) {
+      const restaurantUserId = await getAsyncStorageItem(
+        ASYNC_STORAGE_KEY.USER_RESTAURANT_ID,
+      );
+      payload = {
+        deliverySlot: timeSlot,
+        frequency: frequency,
+        startDate: startDate,
+        requestForSample: sampleChecked,
+        user: restaurantUserId,
+      };
 
-  const toggleFullList = () => {
-    setShowFullList((prev) => !prev);
-  }
+    } else {
+      payload = {
+        deliverySlot: timeSlot,
+        frequency: frequency,
+        startDate: startDate,
+        requestForSample: sampleChecked,
+        user: userdata._id,
+      };
+    }
+    console.log(payload);
 
-  const handleEdit = () => {
-    console.log('Delete Items');
-    navigation.navigate(USER.INVENTORY_LIST);
+    dispatch(saveSubscriptionDetailsAction({
+      subscriptionData: payload,
+      navigation,
+      SCREEN,
+      inventoryItems,
+      userType: userdata.userType,
+    }))
   }
 
   return (
     <ScrollView className="bg-white">
       <Text className="text-secondary flex justify-center align-middle text-center font-bold text-lg m-3">{STRINGS.inventoryCompleted}</Text>
       {/* Total Item Details Container */}
-      <View className="px-4 py-4 mx-3 mb-4 bg-white rounded-xl shadow-sm " style={commonStyles.shadow}>
-        <View className="flex flex-row items-center mb-2">
-          <View className="flex-1 flex flex-col justify-between ">
-            <Text className="text-lg text-black font-bold">Total Items</Text>
-            <Text className="text-sm text-black ">{inventoryItems.length} Items Selected</Text>
-          </View>
-          <View className="flex flex-row items-center gap-2">
-            <TouchableOpacity onPress={handleEdit}>
-              <Icon name="create-outline" size={24} color={COLORS.black} />
-            </TouchableOpacity>
-          </View>
-        </View>
 
-        <View style={{ height: showFullList ? 200 : 'auto' }}>
-          <DhoomakFlatlist
-            nestedScrollEnabled
-            data={inventoryItems}
-            renderItem={({ item }) => <ProductDetailListCard {...item} />}
-            keyExtractor={(item, index) => index.toString()}
-            ItemSeparatorComponent={() => <View style={{ borderBottomWidth: 1, marginVertical: 5 }} className="border-grey" />}
-          />
-        </View>
-        {inventoryListLength > 3 ? (<TouchableOpacity className='p-2 pb-0 justify-between items-center flex-row' onPress={toggleFullList}>
-          <Text className='text-black font-semibold text-base'>{showFullList ? 'View More' : 'View Less'}</Text>
-          <Icon name={showFullList ? "chevron-down-circle-outline" : "chevron-up-circle-outline"} size={24} color={COLORS.secondary} />
-        </TouchableOpacity>) : (<></>)}
+      <View className='mx-3 mb-4'>
+        <SubscriptionProductListCard inventoryItems={inventoryItems} />
       </View>
 
       {/* Choose Plan */}
@@ -109,11 +121,15 @@ const Subscription = ({ navigation, route }) => {
           {/* <View className="flex flex-row gap-3 w-full"> */}
           {
             Object.values(SUBSCRIPTION_TYPE).map((key) => {
-              return (<>
-                <TouchableOpacity key={key} className="flex item-center text-center mr-2" onPress={() => setFrequency(() => key)}>
+              return (
+                <TouchableOpacity
+                  key={key}
+                  className="flex item-center text-center mr-2"
+                  onPress={() => setFrequency(() => key)}
+                >
                   <Text className={`${frequency == key ? 'bg-primary' : 'bg-grey'} py-1 px-3 text-xs text-black font-semibold rounded capitalize`}>{key}</Text>
                 </TouchableOpacity>
-              </>)
+              )
             })
           }
         </View>
@@ -123,7 +139,7 @@ const Subscription = ({ navigation, route }) => {
         <View className="flex flex-row gap-1 flex-wrap">
           {
             subscriptionBenefitList.map((item) => (
-              <View className="w-[45%]">
+              <View className="w-[45%]" key={item.title}>
                 <Text className="text-black font-normal text-xs">{item.title}</Text>
               </View>
             ))

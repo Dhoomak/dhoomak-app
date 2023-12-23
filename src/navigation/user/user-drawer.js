@@ -28,17 +28,10 @@ function UserDrawers() {
                 component={UserTabs}
                 options={{
                     title: 'Home',
-                    headerRight: () => <UserIcon />
+                    headerRight: () => <UserIcon />,
+                    headerTitle: '',
                 }}
             />
-
-            {/* <UserDrawer.Screen
-                name={USER.PROFILE}
-                component={Profile}
-                options={{
-                    title: 'Profile',
-                }}
-            /> */}
         </UserDrawer.Navigator>
     );
 }

@@ -1,9 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getSubscriptionDetailsApi, createSubscriptionApi } from '../api/subscription-api';
-import { addInventoryApi } from '../api/inventory-api';
+import { getSubscriptionDetailsApi } from '../api/subscription-api';
 
 import { toast } from '../../../utils/toast';
-
 
 export const getSubscriptionDetailsAction = createAsyncThunk(
     'inventory/getSubscriptionDetailsAction',

@@ -5,16 +5,16 @@ import ProductCrudCard from '../components/product-crud-card';
 import { useDispatch, useSelector } from 'react-redux';
 import { getInventoryState } from '../reducers/inventory-reducer';
 import DhoomakFlatlist from '../../../common/components/dhoomak-flatlist';
-import { toast } from '../../../utils/toast';
-import { useNavigation } from '@react-navigation/native';
-import { USER } from '../../../utils/strings/screen-name';
+// import { toast } from '../../../utils/toast';
+// import { useNavigation } from '@react-navigation/native';
+// import { USER } from '../../../utils/strings/screen-name';
 import {
   getAsyncStorageItem,
   getAsyncStorageObjectItem,
 } from '../../../utils/async-storage';
 import { ASYNC_STORAGE_KEY, ROLE } from '../../../data/constant';
 import useAppNavigation from '../../../common/hooks/use-app-navigation';
-import { saveInventoryAction } from '../../home/thunks/subscription-thunk';
+import { saveInventoryDetailsAction } from '../../home/thunks/subscription-thunk';
 
 export default function InventoryList() {
   const [navigation, SCREEN] = useAppNavigation();
@@ -27,14 +27,12 @@ export default function InventoryList() {
       ASYNC_STORAGE_KEY.USER_DATA,
     );
     let payload;
-    // console.log(userdata.userType);
-    // toast(JSON.stringify(inventoryItems));
 
     if (userdata.userType === ROLE.EXECUTIVE) {
       const restaurantUserId = await getAsyncStorageItem(
         ASYNC_STORAGE_KEY.USER_RESTAURANT_ID,
       );
-      // console.log('RESTAURANT ID BY EXECUTIVE :', restaurantUserId);
+
       payload = {
         products: inventoryItems,
         user: restaurantUserId,
@@ -46,13 +44,7 @@ export default function InventoryList() {
       };
     }
 
-    // console.log("PAYLOAD:", payload)
-    dispatch(saveInventoryAction({ subscriptionData: payload, inventoryItems, navigation, SCREEN, userType: userdata.userType }));
-    // if (userdata.userType === ROLE.EXECUTIVE) {
-    //   navigation.navigate(SCREEN.EXECUTIVE.THANK_YOU);
-    // } else {
-    //   navigation.navigate(SCREEN.USER.SUBSCRIPTION, { inventoryItems });
-    // }
+    dispatch(saveInventoryDetailsAction({ subscriptionData: payload, inventoryItems, navigation, SCREEN, userType: userdata.userType }));
   };
 
   return (

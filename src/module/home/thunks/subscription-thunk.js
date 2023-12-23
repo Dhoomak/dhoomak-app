@@ -1,15 +1,19 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getSubscriptionDetailsApi, createSubscriptionApi } from '../api/subscription-api';
+import { getSubscriptionDetailsApi } from '../api/subscription-api';
 import { toast } from '../../../utils/toast';
 import { ROLE } from '../../../data/constant';
-
+import { setInventory } from '../../inventory/reducers/inventory-reducer';
+import { saveSubscriptionDataInDb } from '../../../common/apis/save-subscription-data';
 
 export const getSubscriptionDetailsAction = createAsyncThunk(
     'subscription/getSubscriptionDetailsAction',
-    async ({ userId }, { rejectWithValue }) => {
+    async ({ userId }, { rejectWithValue, dispatch }) => {
         try {
             const response = await getSubscriptionDetailsApi(userId);
             console.log("Data Get Subscription:", JSON.stringify(response.data));
+            const productsList = response?.data?.subscrption?.products || [];
+
+            dispatch(setInventory(productsList))
 
             return response?.data?.subscrption;
         } catch (error) {
@@ -23,14 +27,23 @@ export const getSubscriptionDetailsAction = createAsyncThunk(
     },
 );
 
-export const createSubscriptionAction = createAsyncThunk(
-    'subscription/createSubscriptionAction',
-    async ({ subscriptionData }, { rejectWithValue }) => {
+export const saveInventoryDetailsAction = createAsyncThunk(
+    'subscription/saveInventoryDetailsAction',
+    async ({ subscriptionData, navigation, SCREEN, inventoryItems }, { rejectWithValue, getState, dispatch }) => {
         try {
-            const response = await createSubscriptionApi(subscriptionData);
-            // console.log("GET PRODUCT DETAILS:", response.data);
+            const response = await saveSubscriptionDataInDb(subscriptionData);
 
-            return response.data;
+            // To Reset the subscription we recently saved in db
+            dispatch(getSubscriptionDetailsAction({ userId: response.data.subscription.user }));
+
+            console.log("SAVE INVENTORY DETAILS:", response.data);
+            const isPaymentDone = getState().subscription.isSubscriptionPaymentDone;
+            if (!isPaymentDone) {
+                navigation.navigate(SCREEN.USER.SUBSCRIPTION, { inventoryItems });
+            } else {
+                navigation.popToTop();
+            }
+
         } catch (error) {
             const stringfiedError = JSON.stringify(error);
             const errorMessage = error?.error || 'An error occurred.'
@@ -44,21 +57,33 @@ export const createSubscriptionAction = createAsyncThunk(
     },
 );
 
-
-export const saveInventoryAction = createAsyncThunk(
-    'subscription/saveInventoryAction',
-    async ({ subscriptionData, navigation, SCREEN, inventoryItems, userType }, { rejectWithValue }) => {
+export const saveSubscriptionDetailsAction = createAsyncThunk(
+    'subscription/saveSubscriptionDetailsAction',
+    async ({ subscriptionData, navigation, SCREEN, inventoryItems, userType }, { rejectWithValue, getState, dispatch }) => {
         try {
-            // TODO: Send data when API is working fine
+            const response = await saveSubscriptionDataInDb(subscriptionData);
+            // let response;
+            // // console.log('SUBSCRIPTION DATA: ', JSON.stringify(subscriptionData))
+            // const isSubscribed = getState().subscription.isSubscriptionCreated;
 
-            console.log('SUBSCRIPTION DATA: ', JSON.stringify(subscriptionData))
-            // const response = await createSubscriptionApi(subscriptionData);
-            // console.log("SAVE INVENTORY DETAILS:", response.data);
+            // if (!isSubscribed) {
+            //     console.log('INSIDE CREATE SUBSCRIPTION');
+            //     response = await createSubscriptionApi(subscriptionData);
+            // } else {
+            //     console.log('INSIDE UPDATE SUBSCRIPTION');
+            //     response = await saveSubscriptionApi(subscriptionData);
+            // }
+
+            // To Reset the subscription we recently saved in db
+            dispatch(getSubscriptionDetailsAction({ userId: response.data.subscription.user }));
+
+            // Consoling Data
+            console.log("SAVE INVENTORY DETAILS:", response.data);
 
             if (userType === ROLE.EXECUTIVE) {
-                navigation.navigate(SCREEN.EXECUTIVE.THANK_YOU);
+                navigation.replace(SCREEN.EXECUTIVE.THANK_YOU, { userId: response.data.subscription.user });
             } else {
-                navigation.navigate(SCREEN.USER.SUBSCRIPTION, { inventoryItems });
+                navigation.navigate(SCREEN.USER.PAYMENT, { inventoryItems });
             }
 
             // return response.data;

@@ -9,8 +9,11 @@ export const USER = {
   PROFILE: 'UserProfile',
   ITEM_DETAIL: 'ItemDetail',
   INVENTORY_LIST: 'InventoryList',
+  INVENTORY_DISPLAY_LIST: 'InventoryDisplayList',
   SUBSCRIPTION: 'Subscription',
   PAYMENT: 'Payment',
+  PAYMENT_DONE: 'PaymentDone',
+  PAYMENT_FAIL: 'PaymentFail',
   PROFILE: 'Profile',
 };
 
@@ -36,6 +39,7 @@ export const EXECUTIVE = {
   PRIVACY: 'Privacy',
   TERMS_CONDITION: 'TermsCondition',
   INVENTORY_LIST: 'InventoryList',
+  SUBSCRIPTION: 'Subscription',
   THANK_YOU: 'ThankYouScreen',
 };
 

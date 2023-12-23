@@ -61,4 +61,14 @@ export const DELIVERY_TIME_SLOTS = [
 
 export const CATEGORY_DEFAULT_IMAGE = 'https://dhoomak.com/a/img/logo.png';
 export const PRODUCTS_DEFAULT_IMAGE = 'https://dhoomak.com/a/img/logo.png';
+export const DHOOMAK_ICON = 'https://dhoomak.com/a/img/logo.png';
 export const SUBSCRIPTION_AMOUNT = 999;
+
+export const RPAY_KEY_ID = "rzp_test_KjGawLZnYS2OVg";
+export const RPAY_KEY_SECRET = "j82QLAPPenMlJibin0A8AziT";
+
+export const SUBSCRIPTION_AMOUNTS = {
+  BASE: 819.18,
+  GST: 179.82,
+  BASE_WITH_GST: 999.00,
+}
