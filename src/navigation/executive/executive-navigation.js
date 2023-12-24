@@ -40,7 +40,7 @@ const ExecutiveScreens = () => {
         component={ExecutiveDrawers}
         options={{
           headerShown: false,
-          headerRight: () => <UserIcon className="mr-0" />,
+          headerRight: () => <UserIcon className='mr-4' />,
         }}
       />
       <ExecutiveStack.Screen

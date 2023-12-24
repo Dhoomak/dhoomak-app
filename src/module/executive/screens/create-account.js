@@ -1,11 +1,11 @@
-import {useState} from 'react';
-import {SafeAreaView, ScrollView, StyleSheet} from 'react-native';
+import { useState } from 'react';
+import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 import COLORS from '../../../utils/color';
 import Form from '../../../common/form';
-import {toast} from '../../../utils/toast';
-import {EXECUTIVE} from '../../../utils/strings/screen-name';
-import {createAccountAction} from '../thunk/executive-thunk';
-import {useDispatch} from 'react-redux';
+import { toast } from '../../../utils/toast';
+import { EXECUTIVE } from '../../../utils/strings/screen-name';
+import { createAccountAction } from '../thunk/executive-thunk';
+import { useDispatch } from 'react-redux';
 import useAppNavigation from '../../../common/hooks/use-app-navigation';
 
 const initialState = {
@@ -27,8 +27,9 @@ function CreateAccount() {
 
   const handleSubmit = () => {
     toast('Form Submitted Successfully');
-    dispatch(createAccountAction({enquiryForm: form, navigation, SCREEN}));
+    dispatch(createAccountAction({ enquiryForm: form, navigation, SCREEN }));
   };
+
   const formFormat = [
     {
       fieldType: 'Input',
@@ -102,7 +103,7 @@ function CreateAccount() {
           extraProps: {
             placeholder: 'City',
           },
-          containerStyle: {flex: 1},
+          containerStyle: { flex: 1 },
         },
         {
           fieldType: 'Input',
@@ -114,7 +115,7 @@ function CreateAccount() {
             keyboardType: 'numeric',
             maxLength: 6,
           },
-          containerStyle: {flex: 1},
+          containerStyle: { flex: 1 },
         },
       ],
     },

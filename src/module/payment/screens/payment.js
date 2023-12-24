@@ -1,18 +1,16 @@
 import React, { useState } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import { SUBSCRIPTION_PAYMENT_TYPE } from '../../../data/constant';
-// import IMAGES from '../../../assets/images';
-// import FilledButton from '../../../common/button';
-// import { toast } from '../../../utils/toast';
-// import IonIcon from 'react-native-vector-icons/Ionicons'
-// import COLORS from '../../../utils/color';
 import PayLaterOption from '../components/pay-later';
 import PayNowOptions from '../components/pay-now';
 
 const Payment = (route) => {
     const {
         defaultSelectedPaymentOptionIndex = 0,
+        paymentTypes = SUBSCRIPTION_PAYMENT_TYPE,
     } = route.params || {};
+
+
     const [selectedPaymentOption, setSelectedPaymentOption] = useState(SUBSCRIPTION_PAYMENT_TYPE[defaultSelectedPaymentOptionIndex].value);
 
     function handleSelectPaymentOption(type) {
@@ -22,11 +20,10 @@ const Payment = (route) => {
     return (
         <View className="bg-white flex-1 ">
             <View className="m-4 mb-0">
-                {/* <Text className="text-xl text-black font-bold mb-4">Payment Options</Text> */}
                 <View className="flex flex-row">
                     <View className="flex flex-row gap-3">
                         {
-                            SUBSCRIPTION_PAYMENT_TYPE.map((type) => (
+                            paymentTypes.map((type) => (
                                 <TouchableOpacity onPress={() => handleSelectPaymentOption(type.value)} className="flex item-center text-center">
                                     <Text className={` border py-1 px-3 text-base font-semibold rounded ${selectedPaymentOption === type.value ? 'bg-primary border-primary text-black' : 'text-green bg-white border-green'}`}>{type.title}</Text>
                                 </TouchableOpacity>

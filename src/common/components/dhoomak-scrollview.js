@@ -6,7 +6,6 @@ export default function DhoomakScrollView({ children, ...rest }) {
         <ScrollView
             showsHorizontalScrollIndicator={false}
             showsVerticalScrollIndicator={false}
-
             {...rest}
         >
             {children}

@@ -9,10 +9,13 @@ export const navigations = [
         title: 'Inventory',
         img: IMAGES.inventoryIcon,
         onPress: (navigation) => {
-            if (store.getState().subscription.isSubscriptionCreated) {
-                navigation.navigate(USER.INVENTORY_DISPLAY_LIST);
+            const subscription = store.getState().subscription;
+            if (subscription.isSubscriptionCreated && subscription.isSubscriptionPaymentDone) {
+                navigation.navigate(USER.TOP_TAB);
+            } else if (subscription.isSubscriptionCreated && !subscription.isSubscriptionPaymentDone) {
+                navigation.navigate(USER.PAYMENT);
             } else {
-                navigation.navigate(USER.ADD_ITEMS);
+                navigation.navigate(USER.ADD_ITEMS,);
             }
         }
     },
@@ -22,6 +25,7 @@ export const navigations = [
         img: IMAGES.discoveryIcon,
         onPress: (navigation) => {
             toast('Coming Soon!!!');
+            navigation.navigate(USER.TOP_TAB, { screen: USER.ORDER_HISTORY });
         }
     },
     {
@@ -453,9 +457,413 @@ export const subscriptionBenefitList = [
     { title: "24/7 Support", icon: '' },
     { title: "Executive Visit", icon: '' },
     { title: "On Time Delivery", icon: '' },
-
 ]
 
 export const unitQuantityType = ["Kg", "gm", "ltr", "ml"];
 
 export const homeBanners = [IMAGES.banner.banner1, IMAGES.banner.banner2, IMAGES.banner.banner3];
+
+export const orderHistoryList = [
+    {
+        orderId: 'PP01RNI09IIT80789',
+        status: 'Delivered',
+        dateOfDelivery: '12 Jun 2023',
+        timeOfDelivery: '10:33am',
+        paymentMode: 'PAY_NOW',
+        paymentThrough: 'Razorpay',
+        paymentBy: 'Credit Card',
+        products: [
+            {
+                "_id": "657c578050cbada63338bc27",
+                "isDeleted": false,
+                "categoryId": "657c313e7f0ee1d4b446d7e4",
+                "name": "Potatoes",
+                "images": [
+                    "https://pngfre.com/wp-content/uploads/Potato-10-2.png"
+                ],
+                "brandName": "Potatoes",
+                "__v": 0,
+                "unitPrice": 10,
+                "unitQuantity": 1,
+                "unitType": "kg",
+                "description": "Desi potatoes procured fresh from farmers. Desi potatoes procured fresh from farmers. Desi potatoes procured fresh from farmers. Desi potatoes procured fresh from farmers. Desi potatoes procured fresh from farmers. Desi potatoes procured fresh from farmers",
+                "updatedAt": "2023-12-17T14:54:49.252Z",
+                "unitAdded": 70
+            },
+            {
+                "_id": "80933",
+                "name": "HALDI",
+                "brandName": "HALDI",
+                "unitQuantity": "4",
+                "unitType": "Kg",
+                "categoryId": "657c3256c927324133b16517",
+                "unitAdded": 1,
+                "unitPrice": 0,
+                "images": [
+                    "https://dhoomak.com/a/img/logo.png"
+                ]
+            },
+            {
+                "_id": "657caafacf1b07b964994291",
+                "isDeleted": false,
+                "categoryId": "657c32b9c927324133b16526",
+                "name": "Cow Milk",
+                "images": [
+                    "https://illustoon.com/photo/4906.png"
+                ],
+                "brandName": "Milk101",
+                "__v": 0,
+                "unitPrice": 33,
+                "unitQuantity": 1,
+                "unitType": "ml",
+                "updatedAt": "2023-12-17T08:39:32.264Z",
+                "description": "Fresh and organic milk, collected from our own dairy",
+                "unitAdded": 4
+            }
+        ],
+        totalCharges: "191359",
+        gstCharges: "18290",
+        razorPayCharges: "238",
+        totalChargesWithExtraCharges: "209887",
+        deliveryDetails: {
+            name: 'Jyoti Pandey',
+            address: 'Gate no-3, 2-D, Research & Innovation Park, IIT Delhi, South Delhi, New Delhi - 110016',
+            phone: '7079316745',
+        }
+    },
+    {
+        orderId: 'PP01RNI09IIT80739',
+        status: 'Delivered',
+        dateOfDelivery: '12 Jun 2023',
+        timeOfDelivery: '10:33am',
+        paymentMode: 'PAY_NOW',
+        paymentThrough: 'Razorpay',
+        paymentBy: 'Credit Card',
+        products: [
+            {
+                "_id": "657c578050cbada63338bc27",
+                "isDeleted": false,
+                "categoryId": "657c313e7f0ee1d4b446d7e4",
+                "name": "Potatoes",
+                "images": [
+                    "https://pngfre.com/wp-content/uploads/Potato-10-2.png"
+                ],
+                "brandName": "Potatoes",
+                "__v": 0,
+                "unitPrice": 10,
+                "unitQuantity": 1,
+                "unitType": "kg",
+                "description": "Desi potatoes procured fresh from farmers. Desi potatoes procured fresh from farmers. Desi potatoes procured fresh from farmers. Desi potatoes procured fresh from farmers. Desi potatoes procured fresh from farmers. Desi potatoes procured fresh from farmers",
+                "updatedAt": "2023-12-17T14:54:49.252Z",
+                "unitAdded": 70
+            },
+            {
+                "_id": "80933",
+                "name": "HALDI",
+                "brandName": "HALDI",
+                "unitQuantity": "4",
+                "unitType": "Kg",
+                "categoryId": "657c3256c927324133b16517",
+                "unitAdded": 1,
+                "unitPrice": 0,
+                "images": [
+                    "https://dhoomak.com/a/img/logo.png"
+                ]
+            },
+            {
+                "_id": "657caafacf1b07b964994291",
+                "isDeleted": false,
+                "categoryId": "657c32b9c927324133b16526",
+                "name": "Cow Milk",
+                "images": [
+                    "https://illustoon.com/photo/4906.png"
+                ],
+                "brandName": "Milk101",
+                "__v": 0,
+                "unitPrice": 33,
+                "unitQuantity": 1,
+                "unitType": "ml",
+                "updatedAt": "2023-12-17T08:39:32.264Z",
+                "description": "Fresh and organic milk, collected from our own dairy",
+                "unitAdded": 4
+            }
+        ],
+        totalCharges: "191359",
+        gstCharges: "18290",
+        razorPayCharges: "238",
+        totalChargesWithExtraCharges: "209887",
+        deliveryDetails: {
+            name: 'Jyoti Pandey',
+            address: 'Gate no-3, 2-D, Research & Innovation Park, IIT Delhi, South Delhi, New Delhi - 110016',
+            phone: '7079316745',
+        }
+    },
+    {
+        orderId: 'PP01RNI09IIT07822',
+        status: 'Delivered',
+        dateOfDelivery: '12 Jun 2023',
+        timeOfDelivery: '10:33am',
+        paymentMode: 'PAY_NOW',
+        paymentThrough: 'Razorpay',
+        paymentBy: 'Credit Card',
+        products: [
+            {
+                "_id": "657c578050cbada63338bc27",
+                "isDeleted": false,
+                "categoryId": "657c313e7f0ee1d4b446d7e4",
+                "name": "Potatoes",
+                "images": [
+                    "https://pngfre.com/wp-content/uploads/Potato-10-2.png"
+                ],
+                "brandName": "Potatoes",
+                "__v": 0,
+                "unitPrice": 10,
+                "unitQuantity": 1,
+                "unitType": "kg",
+                "description": "Desi potatoes procured fresh from farmers. Desi potatoes procured fresh from farmers. Desi potatoes procured fresh from farmers. Desi potatoes procured fresh from farmers. Desi potatoes procured fresh from farmers. Desi potatoes procured fresh from farmers",
+                "updatedAt": "2023-12-17T14:54:49.252Z",
+                "unitAdded": 70
+            },
+            {
+                "_id": "80933",
+                "name": "HALDI",
+                "brandName": "HALDI",
+                "unitQuantity": "4",
+                "unitType": "Kg",
+                "categoryId": "657c3256c927324133b16517",
+                "unitAdded": 1,
+                "unitPrice": 0,
+                "images": [
+                    "https://dhoomak.com/a/img/logo.png"
+                ]
+            },
+            {
+                "_id": "657caafacf1b07b964994291",
+                "isDeleted": false,
+                "categoryId": "657c32b9c927324133b16526",
+                "name": "Cow Milk",
+                "images": [
+                    "https://illustoon.com/photo/4906.png"
+                ],
+                "brandName": "Milk101",
+                "__v": 0,
+                "unitPrice": 33,
+                "unitQuantity": 1,
+                "unitType": "ml",
+                "updatedAt": "2023-12-17T08:39:32.264Z",
+                "description": "Fresh and organic milk, collected from our own dairy",
+                "unitAdded": 4
+            }
+        ],
+        totalCharges: "191359",
+        gstCharges: "18290",
+        razorPayCharges: "238",
+        totalChargesWithExtraCharges: "209887",
+        deliveryDetails: {
+            name: 'Jyoti Pandey',
+            address: 'Gate no-3, 2-D, Research & Innovation Park, IIT Delhi, South Delhi, New Delhi - 110016',
+            phone: '7079316745',
+        }
+    },
+    {
+        orderId: 'PP01RNI09IIW80789',
+        status: 'Delivered',
+        dateOfDelivery: '12 Jun 2023',
+        timeOfDelivery: '10:33am',
+        paymentMode: 'PAY_NOW',
+        paymentThrough: 'Razorpay',
+        paymentBy: 'Credit Card',
+        products: [
+            {
+                "_id": "657c578050cbada63338bc27",
+                "isDeleted": false,
+                "categoryId": "657c313e7f0ee1d4b446d7e4",
+                "name": "Potatoes",
+                "images": [
+                    "https://pngfre.com/wp-content/uploads/Potato-10-2.png"
+                ],
+                "brandName": "Potatoes",
+                "__v": 0,
+                "unitPrice": 10,
+                "unitQuantity": 1,
+                "unitType": "kg",
+                "description": "Desi potatoes procured fresh from farmers. Desi potatoes procured fresh from farmers. Desi potatoes procured fresh from farmers. Desi potatoes procured fresh from farmers. Desi potatoes procured fresh from farmers. Desi potatoes procured fresh from farmers",
+                "updatedAt": "2023-12-17T14:54:49.252Z",
+                "unitAdded": 70
+            },
+            {
+                "_id": "80933",
+                "name": "HALDI",
+                "brandName": "HALDI",
+                "unitQuantity": "4",
+                "unitType": "Kg",
+                "categoryId": "657c3256c927324133b16517",
+                "unitAdded": 1,
+                "unitPrice": 0,
+                "images": [
+                    "https://dhoomak.com/a/img/logo.png"
+                ]
+            },
+            {
+                "_id": "657caafacf1b07b964994291",
+                "isDeleted": false,
+                "categoryId": "657c32b9c927324133b16526",
+                "name": "Cow Milk",
+                "images": [
+                    "https://illustoon.com/photo/4906.png"
+                ],
+                "brandName": "Milk101",
+                "__v": 0,
+                "unitPrice": 33,
+                "unitQuantity": 1,
+                "unitType": "ml",
+                "updatedAt": "2023-12-17T08:39:32.264Z",
+                "description": "Fresh and organic milk, collected from our own dairy",
+                "unitAdded": 4
+            }
+        ],
+        totalCharges: "191359",
+        gstCharges: "18290",
+        razorPayCharges: "238",
+        totalChargesWithExtraCharges: "209887",
+        deliveryDetails: {
+            name: 'Jyoti Pandey',
+            address: 'Gate no-3, 2-D, Research & Innovation Park, IIT Delhi, South Delhi, New Delhi - 110016',
+            phone: '7079316745',
+        }
+    },
+    {
+        orderId: 'PP01RNI09IIT34342',
+        status: 'Delivered',
+        dateOfDelivery: '12 Jun 2023',
+        timeOfDelivery: '10:33am',
+        paymentMode: 'PAY_NOW',
+        paymentThrough: 'Razorpay',
+        paymentBy: 'Credit Card',
+        products: [
+            {
+                "_id": "657c578050cbada63338bc27",
+                "isDeleted": false,
+                "categoryId": "657c313e7f0ee1d4b446d7e4",
+                "name": "Potatoes",
+                "images": [
+                    "https://pngfre.com/wp-content/uploads/Potato-10-2.png"
+                ],
+                "brandName": "Potatoes",
+                "__v": 0,
+                "unitPrice": 10,
+                "unitQuantity": 1,
+                "unitType": "kg",
+                "description": "Desi potatoes procured fresh from farmers. Desi potatoes procured fresh from farmers. Desi potatoes procured fresh from farmers. Desi potatoes procured fresh from farmers. Desi potatoes procured fresh from farmers. Desi potatoes procured fresh from farmers",
+                "updatedAt": "2023-12-17T14:54:49.252Z",
+                "unitAdded": 70
+            },
+            {
+                "_id": "80933",
+                "name": "HALDI",
+                "brandName": "HALDI",
+                "unitQuantity": "4",
+                "unitType": "Kg",
+                "categoryId": "657c3256c927324133b16517",
+                "unitAdded": 1,
+                "unitPrice": 0,
+                "images": [
+                    "https://dhoomak.com/a/img/logo.png"
+                ]
+            },
+            {
+                "_id": "657caafacf1b07b964994291",
+                "isDeleted": false,
+                "categoryId": "657c32b9c927324133b16526",
+                "name": "Cow Milk",
+                "images": [
+                    "https://illustoon.com/photo/4906.png"
+                ],
+                "brandName": "Milk101",
+                "__v": 0,
+                "unitPrice": 33,
+                "unitQuantity": 1,
+                "unitType": "ml",
+                "updatedAt": "2023-12-17T08:39:32.264Z",
+                "description": "Fresh and organic milk, collected from our own dairy",
+                "unitAdded": 4
+            }
+        ],
+        totalCharges: "191359",
+        gstCharges: "18290",
+        razorPayCharges: "238",
+        totalChargesWithExtraCharges: "209887",
+        deliveryDetails: {
+            name: 'Jyoti Pandey',
+            address: 'Gate no-3, 2-D, Research & Innovation Park, IIT Delhi, South Delhi, New Delhi - 110016',
+            phone: '7079316745',
+        }
+    },
+    {
+        orderId: 'PP01RNI09IIT83234',
+        status: 'Delivered',
+        dateOfDelivery: '12 Jun 2023',
+        timeOfDelivery: '10:33am',
+        paymentMode: 'PAY_NOW',
+        paymentThrough: 'Razorpay',
+        paymentBy: 'Credit Card',
+        products: [
+            {
+                "_id": "657c578050cbada63338bc27",
+                "isDeleted": false,
+                "categoryId": "657c313e7f0ee1d4b446d7e4",
+                "name": "Potatoes",
+                "images": [
+                    "https://pngfre.com/wp-content/uploads/Potato-10-2.png"
+                ],
+                "brandName": "Potatoes",
+                "__v": 0,
+                "unitPrice": 10,
+                "unitQuantity": 1,
+                "unitType": "kg",
+                "description": "Desi potatoes procured fresh from farmers. Desi potatoes procured fresh from farmers. Desi potatoes procured fresh from farmers. Desi potatoes procured fresh from farmers. Desi potatoes procured fresh from farmers. Desi potatoes procured fresh from farmers",
+                "updatedAt": "2023-12-17T14:54:49.252Z",
+                "unitAdded": 70
+            },
+            {
+                "_id": "80933",
+                "name": "HALDI",
+                "brandName": "HALDI",
+                "unitQuantity": "4",
+                "unitType": "Kg",
+                "categoryId": "657c3256c927324133b16517",
+                "unitAdded": 1,
+                "unitPrice": 0,
+                "images": [
+                    "https://dhoomak.com/a/img/logo.png"
+                ]
+            },
+            {
+                "_id": "657caafacf1b07b964994291",
+                "isDeleted": false,
+                "categoryId": "657c32b9c927324133b16526",
+                "name": "Cow Milk",
+                "images": [
+                    "https://illustoon.com/photo/4906.png"
+                ],
+                "brandName": "Milk101",
+                "__v": 0,
+                "unitPrice": 33,
+                "unitQuantity": 1,
+                "unitType": "ml",
+                "updatedAt": "2023-12-17T08:39:32.264Z",
+                "description": "Fresh and organic milk, collected from our own dairy",
+                "unitAdded": 4
+            }
+        ],
+        totalCharges: "191359",
+        gstCharges: "18290",
+        razorPayCharges: "238",
+        totalChargesWithExtraCharges: "209887",
+        deliveryDetails: {
+            name: 'Jyoti Pandey',
+            address: 'Gate no-3, 2-D, Research & Innovation Park, IIT Delhi, South Delhi, New Delhi - 110016',
+            phone: '7079316745',
+        }
+    },
+]

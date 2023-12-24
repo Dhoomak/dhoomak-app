@@ -6,7 +6,7 @@ import { Home } from '../../module/home/screens';
 import { Profile } from '../../module/profile/screens';
 
 // Components
-import UserIcon from '../../module/home/components/user-icon';
+// import UserIcon from '../../module/home/components/user-icon';
 
 // Utilities
 import COLORS from '../../utils/color';
@@ -43,8 +43,7 @@ function UserTabs() {
         name={USER.HOME}
         component={Home}
         options={{
-          title: 'Home',
-          headerRight: () => <UserIcon />
+          title: 'Home'
         }}
         initialParams={{ userId: '' }}
       />

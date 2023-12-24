@@ -4,6 +4,7 @@ const COLORS = {
     secondary: '#1A9607',
     magnolia: '#F8F3FF',
     black: '#060400',
+    black50: '#06040099',
     white: '#ffffff',
     grey: '#F0F1F6',
     lightGrey: '#A9A9A9',
@@ -14,7 +15,7 @@ const COLORS = {
     'transparent-yellow': '#F6EDC3',
     borderColor: "#403B3B",
     lightWhite: "rgba(255, 255, 255, 0.04)",
-    purple:"#F8F3FF"
+    purple: "#F8F3FF"
 };
 
 COLORS.bottomTabActive = COLORS.primary;

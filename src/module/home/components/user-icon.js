@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import COLORS from '../../../utils/color';
 import { logoutAction } from '../../auth/thunks/auth-thunk';
 
-export default function UserIcon({ className = '' }) {
+export default function UserIcon({ style = [] }) {
     const dispatch = useDispatch();
 
     async function handleIcon() {
@@ -13,7 +13,7 @@ export default function UserIcon({ className = '' }) {
     }
 
     return (
-        <TouchableOpacity className={`bg-white rounded-full mr-4 p-1 ${className}`} onPress={handleIcon}>
+        <TouchableOpacity className={`bg-white rounded-full mr-0 p-1`} style={style} onPress={handleIcon}>
             <Icon name={'log-out'} size={24} color={COLORS.black} />
         </TouchableOpacity>
     );

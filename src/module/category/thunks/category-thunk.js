@@ -4,9 +4,9 @@ import { toast } from '../../../utils/toast';
 
 export const getCategoryListAction = createAsyncThunk(
     'category/getCategoryListAction',
-    async ({ }, { rejectWithValue }) => {
+    async ({ } = {}, { rejectWithValue }) => {
         try {
-            console.log('GET CATEGORY LIST API fired')
+            // console.log('GET CATEGORY LIST API fired')
             const response = await getCategoryListApi();
 
             return response.data.data;
@@ -24,7 +24,7 @@ export const getCategoryListAction = createAsyncThunk(
 
 export const getProductsListAction = createAsyncThunk(
     'category/getProductListAction',
-    async ({ categoryId }, { rejectWithValue }) => {
+    async ({ categoryId } = {}, { rejectWithValue }) => {
         try {
             const response = await getProductListApi(categoryId);
             // console.log("GET PRODUCT DETAILS:", response.data.data);

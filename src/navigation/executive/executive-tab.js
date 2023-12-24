@@ -45,7 +45,7 @@ function ExecutiveTabs() {
                 component={Dashboard}
                 options={{
                     title: 'Dashboard',
-                    headerRight: () => <UserIcon className='mr-0' />
+                    headerRight: () => <UserIcon className='mr-4' />
                 }}
             />
 

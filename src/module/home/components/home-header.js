@@ -23,6 +23,10 @@ function HomeHeader() {
         navigation.navigate(USER.PAYMENT, { inventoryItems: products });
     }
 
+    function handleNavigateToOrder() {
+        navigation.navigate(USER.TOP_TAB, { screen: USER.ORDER });
+    }
+
     return (
         <View className='w-full bg-white px-3 py-2 flex-row '>
             <View className='flex-1'>
@@ -58,7 +62,7 @@ function HomeHeader() {
                     (isSubscriptionCreated && isSubscriptionPaymentDone) ?
                         (<View className='justify-center flex flex-1 items-start'>
                             <Text className='font-semibold text-base text-black mb-2'>Pay for Next Order</Text>
-                            <TouchableOpacity className='bg-secondary rounded-md px-2 py-1 shadow-md mb-2 border-white border' style={commonStyles.shadow}>
+                            <TouchableOpacity className='bg-secondary rounded-md px-2 py-1 shadow-md mb-2 border-white border' style={commonStyles.shadow} onPress={handleNavigateToOrder}>
                                 <Text className='text-sm text-white font-semibold'>Pay Now</Text>
                             </TouchableOpacity>
                         </View>)

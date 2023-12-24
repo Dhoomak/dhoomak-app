@@ -23,10 +23,6 @@ import { saveSubscriptionDetailsAction } from '../thunks/subscription-thunk';
 import useAppNavigation from '../../../common/hooks/use-app-navigation';
 
 
-// import DhoomakFlatlist from '../../../common/components/dhoomak-flatlist';
-// import Icon from 'react-native-vector-icons/Ionicons'
-// import ProductDetailListCard from '../components/product-detail-list-card';
-
 const Subscription = ({ route }) => {
   const { inventoryItems } = route.params;
   const dispatch = useDispatch();

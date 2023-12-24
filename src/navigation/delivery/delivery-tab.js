@@ -46,7 +46,7 @@ function DeliveryTabs() {
                 component={Dashboard}
                 options={{
                     title: 'Dashboard',
-                    headerRight: () => <UserIcon className='mr-0' />
+                    headerRight: () => <UserIcon className='mr-4' />,
                 }}
             />
             <DeliveryTab.Screen
@@ -54,7 +54,7 @@ function DeliveryTabs() {
                 component={DeliveryProfile}
                 options={{
                     title: 'Profile',
-                    headerRight: () => <UserIcon className='mr-0' />
+                    headerRight: () => <UserIcon className='mr-4' />,
                 }}
             />
 

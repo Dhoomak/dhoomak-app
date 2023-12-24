@@ -28,7 +28,7 @@ function DeliveryDrawers() {
                 options={{
                     headerTitle: '',
                     title: 'Dashboard',
-                    headerRight: () => <UserIcon className='mr-0' />
+                    headerRight: () => <UserIcon className='mr-4' />
                 }}
             />
         </DeliveryDrawer.Navigator>

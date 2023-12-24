@@ -35,7 +35,7 @@ const DeliveryScreens = () => {
                     headerStyle: {
                         headerVisible: false,
                     },
-                    headerRight: () => <UserIcon />
+                    headerRight: () => <UserIcon className='mr-4' />
                 }}
             />
 

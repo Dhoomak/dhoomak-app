@@ -2,6 +2,7 @@ export const USER = {
   STACK: 'UserStack',
   TAB: 'UserTab',
   DRAWER: 'UserDrawer',
+  TOP_TAB: 'UserTopTab',
   SPLASH: 'Splash',
   CATEGORY: 'Category',
   ADD_ITEMS: 'AddItems',
@@ -15,6 +16,9 @@ export const USER = {
   PAYMENT_DONE: 'PaymentDone',
   PAYMENT_FAIL: 'PaymentFail',
   PROFILE: 'Profile',
+  ORDER: 'Order',
+  ORDER_HISTORY: 'OrderHistory',
+  ORDER_HISTORY_DETAILS: 'OrderHistoryDetails',
 };
 
 export const EXECUTIVE = {

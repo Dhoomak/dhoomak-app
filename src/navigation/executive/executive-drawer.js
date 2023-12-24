@@ -1,4 +1,4 @@
-import {createDrawerNavigator} from '@react-navigation/drawer';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
 // Screens
 import {
@@ -14,7 +14,7 @@ import ExecutiveTabs from './executive-tab';
 import UserIcon from '../../module/home/components/user-icon';
 
 // Utilities
-import {EXECUTIVE} from './../../utils/strings/screen-name';
+import { EXECUTIVE } from './../../utils/strings/screen-name';
 import COLORS from '../../utils/color';
 import Privacy from '../../module/executive/screens/privacy';
 import TermsCondition from '../../module/executive/screens/terms-condition';
@@ -37,7 +37,7 @@ function ExecutiveDrawers() {
           title: 'Dashboard',
           headerVisible: false,
           headerLeftLabelVisible: false,
-          headerRight: () => <UserIcon className="mr-0" />,
+          headerRight: () => <UserIcon className='mr-4' />,
         }}
       />
 

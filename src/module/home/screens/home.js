@@ -1,27 +1,25 @@
 import React, { useEffect } from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { useDispatch, } from 'react-redux';
 
 // components
 import Slider from '../../../common/slider';
 import NavigationCard from '../components/navigation-card';
+import HomeHeader from '../components/home-header';
+import DhoomakScrollView from '../../../common/components/dhoomak-scrollview';
 
 // reducer(s) / thunk(s)
+import { getSubscriptionDetailsAction } from '../thunks/subscription-thunk';
 import { getCategoryListAction } from '../../category/thunks/category-thunk';
 
 // utils
-import IMAGES from '../../../assets/images';
 import COLORS from '../../../utils/color';
+import { getAsyncStorageObjectItem } from '../../../utils/async-storage';
 
 // data
 import { homeBanners, navigations } from '../../../data/data';
-import HomeHeader from '../components/home-header';
-import DhoomakScrollView from '../../../common/components/dhoomak-scrollview';
-import { getSubscriptionDetailsAction } from '../thunks/subscription-thunk';
-import { getAsyncStorageObjectItem } from '../../../utils/async-storage';
 import { ASYNC_STORAGE_KEY } from '../../../data/constant';
-
 
 export default function Home({ route = {} }) {
   const { userId = '' } = route?.params;
@@ -37,7 +35,7 @@ export default function Home({ route = {} }) {
 
   return (
     <>
-      <ScrollView className='flex-1 bg-grey'>
+      <DhoomakScrollView className='flex-1 bg-grey'>
         {/* Order Details Section */}
         <HomeHeader />
 
@@ -63,18 +61,12 @@ export default function Home({ route = {} }) {
           </DhoomakScrollView>
         </View>
 
-      </ScrollView>
+      </DhoomakScrollView>
     </>
   );
 }
 
 const styles = StyleSheet.create({
-  shadow: {
-    overflow: 'hidden',
-    shadowColor: 'black',
-    shadowRadius: 10,
-    shadowOpacity: 1,
-  },
   contentContainerStyle: {
     flexDirection: 'row',
     flexWrap: 'wrap',

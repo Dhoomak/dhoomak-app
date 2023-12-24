@@ -4,7 +4,9 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import COLORS from '../../../utils/color';
 import useAppNavigation from '../../../common/hooks/use-app-navigation';
 
-export default function EditIcon({ className = '' }) {
+export default function EditIcon(props) {
+    const { style = [] } = props;
+
     const [navigation, SCREEN] = useAppNavigation();
 
     const handleEdit = () => {
@@ -12,7 +14,7 @@ export default function EditIcon({ className = '' }) {
     }
 
     return (
-        <TouchableOpacity className={`bg-primary rounded-full mr-4 p-2 ${className}`} onPress={handleEdit}>
+        <TouchableOpacity className={`bg-white rounded-full mr-0 p-2`} style={style} onPress={handleEdit}>
             <Icon name="create-outline" size={20} color={COLORS.black} />
         </TouchableOpacity>
     );

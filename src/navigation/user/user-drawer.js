@@ -28,7 +28,7 @@ function UserDrawers() {
                 component={UserTabs}
                 options={{
                     title: 'Home',
-                    headerRight: () => <UserIcon />,
+                    headerRight: () => <UserIcon className='mr-4' />,
                     headerTitle: '',
                 }}
             />
