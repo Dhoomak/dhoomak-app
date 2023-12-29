@@ -24,7 +24,7 @@ import useAppNavigation from '../../../common/hooks/use-app-navigation';
 
 
 const Subscription = ({ route }) => {
-  const { inventoryItems } = route.params;
+  const { inventoryItems = [] } = route.params || {};
   const dispatch = useDispatch();
   const [navigation, SCREEN] = useAppNavigation();
 
@@ -114,7 +114,6 @@ const Subscription = ({ route }) => {
         <Text className="text-lg text-black font-bold mb-2">Choose Your Plan</Text>
 
         <View className="flex flex-row">
-          {/* <View className="flex flex-row gap-3 w-full"> */}
           {
             Object.values(SUBSCRIPTION_TYPE).map((key) => {
               return (
@@ -147,7 +146,6 @@ const Subscription = ({ route }) => {
       {/* Start Date */}
       <View className="px-4 py-4 mx-3 mb-4 bg-white rounded-xl shadow-sm" style={commonStyles.shadow}>
         <Text className="text-lg text-black font-bold">Start Date</Text>
-        {/* <View > */}
         <InputDate
           attributes={inputDateAttributes}
           handleFormData={handleDate}
@@ -161,7 +159,7 @@ const Subscription = ({ route }) => {
             data: DELIVERY_TIME_SLOTS,
             setValueKey: 'value',
             extraProps: {
-              buttonTextAfterSelection: (selectedItem) => selectedItem.value,
+              buttonTextAfterSelection: (selectedItem) => selectedItem.title,
               rowTextForSelection: (item) => item.title
             }
           }}

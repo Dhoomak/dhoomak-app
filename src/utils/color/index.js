@@ -1,5 +1,7 @@
 const COLORS = {
     primary: '#FFC109',
+    primary40: '#FFC10966',
+    primary30: '#FFC1094D',
     primaryLight: '#ffd456',
     secondary: '#1A9607',
     magnolia: '#F8F3FF',

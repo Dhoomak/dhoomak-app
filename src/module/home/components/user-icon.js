@@ -14,7 +14,7 @@ export default function UserIcon({ style = [] }) {
 
     return (
         <TouchableOpacity className={`bg-white rounded-full mr-0 p-1`} style={style} onPress={handleIcon}>
-            <Icon name={'log-out'} size={24} color={COLORS.black} />
+            <Icon name='log-out' size={24} color={COLORS.black} />
         </TouchableOpacity>
     );
 }

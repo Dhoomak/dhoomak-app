@@ -100,16 +100,6 @@ const UserScreens = () => {
                     title: 'Order Summary',
                 }}
             />
-            {/* 
-            <UserStack.Screen
-                name={USER.INVENTORY_DISPLAY_LIST}
-                component={InventoryDisplayList}
-                options={{
-                    title: 'Your Inventory',
-                    headerRight: () => <EditIcon className='bg-primary' />
-                }}
-            /> 
-            */}
             <UserStack.Screen
                 name={USER.PAYMENT_DONE}
                 component={PaymentDoneModal}

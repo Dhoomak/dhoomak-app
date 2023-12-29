@@ -65,6 +65,9 @@ function HomeHeader() {
                             <TouchableOpacity className='bg-secondary rounded-md px-2 py-1 shadow-md mb-2 border-white border' style={commonStyles.shadow} onPress={handleNavigateToOrder}>
                                 <Text className='text-sm text-white font-semibold'>Pay Now</Text>
                             </TouchableOpacity>
+                            <View className='flex-row'>
+                                <Text className='font-semibold text-13 text-black'>24-10-2023</Text>
+                            </View>
                         </View>)
                         :
                         (<></>)

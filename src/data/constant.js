@@ -1,8 +1,6 @@
 export const APP_NAME = 'Dhoomak';
 export const OTP_LENGTH = 4;
-export const BASE_API_URL =
-  'http://ec2-13-232-182-101.ap-south-1.compute.amazonaws.com/';
-export const API_VERSION = '/v1';
+export const BASE_API_URL = 'http://ec2-13-232-182-101.ap-south-1.compute.amazonaws.com/';
 
 export const ROLE = {
   RESTAURANT: 'RESTAURANT',
@@ -43,19 +41,19 @@ export const DELIVERY_TIME_SLOTS = [
   },
   {
     value: '12PM-14PM',
-    title: '12pm - 14pm',
+    title: '12pm - 02pm',
   },
   {
     value: '14PM-16PM',
-    title: '14pm - 16pm',
+    title: '02pm - 04pm',
   },
   {
     value: '16PM-18PM',
-    title: '16pm - 18pm',
+    title: '04pm - 06pm',
   },
   {
     value: '18PM-20PM',
-    title: '18pm - 20pm',
+    title: '06pm - 08pm',
   },
 ];
 
