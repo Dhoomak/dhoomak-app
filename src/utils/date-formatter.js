@@ -1,5 +1,7 @@
 export function formatDate(userdate = new Date, formatter = '-') {
+    console.log(userdate);
     const date = new Date(userdate);
+    console.log(date);
 
     const day = date?.getDate();
     const month = date?.getMonth() + 1;

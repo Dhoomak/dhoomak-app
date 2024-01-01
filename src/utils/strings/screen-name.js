@@ -64,5 +64,9 @@ export const AUTH = {
   ENTER_OTP: 'EnterOtp',
   CREATE_ACCOUNT: 'CreateAccount',
 };
+export const COMMON = {
+  PRIVACY: 'Privacy',
+  TERMS_CONDITION: 'TermsCondition',
+};
 
 export default { USER, AUTH, EXECUTIVE, DELIVERY };

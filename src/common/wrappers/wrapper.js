@@ -8,7 +8,10 @@ import COLORS from '../../utils/color';
 function MainWrapper({ children }) {
     return (
         <>
-            <StatusBar backgroundColor={COLORS.primary} />
+            <StatusBar
+                backgroundColor={COLORS.primary}
+                barStyle="dark-content"
+            />
             <Provider store={store}>
                 <SafeAreaView className='flex-1 relative'>
                     {children}

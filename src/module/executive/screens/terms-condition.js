@@ -42,9 +42,10 @@
 // export default TermsCondition;
 
 import React from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import {View} from 'react-native';
 import {useWindowDimensions} from 'react-native';
 import RenderHtml from 'react-native-render-html';
+import DhoomakScrollView from '../../../common/components/dhoomak-scrollview';
 
 const source = {
   html: `
@@ -168,10 +169,10 @@ const source = {
 const TermsCondition = () => {
   const {width} = useWindowDimensions();
   return (
-    <View className={'px-2 bg-grey2'}>
-      <ScrollView>
+    <View className={'px-2 bg-white'}>
+      <DhoomakScrollView>
         <RenderHtml contentWidth={width} source={source} />
-      </ScrollView>
+      </DhoomakScrollView>
     </View>
   );
 };

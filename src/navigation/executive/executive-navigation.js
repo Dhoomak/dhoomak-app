@@ -26,6 +26,7 @@ import {
   CategoryList,
   ItemDetail,
 } from '../../module/category/screens';
+import { PRODUCT_UPDATION_TYPE } from '../../data/constant';
 
 // Stack
 const ExecutiveStack = createNativeStackNavigator();
@@ -34,6 +35,11 @@ const ExecutiveScreens = () => {
   return (
     <ExecutiveStack.Navigator
       initialRouteName={EXECUTIVE.DRAWER}
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: COLORS.primary,
+        }
+      }}
     >
       <ExecutiveStack.Screen
         name={EXECUTIVE.DRAWER}
@@ -122,6 +128,10 @@ const ExecutiveScreens = () => {
             backgroundColor: COLORS.primary,
           },
         }}
+        initialParams={{
+          productUpdationType: PRODUCT_UPDATION_TYPE.SUBSCRIPTION,
+          isUpdating: false,
+        }}
       />
       <ExecutiveStack.Screen
         name={EXECUTIVE.EXECUTIVE_ITEM_DETAILS}
@@ -152,6 +162,10 @@ const ExecutiveScreens = () => {
             backgroundColor: COLORS.primary,
           },
         }}
+        initialParams={{
+          productUpdationType: PRODUCT_UPDATION_TYPE.SUBSCRIPTION,
+          isUpdating: false,
+        }}
       />
       <ExecutiveStack.Screen
         name={EXECUTIVE.SUBSCRIPTION}
@@ -166,7 +180,6 @@ const ExecutiveScreens = () => {
       <ExecutiveStack.Screen
         name={EXECUTIVE.THANK_YOU}
         component={ThankYou}
-        // initialParams={}
         initialParams={{ userId: "" }}
         options={{
           headerShown: false,

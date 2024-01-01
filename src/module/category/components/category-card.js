@@ -8,7 +8,7 @@ import COLORS from '../../../utils/color';
 import { USER } from '../../../utils/strings/screen-name';
 
 // Data
-import { PRODUCTS_DEFAULT_IMAGE } from '../../../data/constant';
+import { PRODUCTS_DEFAULT_IMAGE, PRODUCT_UPDATION_TYPE } from '../../../data/constant';
 
 export default function CategoryCard({ item }) {
     const navigation = useNavigation();
@@ -16,11 +16,15 @@ export default function CategoryCard({ item }) {
         name = '',
         images: [img = PRODUCTS_DEFAULT_IMAGE] = [],
         _id = '',
+        productUpdationType = PRODUCT_UPDATION_TYPE.SUBSCRIPTION,
+        isUpdating = false,
     } = item;
 
     function handleNavigation() {
         navigation.navigate(USER.CATEGORY, {
             selectedCategoryId: _id,
+            productUpdationType,
+            isUpdating,
         });
     }
 

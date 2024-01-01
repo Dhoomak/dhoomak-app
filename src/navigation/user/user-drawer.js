@@ -5,9 +5,9 @@ import UserTabs from './user-tab';
 
 // Components
 import UserIcon from '../../module/home/components/user-icon';
-
+import { Privacy, TermsCondition } from '../../module/executive/screens';
 // Utilities 
-import { USER } from './../../utils/strings/screen-name';
+import { COMMON, USER } from './../../utils/strings/screen-name';
 import COLORS from '../../utils/color';
 import UserCustomDrawer from './user-custom-drawer';
 import { IonIcon } from '../../utils/icons';
@@ -26,8 +26,6 @@ function UserDrawers() {
                 drawerLabelStyle: {
                     marginLeft: -25
                 },
-                // drawerActiveBackgroundColor: COLORS.primary30,
-                // drawerActiveTintColor: COLORS.black,
                 drawerStyle: {
                     width: 240,
                 }
@@ -45,6 +43,15 @@ function UserDrawers() {
                     drawerIcon: (({ color, focused, size }) => (<IonIcon name={focused ? 'home' : 'home-outline'} color={color} size={16} />)),
                 }}
             />
+            {/* <UserDrawer.Screen
+                name={COMMON.PRIVACY}
+                component={Privacy}
+                options={{
+                    title: 'Privacy Policy',
+                    headerTitle: 'Privacy Policies',
+                    drawerIcon: (({ color, focused, size }) => (<IonIcon name={focused ? 'home' : 'home-outline'} color={color} size={16} />)),
+                }}
+            /> */}
         </UserDrawer.Navigator>
     );
 }

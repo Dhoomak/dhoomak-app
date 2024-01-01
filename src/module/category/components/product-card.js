@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addToInventory, getInventoryState, removeFromInventory } from '../../inventory/reducers/inventory-reducer';
 import { useNavigation } from '@react-navigation/native';
 import { USER } from '../../../utils/strings/screen-name';
-import { PRODUCTS_DEFAULT_IMAGE } from '../../../data/constant';
+import { PRODUCTS_DEFAULT_IMAGE, PRODUCT_UPDATION_TYPE } from '../../../data/constant';
 import STRINGS from '../../../utils/strings';
 
 export default function ProductCard(props) {
@@ -15,6 +15,8 @@ export default function ProductCard(props) {
 
     const {
         item = {},
+        productUpdationType = PRODUCT_UPDATION_TYPE.SUBSCRIPTION,
+        isUpdating = false,
     } = props;
 
     const {
@@ -43,7 +45,7 @@ export default function ProductCard(props) {
     }
 
     function viewItemDetails() {
-        navigation.navigate(USER.ITEM_DETAIL, { item, _id })
+        navigation.navigate(USER.ITEM_DETAIL, { item,productUpdationType, isUpdating })
     }
 
     return (
@@ -53,7 +55,7 @@ export default function ProductCard(props) {
             </View>
             <View className='w-full mb-6' >
                 <Text className='text-10 text-black'>{brandName}</Text>
-                <Text className='text-xs text-black'>{name}</Text>
+                <Text className='text-xs text-black' numberOfLines={1} >{name}</Text>
             </View>
             <View className='w-full mb-2' >
                 <Text className='text-10 text-black'>{unitQuantity}{unitType} quantity in Pack</Text>

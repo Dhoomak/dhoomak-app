@@ -6,8 +6,8 @@ import PayNowOptions from '../components/pay-now';
 
 const Payment = (route) => {
     const {
-        defaultSelectedPaymentOptionIndex = 0,
-        paymentTypes = SUBSCRIPTION_PAYMENT_TYPE,
+        defaultSelectedPaymentOptionIndex = 1,
+        paymentTypes = [SUBSCRIPTION_PAYMENT_TYPE[defaultSelectedPaymentOptionIndex]],
     } = route.params || {};
 
 

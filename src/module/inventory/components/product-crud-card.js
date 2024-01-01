@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Image, TouchableHighlight, TextInput, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import { PRODUCTS_DEFAULT_IMAGE } from '../../../data/constant';
+import { PRODUCTS_DEFAULT_IMAGE, PRODUCT_UPDATION_TYPE } from '../../../data/constant';
 import { USER } from '../../../utils/strings/screen-name';
 import STRINGS from '../../../utils/strings';
 import { useDispatch } from 'react-redux';
@@ -13,7 +13,6 @@ import COLORS from '../../../utils/color';
 export default function ProductCrudCard(item) {
     const dispatch = useDispatch();
     const navigation = useNavigation();
-
     const {
         _id = '',
         brandName = '',
@@ -23,6 +22,8 @@ export default function ProductCrudCard(item) {
         unitAdded = 1,
         name = '',
         images: [img = PRODUCTS_DEFAULT_IMAGE] = [],
+        productUpdationType = PRODUCT_UPDATION_TYPE.SUBSCRIPTION,
+        isUpdating = false,
     } = item;
 
     function handleNavigateToItemDetails() {
@@ -52,13 +53,13 @@ export default function ProductCrudCard(item) {
                 </TouchableHighlight>
             </View>
 
-            <View className='flex-2 justify-center'>
+            <View className='flex-1 justify-center'>
                 <Text className='text-base text-black font-semibold truncate'>{name}</Text>
                 {brandName ? <Text className='text-12 text-black truncate'>{brandName}</Text> : <></>}
                 {unitPrice ? <Text className='text-12 text-black truncate'>{STRINGS.rupeeSign}{unitPrice} | {unitQuantity}{unitType}</Text> : <></>}
             </View>
 
-            <View className='flex-1 justify-center'>
+            <View className='justify-center'>
                 <Text className='text-base text-black font-bold truncate text-center mb-1'>
                     {
                         unitPrice ? `${STRINGS.rupeeSign}${unitPrice * unitAdded}` : `${unitQuantity}${unitType}`
@@ -73,7 +74,7 @@ export default function ProductCrudCard(item) {
                     <TextInput
                         keyboardType='numeric'
                         defaultValue={`${unitAdded}`}
-                        className='bg-white text-center p-0 flex-2 text-black'
+                        className='bg-grey text-center p-0 min-w-[40px] text-black'
                         onChangeText={(value) => handleEnterProductQuantity(value)}
                         placeholderTextColor={COLORS.lightGrey}
                     />

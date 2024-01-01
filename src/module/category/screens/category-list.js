@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCategoryState } from '../reducers/category-reducer';
 import { getProductsListAction } from '../thunks/category-thunk';
 import DhoomakScrollView from '../../../common/components/dhoomak-scrollview';
+import { PRODUCT_UPDATION_TYPE } from '../../../data/constant';
 
 export default function CategoryList({ route }) {
   const dispatch = useDispatch();
@@ -16,6 +17,8 @@ export default function CategoryList({ route }) {
 
   const {
     selectedCategoryId = selectedCategoryId || categories?.[0]?._id || '',
+    productUpdationType = PRODUCT_UPDATION_TYPE.SUBSCRIPTION,
+    isUpdating = false,
   } = route?.params || {};
 
 
@@ -58,7 +61,7 @@ export default function CategoryList({ route }) {
                   width: '50%', flexDirection: "row", borderWidth: 1,
                   borderColor: COLORS.grey
                 }}>
-                  <ProductCard key={item._id} item={item} />
+                  <ProductCard key={item._id} item={item} productUpdationType={productUpdationType} isUpdating={isUpdating} />
                 </View>
               ))
             }

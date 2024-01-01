@@ -1,16 +1,22 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { useSelector } from 'react-redux';
-import { getCartState } from '../../inventory/reducers/cart-reducer';
 import { getInventoryState } from '../../inventory/reducers/inventory-reducer';
 
 import IMAGES from '../../../assets/images';
 import commonStyles from '../../../common/styles';
 import { useNavigation } from '@react-navigation/native';
 import { USER } from '../../../utils/strings/screen-name';
+import { PRODUCT_UPDATION_TYPE } from '../../../data/constant';
 
-export default function ProductCartTab() {
-  const { inventoryItems, totalInventoryItems, showProductInventoryTab } = useSelector(getInventoryState);
+export default function ProductCartTab(props) {
+  const {
+    productUpdationType = PRODUCT_UPDATION_TYPE.SUBSCRIPTION,
+    isUpdating = false,
+  } = props || {};
+
+
+  const { totalInventoryItems, showProductInventoryTab } = useSelector(getInventoryState);
   const navigation = useNavigation();
 
   if (!showProductInventoryTab) {
@@ -18,7 +24,7 @@ export default function ProductCartTab() {
   }
 
   const handleNavigation = () => {
-    navigation.navigate(USER.INVENTORY_LIST, { products: inventoryItems });
+    navigation.navigate(USER.INVENTORY_LIST, { productUpdationType, isUpdating, });
   }
 
   return (

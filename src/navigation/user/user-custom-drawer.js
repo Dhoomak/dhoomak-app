@@ -1,19 +1,42 @@
-import { View, Text, Image, TouchableOpacity, } from "react-native";
+import { View, Text, Share, Alert, Image, TouchableOpacity, } from "react-native";
 import { DrawerContentScrollView, DrawerItemList, DrawerItem } from "@react-navigation/drawer";
 
 import IMAGES from "../../assets/images";
 import { IonIcon } from "../../utils/icons";
 import COLORS from "../../utils/color";
-import { USER } from "../../utils/strings/screen-name";
+import { COMMON, USER } from "../../utils/strings/screen-name";
+import { useDispatch } from "react-redux";
+import { logoutAction } from "../../module/auth/thunks/auth-thunk";
 
 const UserCustomDrawer = (props) => {
-    // const { navigation } = props;
+    const dispatch = useDispatch();
 
-    const handleShareApp = () => {
-        console.log('invite a friend')
+
+    const handleShareApp = async () => {
+        console.log('invite a friend');
+        try {
+            const result = await Share.share({
+                message:
+                    'Dhoomak is a app which fills your empty kitchen containers fill automatically by setting your inventory. Download our app now.',
+            });
+            if (result.action === Share.sharedAction) {
+                if (result.activityType) {
+                    console.log(result)
+                    // shared with activity type of result.activityType
+                } else {
+                    console.log('share')
+                    // shared
+                }
+            } else if (result.action === Share.dismissedAction) {
+                console.log('dismissed')
+                // dismissed
+            }
+        } catch (error) {
+            Alert.alert(error.message);
+        }
     }
     const handleLogout = () => {
-        console.log('logout')
+        dispatch(logoutAction());
     }
 
     return (
@@ -60,7 +83,7 @@ const UserCustomDrawer = (props) => {
                             marginLeft: -25,
                             fontSize: 14,
                         }}
-                        onPress={() => props.navigation.navigate(USER.PROFILE)}
+                        onPress={() => props.navigation.navigate(COMMON.TERMS_CONDITION)}
                         icon={({ color, focused }) => (<IonIcon name={focused ? 'document-text' : 'document-text-outline'} color={color} size={16} />)}
                     />
                     <DrawerItem
@@ -69,7 +92,7 @@ const UserCustomDrawer = (props) => {
                             marginLeft: -25,
                             fontSize: 14,
                         }}
-                        onPress={() => props.navigation.navigate(USER.PROFILE)}
+                        onPress={() => props.navigation.navigate(COMMON.PRIVACY)}
                         icon={({ color, focused }) => (<IonIcon name={focused ? 'newspaper' : 'newspaper-outline'} color={color} size={16} />)}
                     />
                     <DrawerItem

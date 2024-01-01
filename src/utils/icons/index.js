@@ -12,7 +12,7 @@ export const IonIcon = (props) => {
         ...rest
     } = props;
 
-    const { style, ...extraRest } = rest;
+    const { style = {}, ...extraRest } = rest || {};
     return (
         <View style={style} {...extraRest} className='justify-center items-center'>
             <Ionicon name={name} size={size} color={color} />

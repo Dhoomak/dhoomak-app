@@ -4,14 +4,14 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Subscription } from '../../module/home/screens';
 import { PaymentDoneModal, PaymentFailModal, PaymentOptions } from '../../module/payment/screens';
 import { AddItems, CategoryList, ItemDetail, } from '../../module/category/screens'
-import { InventoryList, InventoryDisplayList } from '../../module/inventory/screens'
+import { InventoryList } from '../../module/inventory/screens'
 import { OrderHistoryDetails } from '../../module/history/screens';
 
 // Drawer
 import UserDrawers from './user-drawer';
 
 // Utilities
-import { USER } from '../../utils/strings/screen-name';
+import { COMMON, USER } from '../../utils/strings/screen-name';
 import COLORS from '../../utils/color';
 import EditIcon from '../../module/home/components/edit-icon';
 
@@ -20,6 +20,9 @@ const UserStack = createNativeStackNavigator();
 
 // Top Tab
 import UserTobTabs from './user-top-tab';
+import { Privacy, TermsCondition } from '../../module/executive/screens';
+import { PRODUCT_UPDATION_TYPE } from '../../data/constant';
+
 
 const UserScreens = () => {
     return (
@@ -54,6 +57,10 @@ const UserScreens = () => {
                 options={{
                     title: 'Create Your Inventory',
                 }}
+                initialParams={{
+                    productUpdationType: PRODUCT_UPDATION_TYPE.SUBSCRIPTION,
+                    isUpdating: false,
+                }}
             />
             <UserStack.Screen
                 name={USER.CATEGORY}
@@ -62,7 +69,6 @@ const UserScreens = () => {
                     title: 'Categories',
                 }}
             />
-
             <UserStack.Screen
                 name={USER.PAYMENT}
                 component={PaymentOptions}
@@ -77,7 +83,6 @@ const UserScreens = () => {
                     title: route?.params?.item?.name ? `${route?.params?.item?.name} Details` : 'Product Details',
                 })}
             />
-
             <UserStack.Screen
                 name={USER.SUBSCRIPTION}
                 component={Subscription}
@@ -91,6 +96,10 @@ const UserScreens = () => {
                 component={InventoryList}
                 options={{
                     title: 'Inventory List',
+                }}
+                initialParams={{
+                    productUpdationType: PRODUCT_UPDATION_TYPE.SUBSCRIPTION,
+                    isUpdating: false,
                 }}
             />
             <UserStack.Screen
@@ -114,15 +123,22 @@ const UserScreens = () => {
                     headerShown: false,
                 }}
             />
+            <UserStack.Screen
+                name={COMMON.PRIVACY}
+                component={Privacy}
+                options={{
+                    title: 'Privacy Policy',
+                }}
+            />
+            <UserStack.Screen
+                name={COMMON.TERMS_CONDITION}
+                component={TermsCondition}
+                options={{
+                    title: 'Terms of Use',
+                }}
+            />
         </UserStack.Navigator>
     );
 };
 
 export default UserScreens
-/*
-/
-          options={({ route }) => ({
-            title: 'Booking Details',
-            headerShown: false,
-          })}
-*/ 

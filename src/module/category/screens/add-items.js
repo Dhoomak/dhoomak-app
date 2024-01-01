@@ -13,14 +13,22 @@ import STRINGS from '../../../utils/strings';
 import AddCustomItemForm from '../components/add-custom-item-form';
 import { useSelector } from 'react-redux';
 import { getCategoryState } from '../reducers/category-reducer';
+import { PRODUCT_UPDATION_TYPE } from './../../../data/constant';
 
-function AddItems() {
+function AddItems({ route }) {
+  const {
+    productUpdationType = PRODUCT_UPDATION_TYPE.SUBSCRIPTION,
+    isUpdating = false,
+  } = route.params || {};
+
+  console.log(productUpdationType)
+  console.log(isUpdating)
+
   const {
     categories = [],
     categoriesLoading = false,
     categoriesError = '',
   } = useSelector(getCategoryState)
-
 
   return (
     <KeyboardAvoidingView
@@ -45,7 +53,7 @@ function AddItems() {
           {
             categories.map((item, ind) => (
               <View key={ind} style={{ width: '30%', flexDirection: "row" }}>
-                <CategoryCard item={item} />
+                <CategoryCard item={item} productUpdationType={productUpdationType} isUpdating={isUpdating}  />
               </View>)
             )
           }
@@ -53,7 +61,7 @@ function AddItems() {
       </View>
 
       {/* Product Cart Tab */}
-      <ProductCartTab />
+      <ProductCartTab productUpdationType={productUpdationType} isUpdating={isUpdating}  />
     </KeyboardAvoidingView>
   );
 }

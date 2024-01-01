@@ -6,12 +6,17 @@ import STRINGS from '../../../utils/strings/index';
 import ProductCartTab from '../components/product-cart-tab';
 import { useDispatch, useSelector } from 'react-redux';
 import { getInventoryState, addToInventory, removeFromInventory } from '../../inventory/reducers/inventory-reducer';
+import { PRODUCT_UPDATION_TYPE } from '../../../data/constant';
 
 function ItemDetail({ route }) {
     const { inventoryAddedIdList } = useSelector(getInventoryState);
     const dispatch = useDispatch();
     const [readMore, setReadMore] = useState(false);
-    const { item } = route.params;
+    const {
+        item,
+        productUpdationType = PRODUCT_UPDATION_TYPE.SUBSCRIPTION,
+        isUpdating = false,
+    } = route.params;
 
     const {
         _id = '',
@@ -122,7 +127,9 @@ function ItemDetail({ route }) {
                     </View>
                 </View>
             </DhoomakScrollView >
-            <ProductCartTab />
+
+            {/* tab bar */}
+            <ProductCartTab productUpdationType={productUpdationType} isUpdating={isUpdating} />
         </View>
     );
 }

@@ -1,11 +1,12 @@
 import React from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import {View} from 'react-native';
 import {useWindowDimensions} from 'react-native';
 import RenderHtml from 'react-native-render-html';
+import DhoomakScrollView from '../../../common/components/dhoomak-scrollview';
 
 const source = {
   html: `
-    <h1>Privacy Policy for Dhoomak</h1>
+    <h2>Privacy Policy for Dhoomak</h2>
 
 <p>At Dhoomak, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Dhoomak and how we use it.</p>
 
@@ -57,10 +58,10 @@ const source = {
 const Privacy = () => {
   const {width} = useWindowDimensions();
   return (
-    <View className={'px-2 bg-grey2'}>
-      <ScrollView>
+    <View className={'px-2 bg-white'}>
+      <DhoomakScrollView>
         <RenderHtml contentWidth={width} source={source} />
-      </ScrollView>
+      </DhoomakScrollView>
     </View>
   );
 };

@@ -11,6 +11,7 @@ import COLORS from '../../utils/color';
 
 // Store
 import store from '../../store/store';
+import OrderList from '../../module/order/screens';
 
 // TobTab
 const UserTopTab = createMaterialTopTabNavigator();
@@ -45,7 +46,7 @@ function UserTobTabs() {
             />
             <UserTopTab.Screen
                 name={USER.ORDER}
-                component={InventoryDisplayList}
+                component={OrderList}
                 options={{
                     title: store.getState().subscription.subscriptionDetails.frequency ?? 'Next Order',
                 }}

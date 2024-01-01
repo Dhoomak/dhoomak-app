@@ -6,13 +6,17 @@ import { useNavigation } from '@react-navigation/native';
 import { USER } from '../../../utils/strings/screen-name';
 import { useSelector } from 'react-redux';
 import { getSubscriptionState } from '../reducers/subscription-reducer';
+import { formatDate } from '../../../utils/date-formatter';
 
 function HomeHeader() {
     const navigation = useNavigation();
     const {
         isSubscriptionCreated = false,
         isSubscriptionPaymentDone = false,
-        subscriptionDetails: { products = [] } = {}
+        subscriptionDetails: {
+            products = [],
+            nextDeliveryDate = '',
+        } = {}
     } = useSelector(getSubscriptionState);
 
     function handleNavigateToCreateInventory() {
@@ -66,7 +70,7 @@ function HomeHeader() {
                                 <Text className='text-sm text-white font-semibold'>Pay Now</Text>
                             </TouchableOpacity>
                             <View className='flex-row'>
-                                <Text className='font-semibold text-13 text-black'>24-10-2023</Text>
+                                <Text className='font-semibold text-13 text-black'>{nextDeliveryDate.slice(0, 10)}</Text>
                             </View>
                         </View>)
                         :

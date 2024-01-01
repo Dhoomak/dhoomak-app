@@ -12,15 +12,20 @@ import {
   getAsyncStorageItem,
   getAsyncStorageObjectItem,
 } from '../../../utils/async-storage';
-import { ASYNC_STORAGE_KEY, ROLE } from '../../../data/constant';
+import { ASYNC_STORAGE_KEY, PRODUCT_UPDATION_TYPE, ROLE } from '../../../data/constant';
 import useAppNavigation from '../../../common/hooks/use-app-navigation';
 import { saveInventoryDetailsAction } from '../../home/thunks/subscription-thunk';
 
-export default function InventoryList() {
+export default function InventoryList({ route }) {
+  const {
+    productUpdationType = PRODUCT_UPDATION_TYPE.SUBSCRIPTION,
+    isUpdating = false,
+  } = route.params || {};
+
+
   const [navigation, SCREEN] = useAppNavigation();
   const dispatch = useDispatch();
   const { inventoryItems, totalInventoryItems } = useSelector(getInventoryState);
-  // console.log(inventoryItems, 'inteventory items sending');
 
   const handleMakeSubscription = async () => {
     const userdata = await getAsyncStorageObjectItem(
@@ -32,7 +37,6 @@ export default function InventoryList() {
       const restaurantUserId = await getAsyncStorageItem(
         ASYNC_STORAGE_KEY.USER_RESTAURANT_ID,
       );
-      console.log("Restaurant Id: ", restaurantUserId)
       payload = {
         products: inventoryItems,
         user: restaurantUserId,
@@ -43,7 +47,6 @@ export default function InventoryList() {
         user: userdata._id,
       };
     }
-
     dispatch(saveInventoryDetailsAction({ subscriptionData: payload, inventoryItems, navigation, SCREEN, userType: userdata.userType }));
   };
 
@@ -56,7 +59,7 @@ export default function InventoryList() {
               data={inventoryItems}
               keyExtractor={item => item._id}
               className="rounded-md flex-1 bg-white overflow-hidden"
-              renderItem={({ item }) => <ProductCrudCard {...item} />}
+              renderItem={({ item }) => <ProductCrudCard {...item} productUpdationType={productUpdationType} isUpdating={isUpdating} />}
               ItemSeparatorComponent={() => (
                 <View className="bg-grey h-[2px]"></View>
               )}

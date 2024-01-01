@@ -10,7 +10,7 @@ export default function EditIcon(props) {
     const [navigation, SCREEN] = useAppNavigation();
 
     const handleEdit = () => {
-        navigation.replace(SCREEN.USER.ADD_ITEMS);
+        navigation.replace(SCREEN.USER.INVENTORY_LIST);
     }
 
     return (

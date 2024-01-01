@@ -33,7 +33,7 @@ const Profile = () => {
             street = '',
         } = {},
         images: [img = ''] = []
-    } = profileData;
+    } = profileData || {};
 
     const userProfileData = [
         {
