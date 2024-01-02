@@ -21,19 +21,18 @@ export default function OrderList() {
     const handleEdit = () => {
         navigation.replace(SCREEN.USER.INVENTORY_LIST, {
             isUpdating: true,
-            
+
         });
     }
-
     return (
         <View className="flex-1 bg-grey" >
             <View className='flex-row gap-4 items-center px-3 py-2'>
                 <Text className='flex-1 text-black text-base font-semibold'>{inventoryItems.length} Ordering Items</Text>
-                <View>
+                {/*<View>
                     <TouchableOpacity className={`bg-white rounded-full mr-0 p-2`} onPress={handleEdit}>
                         <IonIcon name="create-outline" size={20} color={COLORS.black} />
                     </TouchableOpacity>
-                </View>
+                </View>*/}
             </View>
             {totalInventoryItems >= 1 ? (
                 <View className="rounded-lg overflow-hidden flex-1 m-3 mt-0 p-2 bg-white">
