@@ -94,9 +94,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.minutemanagerapp"
+    namespace "com.dhoomak"
     defaultConfig {
-        applicationId "com.minutemanagerapp"
+        applicationId "com.dhoomak"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
