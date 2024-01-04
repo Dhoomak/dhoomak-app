@@ -83,6 +83,7 @@ export const createAccountAction = createAsyncThunk(
       pinCode,
       gstNo,
       panNo,
+      images = [],
     } = enquiryForm;
     try {
       if (!isValidEmail(email)) {
@@ -129,7 +130,18 @@ export const createAccountAction = createAsyncThunk(
         );
         return;
       }
-      const response = await createAccount({
+
+      if (images.length === 0) {
+        Alert.alert(
+          'Missing Image',
+          'Please click image to upload',
+          [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
+          { cancelable: false },
+        );
+        return;
+      }
+
+      const payload = {
         phoneNumber: mobileNo,
         name: restaurantName,
         address: {
@@ -137,16 +149,19 @@ export const createAccountAction = createAsyncThunk(
           zipcode: pinCode,
           street: restaurantAddress,
         },
-        images: ['asf'],
+        images: images,
         email: email,
         type: 'RESTAURANT',
         managerName: name,
         gstNo: gstNo,
         panNo: panNo,
-      });
+      };
+
+      const response = await createAccount(payload);
+
       if (response) {
-        console.log(response, 'response from create account ');
-        // console.log(response.data.profile.user);
+        toast('Form Submitted Successfully');
+        console.log(response, 'response from create account');
         navigation.navigate(EXECUTIVE.VERIFICATION_OTP, {
           data: enquiryForm,
           profileId: response.data.profile._id,
@@ -155,7 +170,7 @@ export const createAccountAction = createAsyncThunk(
       }
       return response;
     } catch (error) {
-      // console.log("thunk inside catch")
+      console.log("thunk inside catch")
       console.log(error);
       const errorMessage = error?.data?.data?.error || 'An error occurred.';
       toast(errorMessage);

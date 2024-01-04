@@ -1,6 +1,6 @@
 import axiosInstance from '../../../axios';
-import {ASYNC_STORAGE_KEY} from '../../../data/constant';
-import {getAsyncStorageObjectItem} from '../../../utils/async-storage';
+import { ASYNC_STORAGE_KEY } from '../../../data/constant';
+import { getAsyncStorageObjectItem } from '../../../utils/async-storage';
 
 export async function createInquiry(inquiryData) {
   try {
@@ -13,11 +13,14 @@ export async function createInquiry(inquiryData) {
 }
 
 export async function createAccount(createAccountDetails) {
-  console.log('Create Account....................');
-  console.log(createAccountDetails, 'createAccountDetails');
+  // console.log('Create Account....................');
+  // console.log(createAccountDetails, 'createAccountDetails');
   const response = await axiosInstance.post(
     '/profile/account',
     createAccountDetails,
+    {
+      'Content-Type': 'multipart/form-data',
+    },
   );
   return response.data;
 }

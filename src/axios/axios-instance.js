@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ASYNC_STORAGE_KEY, BASE_API_URL } from '../data/constant';
+import { ASYNC_STORAGE_KEY, PROD_API_URL, DEV_API_URL } from '../data/constant';
 import { getAsyncStorageItem } from '../utils/async-storage';
 
 
@@ -9,7 +9,7 @@ let headers = {
 };
 
 const axiosInstance = axios.create({
-  baseURL: BASE_API_URL,
+  baseURL: DEV_API_URL,
   headers,
 });
 
