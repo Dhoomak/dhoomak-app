@@ -7,6 +7,7 @@ module.exports = {
     "./helpers/**/*.{js,jsx,ts,tsx}",
     "./module/**/*.{js,jsx,ts,tsx}",
     "./common/**/*.{js,jsx,ts,tsx}",
+    "./src/**/*.{js,jsx,ts,tsx}",
     "./<custom-folder>/**/*.{js,jsx,ts,tsx}"
   ],
   theme: {
@@ -21,6 +22,9 @@ module.exports = {
         'white': '#ffffff',
         'grey': '#F0F1F6',
         'red': '#F70C0C',
+        "grey2": "#403B3B",
+        "green": '#0C4403',
+        "dark-pink": "#EEEBF2"
       },
       flex: {
         '2': '2 2 0%',

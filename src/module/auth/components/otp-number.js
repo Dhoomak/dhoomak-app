@@ -1,45 +1,34 @@
-import React, {useEffect, useState} from 'react';
-import {View, Text} from 'react-native';
+import React, { memo, useCallback, useState } from 'react';
+import { View, Text } from 'react-native';
 import OTPTextView from 'react-native-otp-textinput';
 import commonStyles from '../../../common/styles';
 import STRINGS from '../../../utils/strings';
 import FilledButton from '../../../common/button';
-// import useAppNavigation from '../../../common/hooks/use-app-navigation';
-import {toast} from '../../../utils/toast';
+import { toast } from '../../../utils/toast';
 import COLORS from '../../../utils/color';
-import {useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { verifyOtpAction } from '../thunks/auth-thunk';
+import { OTP_LENGTH } from '../../../data/constant';
 
-import {useRoute} from '@react-navigation/native';
-import {verifyOtpAction} from '../../../axios/https';
-// import { setAsyncStorageItem } from '../../../utils/async-storage';
 
-const OTP_LENGTH = 4;
-
-export default function OtpNumber({mobileNumber = '',navigation}) {
+function OtpNumber({ phoneNumber = '' }) {
   const dispatch = useDispatch();
   const [otpValue, setOtpValue] = useState('');
-  const route = useRoute();
-  const {phoneNumber} = route.params;
 
-  console.log(typeof phoneNumber);
-  const handleVerifyOtp = async () => {
+  const handleVerifyOtp = useCallback(async () => {
     if (otpValue.length !== OTP_LENGTH) {
-      console.log('Invalid OTP Length');
       toast('Please Enter Full OTP');
       return;
     }
-
-    dispatch(verifyOtpAction({phone: phoneNumber, otp: otpValue}));
-    console.log('verifyOtpAction dispatched...');
-
-  };
+    dispatch(verifyOtpAction({ phoneNumber: phoneNumber, otp: otpValue }));
+  }, [otpValue]);
 
   return (
     <View
       className="w-full p-5 bg-white rounded-xl shadow-lg"
       style={commonStyles.shadow}>
       <Text className="text-base font-bold text-left mb-6 text-black">
-        {STRINGS.enterOtpAndVerify} {mobileNumber}
+        {STRINGS.enterOtpAndVerify} {phoneNumber}
       </Text>
       <View className="pb-4 px-4">
         <OTPTextView
@@ -60,3 +49,5 @@ export default function OtpNumber({mobileNumber = '',navigation}) {
     </View>
   );
 }
+
+export default memo(OtpNumber);
